@@ -118,11 +118,11 @@
                                                     <div class="relative w-10 h-10 mr-3 rounded-full md:block">
                                                         @if ($item->user_buyer->detail_user->photo != NULL)
 
-                                                            <img src="{{ url(Storage::url($item->user_buyer->detail_user->photo)) }}" alt="photo profile" class="object-cover w-12 h-12 mr-3 rounded-full">
+                                                            <img src="{{ url(Storage::url($item->user_buyer->detail_user->photo)) }}" alt="photo profile" class=" w-12 h-12 mr-3 rounded-full">
 
                                                         @else
                                                             
-                                                            <img class="inline w-12 h-12 mr-3 rounded-full" src="{{ url('https://randomuser.me/api/portraits/men/1.jpg') }}" alt="">
+                                                            <img class=" w-12 h-12 mr-3 rounded-full" src="{{ url('https://randomuser.me/api/portraits/men/1.jpg') }}" alt="">
 
                                                         @endif
 

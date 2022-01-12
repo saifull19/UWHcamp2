@@ -54,6 +54,7 @@ Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth:sa
 
     // profile
     Route::get('delete_photo', [ProfileController::class, 'delete'])->name('delete.photo.profile');
+    Route::get('editt', [ProfileController::class, 'editt'])->name('profile.editt');
     Route::resource('profile', ProfileController::class);
 });
 

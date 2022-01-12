@@ -55,7 +55,7 @@ class LandingController extends Controller
      */
     public function create()
     {
-        return abort('404');
+        return view('pages.landing.about');
 
     }
 

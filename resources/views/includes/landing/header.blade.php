@@ -20,11 +20,11 @@
             <div class="hidden lg:flex lg:items-center lg:w-auto w-full lg:ml-auto lg:mr-auto flex-wrap items-center text-base justify-center"
                 id="menu">
                 <nav class="lg:space-x-12 space-x-0 lg:flex items-center justify-between text-base pt-8 lg:pt-0 lg:space-y-0 space-y-6">
-                    <a href="{{ route('index') }}" class="block {{ request()->is('/') ? 'nav-link active font-medium' : 'nav-link text-serv-text' }}">Home</a>
-                    <a href="{{ route('explore.landing') }}" class="block {{ ($active === "explore") ? 'nav-link active font-medium' : 'nav-link text-serv-text' }}">Bootcamp</a>
+                    <a href="{{ route('index') }}" class="block hover:text-gray-700 {{ request()->is('/') ? 'nav-link active font-medium' : 'nav-link text-serv-text' }}">Home</a>
+                    <a href="{{ route('explore.landing') }}" class="block hover:text-gray-700 {{ ($active === "explore") ? 'nav-link active font-medium' : 'nav-link text-serv-text' }}">Bootcamp</a>
                     <a href="{{ route('profesional.landing') }}" class="block {{ ($active === "profesional") ? 'nav-link active font-medium' : 'nav-link text-serv-text' }}">Professional Development</a>
                     <a href="#" class="block nav-link text-serv-text">Corporate</a>
-                    <a href="#" class="block nav-link text-serv-text">About</a>
+                    <a href="{{ route('create') }}" class="block {{ ($active === "profesional") ? 'nav-link active font-medium' : 'nav-link text-serv-text' }}">About</a>
 
                     @auth
 

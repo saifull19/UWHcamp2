@@ -39,11 +39,10 @@ class ProfileController extends Controller
      */
     public function index()
     {
-
         $user = User::where('id', Auth::user()->id)->first();
         $experience_user = ExperienceUser::where('detail_user_id', $user->detail_user->id)->orderBy('id', 'asc')->get();
 
-        return view('pages.dashboard.profile', compact('user', 'experience_user'));
+        return view('pages.dashboard.profile.index', compact('user', 'experience_user'));
     }
 
     /**
@@ -86,7 +85,10 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        return abort('404');
+        $user = User::where('id', Auth::user()->id)->first();
+        $experience_user = ExperienceUser::where('detail_user_id', $user->detail_user->id)->orderBy('id', 'asc')->get();
+
+        return view('pages.dashboard.profile.profile', compact('user', 'experience_user'));
     }
 
     /**
@@ -152,7 +154,7 @@ class ProfileController extends Controller
 
         // fungsi atau cara untuk menggunakan sweetalert #toast
         toast()->success('Updated Has been success');
-        return back();
+        return redirect()->route('member.profile.index');
 
     }
 
@@ -192,5 +194,13 @@ class ProfileController extends Controller
         toast()->success('Delete has been success');
         // back = untuk mengembalikan ke path atau menu profile
         return back();
+    }
+
+    public function editt()
+    {
+        $user = User::where('id', Auth::user()->id)->first();
+        $experience_user = ExperienceUser::where('detail_user_id', $user->detail_user->id)->orderBy('id', 'asc')->get();
+
+        return view('pages.dashboard.profile.profile', compact('user', 'experience_user'));
     }
 }

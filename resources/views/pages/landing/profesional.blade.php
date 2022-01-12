@@ -79,20 +79,46 @@
 
             <li class="mr-3">
               
-              <a class="inline-block text-black no-underline font-lg text-lg hover:text-gray-800 hover:text-underline py-2 px-4" href="#">About</a>
+              <a class="inline-block text-black no-underline font-lg text-lg hover:text-gray-800 hover:text-underline py-2 px-4" href="{{ route('create') }}">About</a>
             </li>
           </ul>
-          <button
-            id="navAction"
-            class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
-          >
-            Action
+
+          @auth
+              <a href="{{ route('member.dashboard.index') }}" id="navAction" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                MyDashboard
+              </a>
+              @if (auth()->user()->detail_user()->first()->photo != NULL)
+  
+                                <img src="{{ url(Storage::url(auth()->user()->detail_user()->first()->photo)) }}" alt="Photo Profile" class="inline ml-3 h-12 w-12 rounded-full">
+  
+                            {{-- @if (Auth::user()->avatar)
+                            <img src="{{Auth::user()->avatar}}" class="inline ml-3 h-12 w-12 rounded-full" alt="Member profile"> --}}
+                            @else    
+                            {{-- <img src="https://ui-avatars.com/api/?name=Admin" class="user-photo rounded-cilcle" alt="" style="border-radius: 50%"> --}}
+                                            
+                                <img class="inline ml-3 h-12 w-12 rounded-full" src="{{ url('https://randomuser.me/api/portraits/men/1.jpg') }}" alt="">
+  
+                            @endif
+           @endauth
+
+          @guest
+              <button onclick="toggleModal('loginModal')" id="navAction" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+            Login
           </button>
+          @endguest
+
         </div>
       </div>
       <hr class="border-b border-gray-100 opacity-25 my-0 py-0" />
     </nav>
+
+    
+    {{-- modals --}}
+            @include('components.modal.login')
+            @include('components.modal.register')
+            @include('components.modal.register-success')
     <!--Hero-->
+
     <div class="pt-24">
       <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
         <!--Left Col-->
@@ -646,7 +672,156 @@
       </button>
     </section>
     <!--Footer-->
-    <footer class="bg-white">
+
+    {{-- @include('includes.landing.footer') --}}
+
+    <!-- footer -->
+<footer class="bg-white relative py-2">
+    <div class="mx-auto lg:px-16 md:px-20 px-8 py-8 ">
+        <div class="sm:flex sm:mt-16">
+            <div class="mt-8 sm:mt-0 sm:w-full flex flex-col md:flex-row justify-between">
+                <div class="flex-1 mt-2 flex-col">
+                    <h2 class="font-medium text-black font-bold text-lg mb-4">Company</h2>
+                    <div class="my-3">
+                        <a href="{{ route('index') }}" class="text-black hover:text-gray-700 font-normal">
+                            Home
+                        </a>
+                    </div>
+                    <div class="my-3">
+                        <a href="{{ route('explore.landing') }}" class="text-black hover:text-gray-700 font-normal">
+                            Bootcamp
+                        </a>
+                    </div>
+                    <div class="my-3">
+                        <a href="#" class="text-black hover:text-gray-700 font-normal">
+                            Professional Development
+                        </a>
+                    </div>
+                    <div class="my-3">
+                        <a href="#" class="text-black hover:text-gray-700 font-normal">
+                            Corporate
+                        </a>
+                    </div>
+                    <div class="my-3">
+                        <a href="#" class="text-black hover:text-gray-700 font-normal">
+                            About
+                        </a>
+                    </div>
+                </div>
+                <div class="flex-1 mt-2 flex-col">
+                    <h4 class="font-medium text-black font-bold text-lg mt-4 md:mt-0 mb-4">Featured Services</h4>
+                    <div class="my-3">
+                        <a href="#" class="text-black hover:text-gray-700 font-normal">
+                            Programming &amp; Tech
+                        </a>
+                    </div>
+                    <div class="my-3">
+                        <a href="#" class="text-black hover:text-gray-700 font-normal">
+                            Graphics &amp; Design
+                        </a>
+                    </div>
+                    <div class="my-3">
+                        <a href="#" class="text-black hover:text-gray-700 font-normal">
+                            Digital Marketing
+                        </a>
+                    </div>
+                    <div class="my-3">
+                        <a href="#" class="text-black hover:text-gray-700 font-normal">
+                            Business
+                        </a>
+                    </div>
+                </div>
+                <div class="flex-1 mt-2 flex-col">
+                    <h4 class="font-medium text-black font-bold text-lg mt-4 md:mt-0 mb-4">Our Community</h4>
+                    <div class="my-3">
+                        <a href="#" class="text-black hover:text-gray-700 font-normal">
+                            Instagram
+                        </a>
+                    </div>
+                    <div class="my-3">
+                        <a href="#" class="text-black hover:text-gray-700 font-normal">
+                            Telegram
+                        </a>
+                    </div>
+                    <div class="my-3">
+                        <a href="#" class="text-black hover:text-gray-700 font-normal">
+                            Facebook
+                        </a>
+                    </div>
+                    <div class="my-3">
+                        <a href="#" class="text-black hover:text-gray-700 font-normal">
+                            Discord
+                        </a>
+                    </div>
+                </div>
+                <div class="flex-1 mt-2 flex-col lg:mr-28">
+                    <h4 class="font-medium text-black font-bold text-lg mt-4 md:mt-0 mb-4">
+                        Get Weekly Updates & Tips
+                    </h4>
+                    <div class="my-3">
+                        <p class="text-black hover:text-gray-700 font-normal">
+                            Berlangganan buletin kami untuk mendapatkan berita mingguan, pembaruan, kiat, dan penawaran khusus Anda. Di setiap hari Senin!
+                        </p>
+                        <div class="flex flex-wrap items-stretch w-full mt-4 relative h-15 hover:text-black font-bold bg-serv-email rounded-lg items-center rounded mb-2 pr-5">
+                            <div class="flex -mr-px justify-center w-15 p-4">
+                                <span
+                                class="flex items-center leading-normal bg-serv-email px-3 border-0 rounded rounded-r-none text-2xl text-gray-600"
+                                >
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="5" width="20" height="14" rx="3" fill="#22B07D"/>
+                                <path d="M5 8L12 12L19 8" stroke="#0F3040" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>                                        
+                                </span>
+                            </div>
+                            <input
+                                type="text"
+                                class="flex-shrink flex-grow flex-auto w-px flex-1 border-0 h-10 border-grey-light rounded rounded-l-none pr-3 self-center relative outline-none bg-serv-email  "
+                                placeholder="yourmail@domain.com"
+                            />
+                        </div>
+                        <button onclick="toggleModal('loginModal')" id="navAction" class="mx-auto lg:mx-0 hover:underline bg-gray-500 text-white font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                          Subscribe
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mx-auto lg:px-16 md:px-20 px-8 py-8 ">
+        <div class="mt-16 border-t border-serv-border sm:flex justify-between w-100 ">
+            <div class="flex items-left mt-8">
+                <h1 class="text-black text-3xl font-bold">
+                    UWHcamp
+                </h1>
+            </div>
+            <div class="sm:flex items-center justify-center mt-8 lg:ml-24">
+                <p class="text-gray-800">
+                <div class="sm:flex sm:space-x-6">
+                    <span class="sm:flex block">
+                        <a href="#" class="text-gray-800">Terms</a>
+                    </span>
+                    <span class="sm:flex block">
+                        <a href="#" class="text-gray-800">Privacy</a>
+                    </span>
+                    <span class="sm:flex block">
+                        <a href="#" class="text-gray-800">Updates</a>
+                    </span>
+                    <span class="sm:flex block">
+                        <a href="#" class="text-gray-800">Contact us</a>
+                    </span>
+                </div>
+                </p>
+            </div>
+            <div class="flex items-right flex-end mt-8">
+                <p class="text-gray-800">
+                    &copy; 2022 UWHcamp All rights reserved.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    {{-- <footer class="bg-white">
       <div class="container mx-auto px-8">
         <div class="w-full flex flex-col md:flex-row py-6">
           <div class="flex-1 mb-6 text-black">
@@ -718,7 +893,9 @@
         </div>
       </div>
       <a href="https://www.freepik.com/free-photos-vectors/background" class="text-gray-500">Background vector created by freepik - www.freepik.com</a>
-    </footer>
+    </footer> --}}
+    
+
     <!-- jQuery if you need it
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   -->
