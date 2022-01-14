@@ -41,8 +41,9 @@ class ServiceController extends Controller
         // order by untuk updet yg terbaru berada diatas 'desc' => 'descending'
         // eloquest service
         $services = Service::where('users_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        $category = Category::all();
 
-        return view('pages.dashboard.service.index', compact('services'));
+        return view('pages.dashboard.service.index', compact('services', 'category'));
     }
 
     /**
