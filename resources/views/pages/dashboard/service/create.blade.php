@@ -60,7 +60,12 @@
                                                 </div>
 
                                                 <div class="col-span-6 sm:col-span-3">
-                                                    <input placeholder="Slug !, Samakan dengan title tanpa spasi" type="text" name="slug" id="title" autocomplete="title" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('slug') }}" required>
+                                                    <select id="slug" name="slug" autocomplete="slug" class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                                                        <option>Category Service</option>
+                                                        <option value="Programming">Programming</option>
+                                                        <option value="Development">Development</option>
+                                                        <option value="Product">Product</option>
+                                                    </select>
 
                                                     @if ($errors->has('slug'))
                                                         <p class="text-red-500 mb-3 text-sm">{{ $errors->first('slug') }}</p>

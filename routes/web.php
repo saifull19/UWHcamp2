@@ -27,6 +27,7 @@ use App\Http\Controllers\UserController;
 Route::get('payment/success', [LandingController::class, 'midtransCallback']);
 Route::post('payment/success', [LandingController::class, 'midtransCallback']);
 
+Route::get('corporate', [LandingController::class, 'corporate'])->name('corporate.landing');
 Route::get('profesional', [LandingController::class, 'profesional'])->name('profesional.landing');
 Route::get('detail_booking/{slug}', [LandingController::class, 'detail_booking'])->name('detail.booking.landing');
 Route::get('booking/{slug}', [LandingController::class, 'booking'])->name('booking.landing');

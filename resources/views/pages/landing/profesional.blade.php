@@ -19,7 +19,7 @@
     <!-- Define your gradient here - use online tools to find a gradient matching your branding-->
     <style>
       .gradient {
-        background: linear-gradient(90deg, #23e865 0%, #51da9f 100%);
+        background: linear-gradient(90deg, #8fe6ab 0%, #00dc7c 100%);
       }
     </style>
   </head>
@@ -45,7 +45,7 @@
           </a>
         </div>
         <div class="block lg:hidden pr-4">
-          <button id="nav-toggle" class="flex items-center p-1 text-pink-800 hover:text-gray-900 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+          <button id="nav-toggle" class="flex items-center p-1 text-pink-800 hover:text-gray-500 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
             <svg class="fill-current h-6 w-6" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <title>Home</title>
               <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
@@ -57,34 +57,34 @@
           <ul class="list-reset lg:flex justify-center flex-1 items-center">
 
             <li class="mr-3">
-              <a href="{{ route('index') }}" class=" font-medium text-lg no-underline hover:text-underline inline-block py-2 px-4 {{ request()->is('/') ? ' font-bold ' : 'text-black hover:text-gray-800' }}">Home</a>
+              <a href="{{ route('index') }}" class=" font-medium text-lg no-underline hover:text-underline inline-block py-2 px-4 {{ request()->is('/') ? ' font-bold ' : 'text-black hover:text-gray-400' }}">Home</a>
               {{-- <a class="inline-block py-2 px-4 text-black font-bold no-underline" href="#">Active</a> --}}
             </li>
 
             <li class="mr-3">
-              <a href="{{ route('explore.landing') }}" class=" font-medium text-lg no-underline hover:text-underline inline-block py-2 px-4 {{ ($active === "explore") ? ' font-bold ' : 'text-black hover:text-gray-800' }}" >Bootcamp</a>
-              {{-- <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">link</a> --}}
+              <a href="{{ route('explore.landing') }}" class=" font-medium text-lg no-underline hover:text-underline inline-block py-2 px-4 {{ ($active === "explore") ? ' font-bold ' : 'text-black hover:text-gray-400' }}" >Bootcamp</a>
+              {{-- <a class="inline-block text-black no-underline hover:text-gray-400 hover:text-underline py-2 px-4" href="#">link</a> --}}
             </li>
             
             <li class="mr-3">
-              <a href="{{ route('explore.landing') }}" class=" font-medium text-lg no-underline hover:text-underline inline-block py-2 px-4 {{ ($active === "profesional") ? ' font-bold ' : 'text-black hover:text-gray-800' }}" >Professional Development</a>
-              {{-- <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">link</a> --}}
+              <a href="{{ route('explore.landing') }}" class=" font-medium text-lg no-underline hover:text-underline inline-block py-2 px-4 {{ ($active === "profesional") ? ' font-bold ' : 'text-black hover:text-gray-400' }}" >Professional Development</a>
+              {{-- <a class="inline-block text-black no-underline hover:text-gray-400 hover:text-underline py-2 px-4" href="#">link</a> --}}
             </li>
             
 
             <li class="mr-3">
               
-              <a class="inline-block text-black no-underline hover:text-gray-800 font-lg text-lg hover:text-underline py-2 px-4" href="#">Corporate</a>
+              <a class="inline-block text-black no-underline hover:text-gray-400 font-lg text-lg hover:text-underline py-2 px-4" href="{{ route('corporate.landing') }}">Corporate</a>
             </li>
 
             <li class="mr-3">
               
-              <a class="inline-block text-black no-underline font-lg text-lg hover:text-gray-800 hover:text-underline py-2 px-4" href="{{ route('create') }}">About</a>
+              <a class="inline-block text-black no-underline font-lg text-lg hover:text-gray-400 hover:text-underline py-2 px-4" href="{{ route('create') }}">About</a>
             </li>
           </ul>
 
           @auth
-              <a href="{{ route('member.dashboard.index') }}" id="navAction" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+              <a href="{{ route('member.dashboard.index') }}" id="navAction" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-900 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                 MyDashboard
               </a>
               @if (auth()->user()->detail_user()->first()->photo != NULL)
@@ -102,7 +102,7 @@
            @endauth
 
           @guest
-              <button onclick="toggleModal('loginModal')" id="navAction" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+              <button onclick="toggleModal('loginModal')" id="navAction" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-400 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
             Login
           </button>
           @endguest
@@ -113,11 +113,7 @@
     </nav>
 
     
-    {{-- modals --}}
-            @include('components.modal.login')
-            @include('components.modal.register')
-            @include('components.modal.register-success')
-    <!--Hero-->
+    
 
     <div class="pt-24">
       <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
@@ -819,7 +815,12 @@
             </div>
         </div>
     </div>
-</footer>
+  </footer>
+  {{-- modals --}}
+          @include('components.modal.login')
+          @include('components.modal.register')
+          @include('components.modal.register-success')
+  <!--Hero-->
 
     {{-- <footer class="bg-white">
       <div class="container mx-auto px-8">
@@ -899,6 +900,27 @@
     <!-- jQuery if you need it
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   -->
+    <script src="{{ asset('/js/toggleModal.js') }}"></script>
+    {{-- <script src="{{ asset('/js/bootstrap.min.js') }}"></script> --}}
+    <script>
+        $(document).ready(function() {
+            $(".modal").on('click', ':not(.relative)', function (e) {
+                e.stopPropagation();
+            });
+            $("#loginModal").on('click', function (e) {
+                toggleModal('loginModal');
+            });
+            $("#registerModal").on('click', function (e) {
+                toggleModal('registerModal');
+            });
+        });
+    </script>
+    <script>
+        function toggleNavbar(collapseID) {
+            document.getElementById(collapseID).classList.toggle("hidden");
+            document.getElementById(collapseID).classList.toggle("block");
+        }
+    </script>
     <script>
       var scrollpos = window.scrollY;
       var header = document.getElementById("header");

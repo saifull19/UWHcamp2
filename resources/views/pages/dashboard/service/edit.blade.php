@@ -57,9 +57,15 @@
                                                     @endif
 
                                                 </div>
+                                                
                                                 <div class="col-span-6 sm:col-span-3">
-                                                    <label for="Slug" class="block mb-3 font-medium text-gray-700 text-md">Slug Service</label>
-                                                    <input placeholder="Slug !, Samakan dengan Slug tanpa spasi" type="text" name="slug" id="Slug" autocomplete="Slug" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ $service->slug }}" required>
+                                                    <label for="Slug" class="block mb-3 font-medium text-gray-700 text-md">Category Service</label>
+                                                    <select id="slug" name="slug" autocomplete="slug" class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                                                        <option>{{ $service->slug ?? '' }}</option>
+                                                        <option value="Programming">Programming</option>
+                                                        <option value="Development">Development</option>
+                                                        <option value="Product">Product</option>
+                                                    </select>
 
                                                     @if ($errors->has('slug'))
                                                         <p class="text-red-500 mb-3 text-sm">{{ $errors->first('slug') }}</p>

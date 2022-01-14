@@ -5,10 +5,15 @@
     <div class="border-0 rounded-xl shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
 
         <!--header-->
-        <div class="p-5 rounded-t-xl text-center mt-5 mx-10">
+        <div class="pt-5 rounded-t-xl text-center mt-5 mx-10">
             <h3 class="text-2xl font-semibold">
-                Log in to Serv
+                Log in to 
             </h3>
+            <a class="ml-5 pl-10" href="{{ route('index') }}">
+                    <div class="pl-10">
+                        <img src="{{ asset('/assets/images/logo.png') }}" alt="" class="ml-5 pl-10">
+                    </div>
+            </a>
             <p class="text-gray-400 mt-1 text-sm">
                 Enter your email & password to continue
             </p>
@@ -56,11 +61,11 @@
             <!--footer-->
             <div class="px-6 pb-6 rounded-b-xl mx-10">
                 <input type="hidden" name="auth" value="true">
-                <button class="bg-serv-button text-white text-lg py-3 px-12 my-2 rounded-lg w-full" type="submit">
+                <button class="bg-serv-button hover:bg-gray-300 text-white text-lg py-3 px-12 my-2 rounded-lg w-full" type="submit">
                     Log in
                 </button>
 
-                <div class="border border-gray-300 bg-serv-explore-button rounded-lg flex text-center items-center space-x-2 my-3 mx-10 px-4">
+                <div class="border border-gray-300 bg-serv-explore-button hover:bg-gray-300 rounded-lg flex text-center items-center space-x-2 my-3 mx-10 px-4">
                         <img src="/assets/images/ic_google.svg" class="object-cover object-center rounded-full my-3 mr-1" alt="">
                         <a class="inline-block font-medium text-serv-button" href="{{ route('user.login.google') }}">Sign In with Google
                         </a>

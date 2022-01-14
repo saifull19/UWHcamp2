@@ -89,8 +89,8 @@
                 background: rgb(49, 130, 206);
                 background: linear-gradient(
                     90deg,
-                    rgba(49, 130, 206, 1) 0%,
-                    rgba(56, 178, 172, 1) 100%
+                    rgb(6, 64, 118) 0%,
+                    rgb(0, 41, 63) 100%
                 );
             }
 
@@ -229,7 +229,7 @@
                             href="{{ route('index') }}"
                             class="text-white font-bold text-2xl"
                         >
-                            <img src="{{ asset('/assets/images/logo.png') }}" alt="">
+                            <img src="{{ asset('/assets/favicon.png') }}" alt="" class="ml-6 h-12 w-12">
                         </a>
                     </div>
 
@@ -259,67 +259,68 @@
                             <ul class="md:flex  items-center ">
                                 <li >
                                     <a
-                                        class="py-2 inline-block md:text-white md:hidden hover:text-gray-700 lg:block font-semibold"
+                                        class="py-2 inline-block md:text-white md:hidden hover:text-gray-700 lg:block font-normal text-lg"
                                         href="{{ route('index') }}"
                                         >Home</a>
                                 </li>
                                 <li class="md:ml-4">
                                     <a
-                                        class="py-2 inline-block md:text-white hover:text-gray-700 md:px-2 font-semibold"
+                                        class="py-2 inline-block md:text-white hover:text-gray-700 md:px-2 font-normal text-lg"
                                         href="{{ route('explore.landing') }}"
                                         >Bootcamp</a>
                                 </li>
                                 <li class="md:ml-4">
                                     <a
-                                        class="py-2 inline-block md:text-white hover:text-gray-700 md:px-2 font-semibold"
+                                        class="py-2 inline-block md:text-white hover:text-gray-700 md:px-2 font-normal text-lg"
                                         href="{{ route('profesional.landing') }}"
                                         >Professional Development</a
                                     >
                                 </li>
                                 <li class="md:ml-4 md:hidden lg:block">
                                     <a
-                                        class="py-2 inline-block hover:text-gray-700 md:text-white md:px-2 font-semibold"
-                                        href="#"
+                                        class="py-2 inline-block hover:text-gray-700 md:text-white md:px-2 font-normal text-lg"
+                                        href="{{ route('corporate.landing') }}"
                                         >Corporate</a
                                     >
                                 </li>
                                 <li class="md:ml-4">
                                     <a
-                                        class="py-2 inline-block hover:text-gray-700 md:text-white md:px-2 font-semibold"
+                                        class="py-2 inline-block hover:text-gray-700 text-lg md:text-white md:px-2 font-bold "
                                         href="{{ route('create') }}"
                                         >About Us</a
                                     >
                                 </li>
                                 <li class="md:ml-6 mt-3 md:mt-0">
                                     {{-- <a
-                                        class="inline-block font-semibold px-4 py-2 text-white bg-blue-600 md:bg-transparent md:text-white border border-white rounded"
+                                        class="inline-block font-medium px-4 py-2 text-white bg-blue-600 md:bg-transparent md:text-white border border-white rounded"
                                         href="book-appointment.html"
                                         >Book Appointment</a
                                     > --}}
 
                                     @auth
-                                        <a href="{{ route('member.dashboard.index') }}" class="inline-block font-semibold px-4 py-2 text-white bg-blue-600 hover:text-gray-700 md:bg-transparent md:text-white border border-white rounded">
+                                        <a href="{{ route('member.dashboard.index') }}" class="inline-block font-medium px-4 py-2 text-white bg-gradient-to-r from-green-300 to-green-700 hover:text-gray-700  md:text-white border border-white rounded">
                                             MyDashboard
                                         </a>
                                     @if (auth()->user()->detail_user()->first()->photo != NULL)
   
-                                <img src="{{ url(Storage::url(auth()->user()->detail_user()->first()->photo)) }}" alt="Photo Profile" class="inline ml-3 h-12 w-12 rounded-full">
-  
-                            {{-- @if (Auth::user()->avatar)
-                            <img src="{{Auth::user()->avatar}}" class="inline ml-3 h-12 w-12 rounded-full" alt="Member profile"> --}}
-                            @else    
-                            {{-- <img src="https://ui-avatars.com/api/?name=Admin" class="user-photo rounded-cilcle" alt="" style="border-radius: 50%"> --}}
-                                            
-                                <img class="inline ml-3 h-12 w-12 rounded-full" src="{{ url('https://randomuser.me/api/portraits/men/1.jpg') }}" alt="">
-  
-                            @endif
-           @endauth
+                                        <img src="{{ url(Storage::url(auth()->user()->detail_user()->first()->photo)) }}" alt="Photo Profile" class="inline object-cover ml-3 h-12 w-12 rounded-full">
+        
+                                        {{-- @if (Auth::user()->avatar)
+                                        <img src="{{Auth::user()->avatar}}" class="inline ml-3 h-12 w-12 rounded-full" alt="Member profile"> --}}
+                                        @else    
+                                        {{-- <img src="https://ui-avatars.com/api/?name=Admin" class="user-photo rounded-cilcle" alt="" style="border-radius: 50%"> --}}
+                                                        
+                                            <img class="inline ml-3 h-12 w-12 rounded-full" src="{{ url('https://randomuser.me/api/portraits/men/1.jpg') }}" alt="">
+    
+                                    @endif
 
-          @guest
-              <a onclick="toggleModal('loginModal')" class="inline-block font-semibold px-4 py-2 text-white bg-blue-600 md:bg-transparent md:text-white border border-white rounded">
-            Login
-          </a>
-          @endguest
+                                    @endauth
+
+                                    @guest
+                                        <button onclick="toggleModal('loginModal')" class="inline-block font-semibold px-4 py-2 text-white bg-blue-600 hover:bg-gray-900 md:bg-transparent md:text-white border border-white rounded">
+                                        Login
+                                    </button>
+                                    @endguest
 
                                 </li>
                             </ul>
@@ -332,13 +333,13 @@
             <!-- start hero -->
             <div class="bg-gray-100">
                 <section
-                    class="cover bg-blue-teal-gradient relative bg-blue-600 px-4 sm:px-8 lg:px-16 xl:px-40 2xl:px-64 overflow-hidden py-48 flex items-center min-h-screen"
+                    class="cover relative bg-blue-teal-gradient px-4 sm:px-8 lg:px-16 xl:px-40 2xl:px-64 overflow-hidden py-48 flex items-center min-h-screen"
                 >
                     <div class="h-full absolute top-0 left-0 z-0">
                         <img
-                            src="{{ asset('/assets/images/cover-bg.jpg') }}"
+                            src="{{ asset('/assets/images/cover-bgaa.jpg') }}"
                             alt=""
-                            class="w-full h-full object-cover opacity-20"
+                            class="object-cover opacity-20"
                         />
                     </div>
 
@@ -357,8 +358,8 @@
                             </p>
                             <a
                                 href="#"
-                                class="px-8 py-4 bg-teal-500 text-white rounded inline-block mt-8 font-semibold"
-                                >Book Appointment</a
+                                class="px-8 py-4 bg-teal-500 text-white hover:text-gray-700 rounded inline-block mt-8 font-semibold text-lg"
+                                >Approvement</a
                             >
                         </div>
                     </div>
@@ -391,7 +392,7 @@
                         <div class="md:flex">
                             <div>
                                 <div
-                                    class="w-16 h-16 bg-blue-600 rounded-full"
+                                    class="w-16 h-16 bg-green-500 hover:bg-green-800 rounded-full"
                                 ></div>
                             </div>
                             <div class="md:ml-8 mt-4 md:mt-0">
@@ -411,7 +412,7 @@
                         <div class="md:flex mt-8">
                             <div>
                                 <div
-                                    class="w-16 h-16 bg-blue-600 rounded-full"
+                                    class="w-16 h-16 bg-green-500 hover:bg-green-800 rounded-full"
                                 ></div>
                             </div>
                             <div class="md:ml-8 mt-4 md:mt-0">
@@ -435,7 +436,7 @@
                 <div class="md:flex md:flex-wrap mt-24 text-center md:-mx-4">
                     <div class="md:w-1/2 md:px-4 lg:w-1/4">
                         <div
-                            class="bg-white rounded-lg border border-gray-300 p-8"
+                            class="bg-white hover:bg-green-300 rounded-lg border border-gray-300 p-8"
                         >
                             <img
                                 src="{{ asset('/assets/images/teeth-whitening.svg') }}"
@@ -455,7 +456,7 @@
 
                     <div class="md:w-1/2 md:px-4 mt-4 md:mt-0 lg:w-1/4">
                         <div
-                            class="bg-white rounded-lg border border-gray-300 p-8"
+                            class="bg-white hover:bg-green-300 rounded-lg border border-gray-300 p-8"
                         >
                             <img
                                 src="{{ asset('/assets/images/oral-surgery.svg') }}"
@@ -473,7 +474,7 @@
 
                     <div class="md:w-1/2 md:px-4 mt-4 md:mt-8 lg:mt-0 lg:w-1/4">
                         <div
-                            class="bg-white rounded-lg border border-gray-300 p-8"
+                            class="bg-white hover:bg-green-300 rounded-lg border border-gray-300 p-8"
                         >
                             <img
                                 src="{{ asset('/assets/images/painless-dentistry.svg') }}"
@@ -493,7 +494,7 @@
 
                     <div class="md:w-1/2 md:px-4 mt-4 md:mt-8 lg:mt-0 lg:w-1/4">
                         <div
-                            class="bg-white rounded-lg border border-gray-300 p-8"
+                            class="bg-white hover:bg-green-300 rounded-lg border border-gray-300 p-8"
                         >
                             <img
                                 src="{{ asset('/assets/images/periodontics.svg') }}"
@@ -661,7 +662,7 @@
 
             <!-- start cta -->
             <section
-                class="relative bg-blue-teal-gradient px-4 sm:px-8 lg:px-16 xl:px-40 2xl:px-64 py-12 text-center md:text-left"
+                class="relative bg-gradient-to-r from-green-200 to-green-500 px-4 sm:px-8 lg:px-16 xl:px-40 2xl:px-64 py-12 text-center md:text-left"
             >
                 <div class="md:flex md:items-center md:justify-center">
                     <h2 class="text-xl font-bold text-white">
@@ -670,7 +671,7 @@
                     </h2>
                     <a
                         href="#"
-                        class="px-8 py-4 bg-white text-blue-600 rounded inline-block font-semibold md:ml-8 mt-4 md:mt-0"
+                        class="px-8 py-4 bg-white  hover:bg-gray-300 text-green-600 rounded inline-block font-semibold md:ml-8 mt-4 md:mt-0"
                         >Start Appointment</a
                     >
                 </div>
@@ -821,9 +822,33 @@
                 </div>
             </footer>
             <!-- end footer -->
+            
+                    @include('components.modal.login')
+                                @include('components.modal.register')
         </main>
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
+          <script src="{{ asset('/js/toggleModal.js') }}"></script>
+    {{-- <script src="{{ asset('/js/bootstrap.min.js') }}"></script> --}}
+    <script>
+        $(document).ready(function() {
+            $(".modal").on('click', ':not(.relative)', function (e) {
+                e.stopPropagation();
+            });
+            $("#loginModal").on('click', function (e) {
+                toggleModal('loginModal');
+            });
+            $("#registerModal").on('click', function (e) {
+                toggleModal('registerModal');
+            });
+        });
+    </script>
+    <script>
+        function toggleNavbar(collapseID) {
+            document.getElementById(collapseID).classList.toggle("hidden");
+            document.getElementById(collapseID).classList.toggle("block");
+        }
+    </script>
         <script
             async
             src="{{ url('https://www.googletagmanager.com/gtag/js?id=UA-131505823-4') }}"
@@ -838,5 +863,8 @@
 
             gtag("config", "UA-131505823-4");
         </script>
+
+
+
     </body>
 </html>
