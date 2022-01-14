@@ -52,7 +52,7 @@ class UserController extends Controller
                 $detail_user = new DetailUSer;
                 $detail_user->users_id = $user->id;
                 $detail_user->photo = NULL;
-                $detail_user->role = NULL;
+                // $detail_user->role = NULL;
                 $detail_user->contact_number = NULL;
                 $detail_user->address = NULL;
                 $detail_user->biography = NULL;
