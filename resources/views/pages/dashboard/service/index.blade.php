@@ -36,7 +36,7 @@
                                     <thead>
                                         <tr class="text-sm font-normal text-left text-gray-900 border-b border-b-gray-600">
                                             <th class="py-4" scope="">Service Details</th>
-                                            <th class="py-4" scope="">Role</th>
+                                            <th class="py-4" scope="">Category</th>
                                             <th class="py-4" scope="">Price</th>
                                             <th class="py-4" scope="">Status</th>
                                             <th class="py-4" scope="">Action</th>
@@ -75,10 +75,10 @@
                                                 </div>
                                             </td>
                                             <td class="px-1 py-5 text-sm">
-                                                {{ $service->user->detail_user->role ?? '' }}
+                                                {{ $service->category->name ?? '' }}
                                             </td>
                                             <td class="px-1 py-5 text-sm">
-                                                {{ 'R '.number_format($service->price ?? '') }}
+                                                {{ 'Rp '.number_format($service->price ?? '') }}
                                             </td>
                                             <td class="px-1 py-5 text-sm text-green-500 text-md">
                                                 {{ 'Active' }}
