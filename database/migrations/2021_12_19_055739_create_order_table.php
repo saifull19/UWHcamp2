@@ -24,10 +24,11 @@ class CreateOrderTable extends Migration
             $table->longText('file')->nullable();
             $table->longText('note')->nullable();
             $table->date('expired')->nullable();
+            $table->string('payment_status')->default('Waiting');
             $table->string('midtrans_url')->nullable();
             $table->string('midtrans_booking_code')->nullable();
-            // $table->integer('order_status_id')->nullable();
             $table->foreignId('order_status_id')->nullable()->index('fk_order_to_order_status');
+            // $table->integer('order_status_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -17,8 +17,9 @@ class CreateServiceTable extends Migration
             $table->id();
             // $table->integer('users_id')->nullable();
             $table->foreignId('users_id')->nullable()->index('fk_service_to_users');
+            $table->foreignId('category_id')->nullable();
             $table->string('title');
-            $table->string('slug', 100)->nullable();
+            $table->string('slug')->unique();
             $table->longText('description')->nullable();
             $table->integer('delivery_time')->nullable();
             $table->integer('revision_limit')->nullable();
