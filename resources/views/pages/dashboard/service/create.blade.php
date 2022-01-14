@@ -60,19 +60,35 @@
                                                 </div>
 
                                                 <div class="col-span-6 sm:col-span-3">
-                                                    <select id="slug" name="slug" autocomplete="slug" class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                                                    <select id="category" name="category_id" autocomplete="category" class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
                                                         <option>Category Service</option>
-                                                        <option value="Programming">Programming</option>
-                                                        <option value="Development">Development</option>
-                                                        <option value="Product">Product</option>
+                                                        @foreach ($category as $ctg)
+                                                                @if (old('category_id') == $ctg->id)
+                                                                    
+                                                                <option value="{{ $ctg->id }}" selected>{{ $ctg->name }}</option>
+                                                                @else
+                                                                <option value="{{ $ctg->id }}">{{ $ctg->name }}</option>
+                                                                @endif
+                                                            @endforeach
                                                     </select>
+
+                                                    @if ($errors->has('category_id'))
+                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('category_id') }}</p>
+                                                    @endif
+
+                                                </div>
+
+                                                <div class="col-span-6">
+
+                                                    <label for="slug" class="block mb-3 font-medium text-gray-700 text-md">Slug</label>
+
+                                                    <input placeholder="Samakan dengan title dan tanpa sepasi" type="text" name="slug" id="slug" autocomplete="slug" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('slug') }}" required>
 
                                                     @if ($errors->has('slug'))
                                                         <p class="text-red-500 mb-3 text-sm">{{ $errors->first('slug') }}</p>
                                                     @endif
 
                                                 </div>
-
                                                 <div class="col-span-6">
 
                                                     <label for="description" class="block mb-3 font-medium text-gray-700 text-md">Deskripsi Service</label>
@@ -198,7 +214,14 @@
                                                 </div>
 
                                                 <div class="col-span-6">
-                                                    <label for="service-name" class="block mb-3 font-medium text-gray-700 text-md">Tagline <span class="text-gray-400">(Optional)</span></label>
+                                                    <label for="tagline" class="block mb-3 font-medium text-gray-700 text-md">Yang akan di dapatkan dari Service? <span class="text-gray-400">(Optional)</span></label>
+
+                                                    <input placeholder="Hal apa yang akan di dapatkan dari Service?" type="text" name="tagline[]" id="tagline" autocomplete="tagline" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('tagline') }}" required>
+
+                                                    @if ($errors->has('tagline'))
+                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('tagline') }}</p>
+                                                    @endif
+
                                                     <div id="newTaglineRow"></div>
                                                     <button type="button" class="inline-flex justify-center px-3 py-2 mt-3 text-xs font-medium text-gray-700 bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" id="addTaglineRow">
                                                         Tambahkan Tagline +
@@ -263,7 +286,7 @@
             // add row
             $("#addTaglineRow").click(function() {
                 var html = '';
-                html += '<input placeholder="Tagline" type="text" name="tagline[]" id="tagline" autocomplete="tagline" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>';
+                html += '<input placeholder="Hal yang akan di dapatkan dari service?" type="text" name="tagline[]" id="tagline" autocomplete="tagline" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>';
 
                 $('#newTaglineRow').append(html);
             });

@@ -20,6 +20,7 @@ use App\Models\Tagline;
 use App\Models\ThumbnailService;
 use App\Models\Order;
 use App\Models\User;
+use App\Models\Category;
 
 
 
@@ -51,7 +52,9 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        return view('pages.dashboard.service.create');
+        return view('pages.dashboard.service.create', [
+            'category' => Category::all()
+        ]);
     }
 
     /**
@@ -134,8 +137,9 @@ class ServiceController extends Controller
         $tagline = Tagline::where('service_id', $service['id'])->get();
         $advantage_user = AdvantageUser::where('service_id', $service['id'])->get();
         $thumbnail_service = ThumbnailService::where('service_id', $service['id'])->get();
+        $category = Category::all();
 
-        return view('pages.dashboard.service.edit', compact('service', 'advantage_service', 'advantage_user', 'thumbnail_service', 'tagline'));
+        return view('pages.dashboard.service.edit', compact('service', 'advantage_service', 'advantage_user', 'thumbnail_service', 'tagline', 'category'));
     }
 
     /**
