@@ -29,7 +29,7 @@ class UpdateServiceRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'max:255'],
-            'slug' => ['nullable', 'string', 'max:255'],
+            'category_id' => ['required'],
             'description' => ['nullable', 'string', 'max:5000'],
             'delivery_time' => ['required', 'integer', 'max:100'],
             'revision_limit' => ['required', 'integer', 'max:100'],
