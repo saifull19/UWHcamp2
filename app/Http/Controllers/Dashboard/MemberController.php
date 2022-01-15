@@ -35,6 +35,10 @@ class MemberController extends Controller
         $orders = Order::where('freelancer_id', Auth::user()->id)->get();
 
         
+
+        $service = Service::all();
+
+        
         $progress = Order::all()->count();
 
         $completed = Service::all()->count();
@@ -43,13 +47,14 @@ class MemberController extends Controller
 
         // $progress = Order::where('freelancer_id', Auth::user()->id)->where('order_status_id', 2)->count();
 
-        $giatBelajar = Order::where('service_id', 1)->count();
-        $mulaiBelajar = Order::where('service_id', 2)->count();
-        $digital = Order::where('service_id', 3)->count();
+        // $giatBelajar = Order::where('service_id', 1)->count();
+        // $mulaiBelajar = Order::where('service_id', 2)->count();
+        // $digital = Order::where('service_id', 3)->count();
+        // $JavaScript = Order::where('service_id')->count();
 
         // $freelancer = User::where('buyer_id', Auth::user()->id)->where('order_status_id', 2)->distinct('freelancer_id')->count();
 
-        return view('pages.dashboard.index', compact('orders', 'progress', 'completed', 'freelancer', 'giatBelajar', 'mulaiBelajar', 'digital'));
+        return view('pages.dashboard.index', compact('orders', 'service', 'progress', 'completed', 'freelancer'));
     }
 
     /**

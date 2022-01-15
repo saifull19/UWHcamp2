@@ -198,7 +198,9 @@
                             </div>    
                                 @endcan
 
-                                <div class="p-6 mt-8 bg-white rounded-xl">
+                            
+
+                            <div class="p-6 mt-8 bg-white rounded-xl">
                                 <div>
                                     <h2 class="mb-1 text-xl font-semibold">
                                         Latest Services
@@ -214,51 +216,14 @@
                                         <tr class="text-sm font-normal text-left text-gray-900 border-b border-b-gray-600">
                                             {{-- <th class="py-4" scope="">Name</th> --}}
                                             <th class="py-4" scope="">Services Name</th>
-                                            <th class="py-4" scope="">All Member</th>
+                                            <th class="py-4" scope="">Action</th>
                                         </tr>
                                     </thead>
 
                                     <tbody class="bg-white">
 
-                                        
-                                            
-                                        <tr class="text-gray-700">
-                                            
-
-                                            <td class="w-2/4 px-1 py-5">
-                                                <div class="flex items-center text-sm">
-                                                    <div class="relative w-10 h-10 mr-3 rounded-full md:block">
-                                                        
-                                                        {{-- @if ($orders->service->thumbnail_service[0]->thumbnail != NULL)
-
-                                                            <img class="object-cover w-full h-full rounded" src="{{ url(Storage::url($orders->service->thumbnail_service[0]->thumbnail)) }}" alt="" loading="lazy" />
-
-                                                        @else
-                                                        @endif --}}
-                                                        <img class="object-cover w-full h-full rounded" src="{{ asset('/assets/favicon.png') }}" alt="">
-
-                                                        <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="font-medium text-black">
-                                                            Full-Stack Web Developer
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td class="px-1 py-5 text-sm text-red-500">
-                                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="inline mb-1">
-                                                    <path d="M7.0002 12.8332C10.2219 12.8332 12.8335 10.2215 12.8335 6.99984C12.8335 3.77818 10.2219 1.1665 7.0002 1.1665C3.77854 1.1665 1.16687 3.77818 1.16687 6.99984C1.16687 10.2215 3.77854 12.8332 7.0002 12.8332Z" stroke="#F26E6E" stroke-linecap="round" stroke-linejoin="round" />
-                                                    <path d="M7 3.5V7L9.33333 8.16667" stroke="#F26E6E" stroke-linecap="round" stroke-linejoin="round" />
-                                                </svg>
-
-                                                {{ $mulaiBelajar ?? '' }}
-                                            </td>
-
-                                        </tr>
-
-                                        <tr class="text-gray-700">
+                                        @forelse ($service as $svc)
+                                            <tr class="text-gray-700">
                                             
 
                                             <td class="w-2/4 px-1 py-5">
@@ -277,54 +242,27 @@
                                                     </div>
                                                     <div>
                                                         <p class="font-medium text-black">
-                                                            Full-Stack Android Developer
+                                                            {{ $svc->title }}
                                                         </p>
                                                     </div>
                                                 </div>
                                             </td>
 
-                                            <td class="px-1 py-5 text-sm text-red-500">
-                                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="inline mb-1">
-                                                    <path d="M7.0002 12.8332C10.2219 12.8332 12.8335 10.2215 12.8335 6.99984C12.8335 3.77818 10.2219 1.1665 7.0002 1.1665C3.77854 1.1665 1.16687 3.77818 1.16687 6.99984C1.16687 10.2215 3.77854 12.8332 7.0002 12.8332Z" stroke="#F26E6E" stroke-linecap="round" stroke-linejoin="round" />
-                                                    <path d="M7 3.5V7L9.33333 8.16667" stroke="#F26E6E" stroke-linecap="round" stroke-linejoin="round" />
-                                                </svg>
+                                            <td class="px-1 py-5 text-sm text-green-500 hover:text-gray-900">
+                                                <a href="{{ route('detail.landing', $svc->id) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email">
+                                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="inline mb-1">
+                                                    <path d="M7.0002 12.8332C10.2219 12.8332 12.8335 10.2215 12.8335 6.99984C12.8335 3.77818 10.2219 1.1665 7.0002 1.1665C3.77854 1.1665 1.16687 3.77818 1.16687 6.99984C1.16687 10.2215 3.77854 12.8332 7.0002 12.8332Z" stroke="#e0ffec" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path d="M7 3.5V7L9.33333 8.16667" stroke="#e0ffec" stroke-linecap="round" stroke-linejoin="round" />
+                                                    </svg>
 
-                                                {{ $giatBelajar ?? '' }}
+                                                    Show
+                                                </a>
                                             </td>
 
                                         </tr>
-
-                                        <tr class="text-gray-700">
+                                        @empty
                                             
-                                            <td class="w-2/4 px-1 py-5">
-                                                <div class="flex items-center text-sm">
-                                                    <div class="relative w-10 h-10 mr-3 rounded-full md:block">
-                                                        
-                                                        
-                                                        <img class="object-cover w-full h-full rounded" src="{{ asset('/assets/favicon.png') }}" alt="">
-
-                                                        <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                                                    </div>
-                                                    <div>
-                                                        <p class="font-medium text-black">
-                                                            Fundamental Digital Marketing
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td class="px-1 py-5 text-sm text-red-500">
-                                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="inline mb-1">
-                                                    <path d="M7.0002 12.8332C10.2219 12.8332 12.8335 10.2215 12.8335 6.99984C12.8335 3.77818 10.2219 1.1665 7.0002 1.1665C3.77854 1.1665 1.16687 3.77818 1.16687 6.99984C1.16687 10.2215 3.77854 12.8332 7.0002 12.8332Z" stroke="#F26E6E" stroke-linecap="round" stroke-linejoin="round" />
-                                                    <path d="M7 3.5V7L9.33333 8.16667" stroke="#F26E6E" stroke-linecap="round" stroke-linejoin="round" />
-                                                </svg>
-
-                                                {{ $digital ?? '' }}
-                                            </td>
-
-                                        </tr>
-
-                                        
+                                        @endforelse
 
                                     </tbody>
                                 </table>
