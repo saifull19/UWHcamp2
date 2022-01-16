@@ -123,16 +123,25 @@ class LandingController extends Controller
         return view('pages.landing.explore', ["active" => "explore"], compact('services'));
     }
 
-    public function detail($id)
+    public function detail(Service $slug)
     {
-        $service = Service::where('id', $id)->first();
+        $service = Service::where('id', $slug)->first();
 
-        $thumbnail = ThumbnailService::where('service_id', $id)->get();
-        $advantage_user = AdvantageUser::where('service_id', $id)->get();
-        $advantage_service = AdvantageService::where('service_id', $id)->get();
-        $tagline = Tagline::where('service_id', $id)->get();
+        // $thumbnail = ThumbnailService::where('service_id', $slug)->get();
+        // $advantage_user = AdvantageUser::where('service_id', $slug)->get();
+        // $advantage_service = AdvantageService::where('service_id', $slug)->get();
+        // $tagline = Tagline::where('service_id', $slug)->get();
 
-        return view('pages.landing.detail', ["active" => "explore"], compact('service', 'thumbnail', 'advantage_user', 'advantage_service', 'tagline'));
+        return view('pages.landing.detail', [
+            "active" => "explore",
+            "thumbnail" => $slug->thumbnail_service,
+            "advantage_user" => $slug->advantage_user,
+            "advantage_service" => $slug->advantage_service,
+            "tagline" => $slug->tagline,
+            "service" => $slug
+        ], 
+            compact('service')
+        );
     }
 
     public function booking($id)

@@ -1,6 +1,6 @@
 
 
-<a href="{{ route('detail.landing', $service->id) }}" class="inline-block px-3">
+<a href="{{ route('detail.landing', $service->slug) }}" class="inline-block px-3">
     <div class="w-80 h-90 overflow-hidden md:p-5 p-4 bg-white hover:bg-gray-200 rounded-2xl inline-block">
         <div class="flex items-center space-x-2 mb-6">
             
