@@ -159,6 +159,7 @@ class LandingController extends Controller
         $order->buyer_id = $user_buyer;
         $order->freelancer_id = $service->user->id;
         $order->service_id = $service->id;
+        $order->slug = $service->slug;
         $order->file = NULL;
         $order->note = NULL;
         $order->expired = Date('y-m-d', strtotime('+3 days'));
@@ -174,14 +175,18 @@ class LandingController extends Controller
         // send email
         Mail::to(Auth::user()->email)->send(new AfterCheckout($order_detail));
 
-        return redirect()->route('detail.booking.landing', $order->id);
+        return redirect()->route('detail.booking.landing', $order->slug);
     }
 
-    public function detail_booking($id)
+    public function detail_booking(Order $slug)
     {
-        $order = Order::where('id', $id)->first();
+        $order = Order::where('id', $slug)->first();
         
-        return view('pages.landing.booking', ["active" => "explore"], compact('order')); 
+        return view('pages.landing.booking', [
+            "active" => "explore",
+            "order" => $slug
+
+        ], compact('order')); 
     }
 
     public function profesional()
