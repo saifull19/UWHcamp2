@@ -45,7 +45,7 @@
 
                                                             @else
 
-                                                                <img class="object-cover w-full h-full rounded-full" src="{{ asset('/assets/1.png') }}" alt="Photo freelancer" loading="lazy" />
+                                                                <img class="object-cover w-full h-full rounded-full" src="{{ url('https://randomuser.me/api/portraits/men/1.jpg') }}" alt="Photo freelancer" loading="lazy" />
 
                                                             @endif
 

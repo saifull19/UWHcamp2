@@ -161,7 +161,7 @@ class LandingController extends Controller
         $order->buyer_id = $user_buyer;
         $order->freelancer_id = $service->user->id;
         $order->service_id = $service->id;
-        $order->slug = $service->slug;
+        // $order->slug = $service->slug;
         $order->file = NULL;
         $order->note = NULL;
         $order->expired = Date('y-m-d', strtotime('+3 days'));
@@ -177,7 +177,7 @@ class LandingController extends Controller
         // send email
         Mail::to(Auth::user()->email)->send(new AfterCheckout($order_detail));
 
-        return redirect()->route('detail.booking.landing', $order->slug);
+        return redirect()->route('detail.booking.landing', $order->created_at);
     }
 
     public function detail_booking(Order $slug)

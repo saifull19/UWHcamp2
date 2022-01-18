@@ -40,7 +40,7 @@
 
                                     <tbody class="bg-white">
 
-                                        @forelse ($orders as $item)
+                                        @forelse ($orders as $order)
 
                                             <tr class="text-gray-700 border-b">
 
@@ -48,9 +48,9 @@
                                                     <div class="flex items-center text-sm">
                                                         <div class="relative w-10 h-10 mr-3 rounded-full md:block">
 
-                                                            @if ($item->user_freelancer->detail_user->photo != NULL)
+                                                            @if ($order->user_freelancer->detail_user->photo != NULL)
                                                                 
-                                                                <img class="object-cover w-full h-full rounded-full" src="{{ url(Storage::url($item->user_freelancer->detail_user->photo)) }}" alt="Photo freelancer" loading="lazy" />
+                                                                <img class="object-cover w-full h-full rounded-full" src="{{ url(Storage::url($order->user_freelancer->detail_user->photo)) }}" alt="Photo freelancer" loading="lazy" />
 
                                                             @else
 
@@ -61,8 +61,8 @@
                                                             <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                                                         </div>
                                                         <div>
-                                                            <p class="font-medium text-black">{{ $item->user_freelancer->name ?? '' }}</p>
-                                                            <p class="text-sm text-gray-400">{{ $item->user_freelancer->ddetail_user->role ?? '' }}</p>
+                                                            <p class="font-medium text-black">{{ $order->user_freelancer->name ?? '' }}</p>
+                                                            <p class="text-sm text-gray-400">{{ $order->user_freelancer->ddetail_user->role ?? '' }}</p>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -71,9 +71,9 @@
                                                     <div class="flex items-center text-sm">
                                                         <div class="relative w-10 h-10 mr-3 rounded-full md:block">
 
-                                                            @if ($item->service->thumbnail_Service[0]->thumbnail)
+                                                            @if ($order->service->thumbnail_Service[0]->thumbnail)
                                                             
-                                                                <img class="object-cover w-full h-full rounded" src="{{ url(Storage::url($item->service->thumbnail_service[0]->thumbnail)) }}" alt="" loading="lazy" />
+                                                                <img class="object-cover w-full h-full rounded" src="{{ url(Storage::url($order->service->thumbnail_service[0]->thumbnail)) }}" alt="" loading="lazy" />
                                                                 
                                                             @else
 
@@ -85,39 +85,39 @@
                                                         </div>
                                                         <div>
                                                             <p class="font-medium text-black">
-                                                                {{ $item->service->title ?? '' }}
+                                                                {{ $order->service->title ?? '' }}
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </td>
 
                                                 <td class="px-1 py-5 text-sm">
-                                                    {{ 'Rp. '.number_format($item->service->price) ?? '' }}
+                                                    {{ 'Rp. '.number_format($order->service->price) ?? '' }}
                                                 </td>
 
-                                                @if ($item->payment_status == 'Waiting')
+                                                @if ($order->payment_status == 'Waiting')
                                                     <td class="px-1 py-5 text-sm">
-                                                        <a href="{{ $item->midtrans_url }}" class="px-4 ml-3 py-2 mt-2 text-center text-white rounded-xl bg-serv-button">Pay Here</a>
+                                                        <a href="{{ $order->midtrans_url }}" class="px-4 ml-3 py-2 mt-2 text-center text-white rounded-xl bg-serv-button">Pay Here</a>
                                                     </td>
                                                 @else
                                                     <td class="px-1 py-5 text-sm">
-                                                        <div class="mr-5 py-2 mt-2 text-center text-white rounded-xl bg-serv-email ">{{ $item->payment_status ?? '' }}</div>
+                                                        <div class="mr-5 py-2 mt-2 text-center text-white rounded-xl bg-serv-email ">{{ $order->payment_status ?? '' }}</div>
                                                     </td>
                                                 @endif
 
                                                 <td class="px-1 py-5 text-sm text-green-500 
-                                                    @if ($item->order_status_id == '1')
+                                                    @if ($order->order_status_id == '1')
                                                         {{ 'text-green-500' }}
-                                                    @elseif($item->order_status_id == '2')
+                                                    @elseif($order->order_status_id == '2')
                                                         {{ 'text-yellow-500' }}
-                                                    @elseif($item->order_status_id == '3')
+                                                    @elseif($order->order_status_id == '3')
                                                         {{ 'text-red-500' }}
                                                     @endif
                                                     text-md">
-                                                    {{ $item->order_status->name ?? '' }}
+                                                    {{ $order->order_status->name ?? '' }}
                                                 </td>
                                                 <td class="px-1 py-5 text-sm">
-                                                    <a href="{{ route('member.request.show', $item->id) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email">
+                                                    <a href="{{ route('member.request.show', $order->id) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email">
                                                         Details
                                                     </a>
                                                 </td>

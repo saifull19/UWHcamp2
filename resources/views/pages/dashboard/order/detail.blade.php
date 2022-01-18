@@ -184,7 +184,7 @@
                                                 See Reviews
                                             </a>
 
-                                            <a href="{{ route('member.service.edit', $order->service_id) }}" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-lg shadow-sm bg-serv-email hover:bg-serv-email-text focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-serv-email">
+                                            <a href="{{ route('member.service.edit', $service->slug) }}" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-lg shadow-sm bg-serv-email hover:bg-serv-email-text focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-serv-email">
                                                 Edit Service
                                             </a>
                                         </div>

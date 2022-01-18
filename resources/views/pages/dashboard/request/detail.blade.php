@@ -44,8 +44,8 @@
                                                         
                                                         @else
                                                         
-                                                            <img class="object-cover w-full h-full rounded-full" src="{{ asset('/assets/1.png') }}" alt="" loading="lazy" />
-                                                            
+                                                        <img class="object-cover w-full h-full rounded-full" src="{{ asset('/assets/1.png') }}" alt="" loading="lazy" />
+                                                        
                                                         @endif
                                                         <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
 
@@ -66,7 +66,7 @@
                                                         
                                                         @else
                                                         
-                                                            <img class="object-cover w-full h-full rounded" src="{{ asset('/assets/1.png') }}" alt="" loading="lazy" />
+                                                        <img class="object-cover w-full h-full rounded" src="{{ asset('/assets/1.png') }}" alt="" loading="lazy" />
                                                         
                                                         @endif
 

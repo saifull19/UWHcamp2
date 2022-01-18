@@ -29,7 +29,7 @@ Route::post('payment/success', [LandingController::class, 'midtransCallback']);
 
 Route::get('corporate', [LandingController::class, 'corporate'])->name('corporate.landing');
 Route::get('profesional', [LandingController::class, 'profesional'])->name('profesional.landing');
-Route::get('detail_booking/{slug:slug}', [LandingController::class, 'detail_booking'])->name('detail.booking.landing');
+Route::get('detail_booking/{slug:created_at}', [LandingController::class, 'detail_booking'])->name('detail.booking.landing');
 Route::get('booking/{id}', [LandingController::class, 'booking'])->name('booking.landing');
 Route::get('detail/{slug:slug}', [LandingController::class, 'detail'])->name('detail.landing');
 Route::get('explore', [LandingController::class, 'explore'])->name('explore.landing');
