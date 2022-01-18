@@ -249,7 +249,7 @@
                                             </td>
 
                                             <td class="px-1 py-5 text-sm text-green-500 hover:text-gray-900">
-                                                <a href="{{ route('detail.landing', $svc->id) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email hover:bg-green-700">
+                                                <a href="{{ route('detail.landing', $svc->slug) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email hover:bg-green-700">
                                                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="inline mb-1">
                                                     <path d="M7.0002 12.8332C10.2219 12.8332 12.8335 10.2215 12.8335 6.99984C12.8335 3.77818 10.2219 1.1665 7.0002 1.1665C3.77854 1.1665 1.16687 3.77818 1.16687 6.99984C1.16687 10.2215 3.77854 12.8332 7.0002 12.8332Z" stroke="#e0ffec" stroke-linecap="round" stroke-linejoin="round" />
                                                     <path d="M7 3.5V7L9.33333 8.16667" stroke="#e0ffec" stroke-linecap="round" stroke-linejoin="round" />

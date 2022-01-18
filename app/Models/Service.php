@@ -14,6 +14,8 @@ class Service extends Model
 
     public $table = 'service';
 
+    protected $with = ['category', 'user', 'advantage_user', 'advantage_service', 'thumbnail_service', 'tagline', 'order'];
+
     protected $dates = [
         'updated_at',
         'created_at',
@@ -60,4 +62,10 @@ class Service extends Model
     {
         return $this->belongsTo('App\Models\Category', 'category_id', 'id');
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
 }

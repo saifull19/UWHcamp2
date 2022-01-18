@@ -42,10 +42,12 @@ class LandingController extends Controller
      */
     public function index()
     {
-        $services = Service::orderBy('created_at', 'desc')->get();
+        $services = Service::latest()->get();
         
 
-        return view('pages.landing.index', ["active" => "home"], compact('services'));
+        return view('pages.landing.index', [
+            "active" => "home"
+        ], compact('services'));
     }
 
     /**
