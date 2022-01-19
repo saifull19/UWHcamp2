@@ -26,12 +26,14 @@
                             <div class="px-6 py-2 mt-2 bg-white rounded-xl">
                                 <table class="w-full" aria-label="Table">
                                     <thead>
+
                                         <tr class="text-sm font-normal text-left text-gray-900 border-b border-b-gray-600">
                                             <th class="py-4" scope="">Buyers Name</th>
                                             <th class="py-4" scope="">Service Details</th>
                                             <th class="py-4" scope="">Service Price</th>
                                             <th class="py-4" scope="">Service Deadline</th>
                                         </tr>
+
                                     </thead>
                                     <tbody class="bg-white">
                                         <tr class="mb-10 text-gray-700">
@@ -57,6 +59,7 @@
                                                     </div>
                                                 </div>
                                             </td>
+
                                             <td class="w-2/6 px-1 py-5">
                                                 <div class="flex items-center text-sm">
                                                     <div class="relative w-10 h-10 mr-3 rounded-full md:block">
@@ -80,9 +83,11 @@
                                                     </div>
                                                 </div>
                                             </td>
+
                                             <td class="px-1 py-5 text-sm">
                                                 {{ 'Rp '.number_format($order->service->price) ?? '' }}
                                             </td>
+
                                             <td class="px-1 py-5 text-xs text-red-500">
                                                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="inline mb-1">
                                                     <path d="M7.0002 12.8332C10.2219 12.8332 12.8335 10.2215 12.8335 6.99984C12.8335 3.77818 10.2219 1.1665 7.0002 1.1665C3.77854 1.1665 1.16687 3.77818 1.16687 6.99984C1.16687 10.2215 3.77854 12.8332 7.0002 12.8332Z" stroke="#F26E6E" stroke-linecap="round" stroke-linejoin="round" />
@@ -104,6 +109,7 @@
                                     <div class="m-auto text-center">
                                         
                                         <img src="{{ asset('/assets/images/services-file-icon.svg') }}" alt="" class="w-20 mx-auto">
+                                        
                                         <h2 class="mt-8 mb-1 text-2xl font-semibold text-gray-700">
 
                                             @if (isset($order->file))
@@ -113,6 +119,7 @@
                                             @endif
 
                                         </h2>
+
                                         <p class="text-sm text-gray-400">
                                             Drag and drop an file, or Browse
                                         </p>
@@ -126,6 +133,7 @@
                                                 </a>
 
                                             @else
+
                                                 <input type="file" accept=".zip" id="choose" name="file" hidden required>
                                                 <label for="choose" class="px-4 py-2 mt-2 text-left text-gray-700 rounded-xl bg-serv-hr">
                                                     Choose File
@@ -135,9 +143,11 @@
 
                                         </div>
                                     </div>
+
                                     @if ($errors->has('file'))
                                         <p class="text-red-500 mb-3 text-sm">{{ $errors->first('file') }}</p>
                                     @endif
+
                                 </div>
 
 
@@ -159,18 +169,23 @@
                                         </div>
 
                                         <div class="px-1 py-4 text-right">
+
                                             <a href="{{ route('member.order.index') }}" type="button" class="inline-flex justify-center px-4 py-2 mr-4 text-sm font-medium text-gray-700 bg-white border border-gray-600 rounded-lg shadow-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300" onclick="return confirm('Are you sure want to back ? Any changes you make will note be saved !')">
                                                 Back
                                             </a>
 
-                                            @if (isset($order->file) == FALSE) 
+                                            @if (isset($order->file) == FALSE)
+
                                                 <button type="submit" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" onclick="return confirm('Are you sure want to submit this data ?')">
                                                 Approve
                                                 </button>
+
                                             @else
+
                                                 <button type="submit" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" disabled>
                                                 Approve
                                                 </button>
+                                                
                                             @endif
                                             
                                         </div>

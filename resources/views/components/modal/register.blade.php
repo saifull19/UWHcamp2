@@ -7,23 +7,28 @@
 
             <!--header-->
             <div class="p-5 rounded-t-xl text-center mt-16 mx-10">
+
                 <h3 class="text-2xl font-semibold">
                     Sign up to 
                 </h3>
+
                 <a class="pl-10" href="{{ route('index') }}">
                     <div class="pl-10">
                         <img src="{{ asset('/assets/images/logo.png') }}" alt="" class=" pl-10">
                     </div>
                </a>
+
                 <p class="text-gray-400 mt-1 text-sm">
                     Join UWHcamp and start your real project
                 </p>
+
             </div>
 
             <form action="{{ route('register') }}" method="POST">
                 @csrf
                 <!--body-->
                 <div class="relative p-6 flex-auto mx-10">
+                    
                     <div class="mb-4">
                         <label class="block text-grey-darker text-sm mb-2" for="username">
                             Name

@@ -4,6 +4,7 @@
 @section('content')
     
     <main class="h-full overflow-y-auto">
+
                 <div class="container mx-auto">
                     <div class="grid w-full gap-5 px-10 mx-auto md:grid-cols-12">
                         <div class="col-span-12">
@@ -65,6 +66,7 @@
                                                 </div>
 
                                                 <div class="md:col-span-6 lg:col-span-3">
+
                                                     <label for="name" class="block mb-3 font-medium text-gray-700 text-md">Full Name</label>
 
                                                     <input placeholder="Your Name" type="text" name="name" id="name" autocomplete="name" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required value="{{ $user->name ?? '' }}">
@@ -76,6 +78,7 @@
                                                 </div>
 
                                                 <div class="md:col-span-6 lg:col-span-3">
+
                                                     <label for="role" class="block mb-3 font-medium text-gray-700 text-md">Role</label>
 
                                                     <input placeholder="Youre Role" type="text" name="role" id="role" autocomplete="role" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required value="{{ $user->detail_user->role ?? '' }}">
@@ -87,6 +90,7 @@
                                                 </div>
 
                                                 <div class="md:col-span-6 lg:col-span-3">
+
                                                     <label for="email" class="block mb-3 font-medium text-gray-700 text-md">Email Address</label>
 
                                                     <input placeholder="Alex.jones@gmail.com" type="email" name="email" id="email" autocomplete="email" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required value="{{ $user->email ?? '' }}">
@@ -98,6 +102,7 @@
                                                 </div>
 
                                                 <div class="md:col-span-6 lg:col-span-3">
+
                                                     <label for="contact_number" class="block mb-3 font-medium text-gray-700 text-md">Contact Number</label>
 
                                                     <input placeholder="Your Phone" type="number" name="contact_number" id="contact_number" autocomplete="contact_number" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required value="{{ $user->detail_user->contact_number ?? '' }}">
@@ -109,6 +114,7 @@
                                                 </div>
 
                                                 <div class="col-span-6">
+
                                                     <label for="address" class="block mb-3 font-medium text-gray-700 text-md">Address</label>
 
                                                     <input placeholder="Your Address" type="text" name="address" id="address" autocomplete="address" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required value="{{ $user->detail_user->address ?? '' }}">
@@ -120,6 +126,7 @@
                                                 </div>
 
                                                 <div class="col-span-6">
+
                                                     <label for="biography" class="block mb-3 font-medium text-gray-700 text-md">Biografi</label>
 
                                                     <textarea placeholder="Enter your biography here.." type="text" name="biography" id="biography" autocomplete="biography" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" rows="4">{{ $user->detail_user->biography ?? '' }}</textarea>
@@ -131,6 +138,7 @@
                                                 </div>
 
                                                 <div class="col-span-6">
+
                                                     <label for="experience" class="block mb-3 font-medium text-gray-700 text-md">My Experience</label>
 
                                                     @forelse ($experience_user as $key => $item)
@@ -145,21 +153,21 @@
                                                     
                                                         <input placeholder="Knowledge in the fields of interface design, marketing and etc" type="text" name="experience[]" id="experience" autocomplete="experience" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
 
-                                                        @if ($errors->has('experience'))
-                                                            <p class="text-red-500 mb-3 text-sm">{{ $errors->first('experience') }}</p>
-                                                        @endif
+                                                            @if ($errors->has('experience'))
+                                                                <p class="text-red-500 mb-3 text-sm">{{ $errors->first('experience') }}</p>
+                                                            @endif
 
                                                         <input placeholder="Knowledge in the fields of interface design, marketing and etc" type="text" name="experience[]" id="experience" autocomplete="experience" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
 
-                                                        @if ($errors->has('experience'))
-                                                            <p class="text-red-500 mb-3 text-sm">{{ $errors->first('experience') }}</p>
-                                                        @endif
+                                                            @if ($errors->has('experience'))
+                                                                <p class="text-red-500 mb-3 text-sm">{{ $errors->first('experience') }}</p>
+                                                            @endif
                                                         
                                                         <input placeholder="Knowledge in the fields of interface design, marketing and etc" type="text" name="experience[]" id="experience" autocomplete="experience" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
 
-                                                        @if ($errors->has('experience'))
-                                                            <p class="text-red-500 mb-3 text-sm">{{ $errors->first('experience') }}</p>
-                                                        @endif
+                                                            @if ($errors->has('experience'))
+                                                                <p class="text-red-500 mb-3 text-sm">{{ $errors->first('experience') }}</p>
+                                                            @endif
 
                                                     @endforelse
 
@@ -168,6 +176,7 @@
                                         </div>
 
                                         <div class="px-4 py-3 text-right sm:px-6">
+                                            
                                             <a href="{{ route('member.dashboard.index') }}" type="button" class="inline-flex justify-center px-4 py-2 mr-4 text-sm font-medium text-gray-700 bg-white border border-gray-600 rounded-lg shadow-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300" onclick="return confirm('Are You sure want to cancel?, Any changes you make will not be saved')">
                                                 Cancel
                                             </a>

@@ -80,11 +80,6 @@
             span.arrow:hover .arrow_icon svg {
                 transform: translateX(0.75em);
             }
-
-            /* .cover {
-      border-bottom-right-radius: 128px;
-    } */
-
             .bg-blue-teal-gradient {
                 background: rgb(49, 130, 206);
                 background: linear-gradient(
@@ -94,11 +89,6 @@
                 );
             }
 
-            /* @media (min-width: 1024px) {
-      .cover {
-        border-bottom-right-radius: 256px;
-      }
-    } */
         </style>
     </head>
 
@@ -131,6 +121,7 @@
                                     >
                                 </div>
                             </li>
+
                             <li class="ml-6">
                                 <div class="flex items-center">
                                     <svg
@@ -263,12 +254,14 @@
                                         href="{{ route('index') }}"
                                         >Home</a>
                                 </li>
+
                                 <li class="md:ml-4">
                                     <a
                                         class="py-2 inline-block md:text-white hover:text-gray-700 md:px-2 font-normal text-lg"
                                         href="{{ route('explore.landing') }}"
                                         >Bootcamp</a>
                                 </li>
+
                                 <li class="md:ml-4">
                                     <a
                                         class="py-2 inline-block md:text-white hover:text-gray-700 md:px-2 font-normal text-lg"
@@ -276,6 +269,7 @@
                                         >Professional Development</a
                                     >
                                 </li>
+
                                 <li class="md:ml-4 md:hidden lg:block">
                                     <a
                                         class="py-2 inline-block hover:text-gray-700 md:text-white md:px-2 font-normal text-lg"
@@ -283,6 +277,7 @@
                                         >Corporate</a
                                     >
                                 </li>
+
                                 <li class="md:ml-4">
                                     <a
                                         class="py-2 inline-block hover:text-gray-700 text-lg md:text-white md:px-2 font-bold "
@@ -290,36 +285,32 @@
                                         >About Us</a
                                     >
                                 </li>
-                                <li class="md:ml-6 mt-3 md:mt-0">
-                                    {{-- <a
-                                        class="inline-block font-medium px-4 py-2 text-white bg-blue-600 md:bg-transparent md:text-white border border-white rounded"
-                                        href="book-appointment.html"
-                                        >Book Appointment</a
-                                    > --}}
 
+                                <li class="md:ml-6 mt-3 md:mt-0">
+                                    
                                     @auth
                                         <a href="{{ route('member.dashboard.index') }}" class="inline-block font-medium px-4 py-2 text-white bg-gradient-to-r from-green-300 to-green-700 hover:text-gray-700  md:text-white border border-white rounded">
                                             MyDashboard
                                         </a>
-                                    @if (auth()->user()->detail_user()->first()->photo != NULL)
-  
-                                        <img src="{{ url(Storage::url(auth()->user()->detail_user()->first()->photo)) }}" alt="Photo Profile" class="inline object-cover ml-3 h-12 w-12 rounded-full">
-        
-                                        {{-- @if (Auth::user()->avatar)
-                                        <img src="{{Auth::user()->avatar}}" class="inline ml-3 h-12 w-12 rounded-full" alt="Member profile"> --}}
-                                        @else    
-                                        {{-- <img src="https://ui-avatars.com/api/?name=Admin" class="user-photo rounded-cilcle" alt="" style="border-radius: 50%"> --}}
-                                                        
-                                            <img class="inline ml-3 h-12 w-12 rounded-full" src="{{ url('https://randomuser.me/api/portraits/men/1.jpg') }}" alt="">
+
+                                        @if (auth()->user()->detail_user()->first()->photo != NULL)
     
-                                    @endif
+                                            <img src="{{ url(Storage::url(auth()->user()->detail_user()->first()->photo)) }}" alt="Photo Profile" class="inline object-cover ml-3 h-12 w-12 rounded-full">
+            
+                                        @else    
+                                                            
+                                            <img class="inline ml-3 h-12 w-12 rounded-full" src="{{ url('https://randomuser.me/api/portraits/men/1.jpg') }}" alt="">
+        
+                                        @endif
 
                                     @endauth
 
                                     @guest
+
                                         <button onclick="toggleModal('loginModal')" class="inline-block font-semibold px-4 py-2 text-white bg-blue-600 hover:bg-gray-900 md:bg-transparent md:text-white border border-white rounded">
                                         Login
-                                    </button>
+                                        </button>
+
                                     @endguest
 
                                 </li>
@@ -350,12 +341,14 @@
                             >
                                 A better life starts with a beautiful smile.
                             </h1>
+
                             <p
                                 class="text-blue-100 text-xl md:text-2xl leading-snug mt-4"
                             >
                                 Welcome to the Dentist Office of Dr. Thomas
                                 Dooley, where trust and comfort are priorities.
                             </p>
+
                             <a
                                 href="#"
                                 class="px-8 py-4 bg-teal-500 text-white hover:text-gray-700 rounded inline-block mt-8 font-semibold text-lg"
@@ -376,9 +369,11 @@
                         <h2 class="text-3xl leading-tight font-bold mt-4">
                             Welcome to the Dentist Office of Dr. Thomas Dooley
                         </h2>
+
                         <p class="text-lg mt-4 font-semibold">
                             Excellence in Dentistry in the Heart of NY
                         </p>
+
                         <p class="mt-2 leading-relaxed">
                             Donec convallis sollicitudin facilisis. Integer nisl
                             ligula, accumsan non tincidunt ac, imperdiet in
@@ -395,10 +390,12 @@
                                     class="w-16 h-16 bg-green-500 hover:bg-green-800 rounded-full"
                                 ></div>
                             </div>
+
                             <div class="md:ml-8 mt-4 md:mt-0">
                                 <h4 class="text-xl font-bold leading-tight">
                                     Everything You Need Under One Roof
                                 </h4>
+
                                 <p class="mt-2 leading-relaxed">
                                     Our comprehensive services allow you to
                                     receive all needed dental care right here in
@@ -415,10 +412,12 @@
                                     class="w-16 h-16 bg-green-500 hover:bg-green-800 rounded-full"
                                 ></div>
                             </div>
+
                             <div class="md:ml-8 mt-4 md:mt-0">
                                 <h4 class="text-xl font-bold leading-tight">
                                     Our Patient-Focused Approach
                                 </h4>
+
                                 <p class="mt-2 leading-relaxed">
                                     Your treatment plan will perfectly match
                                     your needs, lifestyle, and goals. Even if
@@ -443,13 +442,14 @@
                                 alt=""
                                 class="h-20 mx-auto"
                             />
-
                             <h4 class="text-xl font-bold mt-4">
                                 Teeth Whitening
                             </h4>
+
                             <p class="mt-1">
                                 Let us show you how our experience.
                             </p>
+
                             <a href="#" class="block mt-4">Read More</a>
                         </div>
                     </div>
@@ -465,9 +465,11 @@
                             />
 
                             <h4 class="text-xl font-bold mt-4">Oral Surgery</h4>
+                            
                             <p class="mt-1">
                                 Let us show you how our experience.
                             </p>
+
                             <a href="#" class="block mt-4">Read More</a>
                         </div>
                     </div>
@@ -485,9 +487,11 @@
                             <h4 class="text-xl font-bold mt-4">
                                 Painless Dentistry
                             </h4>
+
                             <p class="mt-1">
                                 Let us show you how our experience.
                             </p>
+
                             <a href="#" class="block mt-4">Read More</a>
                         </div>
                     </div>
@@ -503,9 +507,11 @@
                             />
 
                             <h4 class="text-xl font-bold mt-4">Periodontics</h4>
+                            
                             <p class="mt-1">
                                 Let us show you how our experience.
                             </p>
+
                             <a href="#" class="block mt-4">Read More</a>
                         </div>
                     </div>
@@ -522,6 +528,7 @@
                         <h2 class="text-3xl leading-tight font-bold mt-4">
                             Why choose the Mesothelioma Center?
                         </h2>
+
                         <p class="mt-2 leading-relaxed">
                             Aenean ut tellus tellus. Suspendisse potenti. Nullam
                             tincidunt lacus tellus, sed aliquam est vehicula a.
@@ -557,6 +564,7 @@
                     <h2 class="text-3xl leading-tight font-bold">
                         Health Blog
                     </h2>
+
                     <p class="text-gray-600 mt-2 md:max-w-lg">
                         Pellentesque habitant morbi tristique senectus et netus
                         et malesuada fames ac turpis egestas.
@@ -592,14 +600,17 @@
                                 >
                                     Card Title
                                 </p>
+
                                 <p class="text-gray-600 mt-1">
                                     This card has supporting text below as a
                                     natural lead-in to additional content.
                                 </p>
+
                                 <div class="flex items-center mt-4">
                                     <div
                                         class="w-8 h-8 rounded-full overflow-hidden bg-gray-300"
                                     ></div>
+
                                     <div class="ml-4">
                                         <p class="text-gray-600">
                                             By
@@ -630,19 +641,23 @@
                                         >29 Nov, 2019</span
                                     >
                                 </div>
+
                                 <p
                                     class="text-lg font-semibold leading-tight mt-4"
                                 >
                                     Card Title
                                 </p>
+
                                 <p class="text-gray-600 mt-1">
                                     This card has supporting text below as a
                                     natural lead-in to additional content.
                                 </p>
+
                                 <div class="flex items-center mt-4">
                                     <div
                                         class="w-8 h-8 rounded-full overflow-hidden bg-gray-300"
                                     ></div>
+
                                     <div class="ml-4">
                                         <p class="text-gray-600">
                                             By
@@ -669,6 +684,7 @@
                         Get in touch with us today!
                         <br class="block md:hidden" />Call us on: +62 81233285849
                     </h2>
+
                     <a
                         href="#"
                         class="px-8 py-4 bg-white  hover:bg-gray-300 text-green-600 rounded inline-block font-semibold md:ml-8 mt-4 md:mt-0"
@@ -686,27 +702,33 @@
                     <div class="sm:flex sm:mt-16">
                         <div class="mt-8 sm:mt-0 sm:w-full flex flex-col md:flex-row justify-between">
                             <div class="flex-1 mt-2 flex-col">
+
                                 <h2 class="font-medium text-white font-bold text-lg mb-4">Company</h2>
+                                
                                 <div class="my-3">
                                     <a href="{{ route('index') }}" class="text-white hover:text-gray-700 font-normal">
                                         Home
                                     </a>
                                 </div>
+
                                 <div class="my-3">
                                     <a href="{{ route('explore.landing') }}" class="text-white hover:text-gray-700 font-normal">
                                         Bootcamp
                                     </a>
                                 </div>
+
                                 <div class="my-3">
                                     <a href="#" class="text-white hover:text-gray-700 font-normal">
                                         Professional Development
                                     </a>
                                 </div>
+
                                 <div class="my-3">
                                     <a href="#" class="text-white hover:text-gray-700 font-normal">
                                         Corporate
                                     </a>
                                 </div>
+
                                 <div class="my-3">
                                     <a href="#" class="text-white hover:text-gray-700 font-normal">
                                         About
@@ -715,58 +737,70 @@
                             </div>
                             <div class="flex-1 mt-2 flex-col">
                                 <h4 class="font-medium text-white font-bold text-lg mt-4 md:mt-0 mb-4">Featured Services</h4>
+
                                 <div class="my-3">
                                     <a href="#" class="text-white hover:text-gray-700 font-normal">
                                         Programming &amp; Tech
                                     </a>
                                 </div>
+
                                 <div class="my-3">
                                     <a href="#" class="text-white hover:text-gray-700 font-normal">
                                         Graphics &amp; Design
                                     </a>
                                 </div>
+
                                 <div class="my-3">
                                     <a href="#" class="text-white hover:text-gray-700 font-normal">
                                         Digital Marketing
                                     </a>
                                 </div>
+
                                 <div class="my-3">
                                     <a href="#" class="text-white hover:text-gray-700 font-normal">
                                         Business
                                     </a>
                                 </div>
                             </div>
+
                             <div class="flex-1 mt-2 flex-col">
                                 <h4 class="font-medium text-white font-bold text-lg mt-4 md:mt-0 mb-4">Our Community</h4>
+                                
                                 <div class="my-3">
                                     <a href="#" class="text-white hover:text-gray-700 font-normal">
                                         Instagram
                                     </a>
                                 </div>
+
                                 <div class="my-3">
                                     <a href="#" class="text-white hover:text-gray-700 font-normal">
                                         Telegram
                                     </a>
                                 </div>
+
                                 <div class="my-3">
                                     <a href="#" class="text-white hover:text-gray-700 font-normal">
                                         Facebook
                                     </a>
                                 </div>
+
                                 <div class="my-3">
                                     <a href="#" class="text-white hover:text-gray-700 font-normal">
                                         Discord
                                     </a>
                                 </div>
                             </div>
+
                             <div class="flex-1 mt-2 flex-col lg:mr-28">
                                 <h4 class="font-medium text-white font-bold text-lg mt-4 md:mt-0 mb-4">
                                     Get Weekly Updates & Tips
                                 </h4>
+
                                 <div class="my-3">
                                     <p class="text-white hover:text-gray-700 font-normal">
                                         Berlangganan buletin kami untuk mendapatkan berita mingguan, pembaruan, kiat, dan penawaran khusus Anda. Di setiap hari Senin!
                                     </p>
+
                                     <div class="flex flex-wrap items-stretch w-full mt-4 relative h-15 hover:text-black font-bold bg-serv-email rounded-lg items-center rounded mb-2 pr-5">
                                         <div class="flex -mr-px justify-center w-15 p-4">
                                             <span
@@ -780,88 +814,100 @@
                                         </div>
                                         
                                     </div>
+
                                     <button onclick="toggleModal('loginModal')" id="navAction" class="mx-auto lg:mx-0 hover:underline bg-gray-500 text-white font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                                     Subscribe
                                     </button>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="mx-auto lg:px-16 md:px-20 px-8 py-8 ">
                     <div class="mt-16 border-t border-serv-border sm:flex justify-between w-100 ">
+                        
                         <div class="flex items-left mt-8">
                             <h1 class="text-white text-3xl font-bold">
                                 UWHcamp
                             </h1>
                         </div>
+
                         <div class="sm:flex items-center justify-center mt-8 lg:ml-24">
                             <p class="text-white">
-                            <div class="sm:flex sm:space-x-6">
-                                <span class="sm:flex block">
-                                    <a href="#" class="text-white">Terms</a>
-                                </span>
-                                <span class="sm:flex block">
-                                    <a href="#" class="text-white">Privacy</a>
-                                </span>
-                                <span class="sm:flex block">
-                                    <a href="#" class="text-white">Updates</a>
-                                </span>
-                                <span class="sm:flex block">
-                                    <a href="#" class="text-white">Contact us</a>
-                                </span>
-                            </div>
+                                <div class="sm:flex sm:space-x-6">
+                                    <span class="sm:flex block">
+                                        <a href="#" class="text-white">Terms</a>
+                                    </span>
+                                    <span class="sm:flex block">
+                                        <a href="#" class="text-white">Privacy</a>
+                                    </span>
+                                    <span class="sm:flex block">
+                                        <a href="#" class="text-white">Updates</a>
+                                    </span>
+                                    <span class="sm:flex block">
+                                        <a href="#" class="text-white">Contact us</a>
+                                    </span>
+                                </div>
                             </p>
                         </div>
+
                         <div class="flex items-right flex-end mt-8">
                             <p class="text-white">
                                 &copy; 2022 UWHcamp All rights reserved.
                             </p>
                         </div>
+
                     </div>
                 </div>
             </footer>
             <!-- end footer -->
             
                     @include('components.modal.login')
-                                @include('components.modal.register')
+                    @include('components.modal.register')
+
         </main>
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
-          <script src="{{ asset('/js/toggleModal.js') }}"></script>
-    {{-- <script src="{{ asset('/js/bootstrap.min.js') }}"></script> --}}
-    <script>
-        $(document).ready(function() {
-            $(".modal").on('click', ':not(.relative)', function (e) {
-                e.stopPropagation();
-            });
-            $("#loginModal").on('click', function (e) {
-                toggleModal('loginModal');
-            });
-            $("#registerModal").on('click', function (e) {
-                toggleModal('registerModal');
-            });
-        });
-    </script>
-    <script>
-        function toggleNavbar(collapseID) {
-            document.getElementById(collapseID).classList.toggle("hidden");
-            document.getElementById(collapseID).classList.toggle("block");
-        }
-    </script>
-        <script
-            async
-            src="{{ url('https://www.googletagmanager.com/gtag/js?id=UA-131505823-4') }}"
-        ></script>
+        <script src="{{ asset('/js/toggleModal.js') }}"></script>
+
+        {{-- <script src="{{ asset('/js/bootstrap.min.js') }}"></script> --}}
         <script>
-            window.dataLayer = window.dataLayer || [];
+            $(document).ready(function() {
+                $(".modal").on('click', ':not(.relative)', function (e) {
+                    e.stopPropagation();
+                });
+                $("#loginModal").on('click', function (e) {
+                    toggleModal('loginModal');
+                });
+                $("#registerModal").on('click', function (e) {
+                    toggleModal('registerModal');
+                });
+            });
+        </script>
 
-            function gtag() {
-                dataLayer.push(arguments);
+        <script>
+            function toggleNavbar(collapseID) {
+                document.getElementById(collapseID).classList.toggle("hidden");
+                document.getElementById(collapseID).classList.toggle("block");
             }
-            gtag("js", new Date());
+        </script>
 
-            gtag("config", "UA-131505823-4");
+        <script
+                async
+                src="{{ url('https://www.googletagmanager.com/gtag/js?id=UA-131505823-4') }}"
+            >
+        </script>
+        <script>
+                window.dataLayer = window.dataLayer || [];
+
+                function gtag() {
+                    dataLayer.push(arguments);
+                }
+                gtag("js", new Date());
+
+                gtag("config", "UA-131505823-4");
         </script>
 
 

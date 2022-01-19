@@ -24,6 +24,7 @@
             <!--body-->
             <div class="relative p-6 flex-auto mx-10">
                 <div class="mb-4">
+
                     <label class="block text-grey-darker text-sm mb-2" for="email">
                         Email
                     </label>
@@ -36,6 +37,7 @@
                 </div>
                     
                 <div>
+
                     <label class="block text-grey-darker text-sm mb-2" for="password">
                         Password
                     </label>
@@ -44,6 +46,7 @@
                     @if ($errors->has('password'))
                         <p class="text-red-500 mb-3 text-sm">{{ $errors->first('password') }}</p>
                     @endif
+
                 </div>
                 
                 <div class="flex items-center justify-between">
@@ -60,22 +63,28 @@
 
             <!--footer-->
             <div class="px-6 pb-6 rounded-b-xl mx-10">
+
                 <input type="hidden" name="auth" value="true">
                 <button class="bg-serv-button hover:bg-gray-300 text-white text-lg py-3 px-12 my-2 rounded-lg w-full" type="submit">
                     Log in
                 </button>
 
                 <div class="border border-gray-300 bg-serv-explore-button hover:bg-gray-300 rounded-lg flex text-center items-center space-x-2 my-3 mx-10 px-4">
+
                         <img src="/assets/images/ic_google.svg" class="object-cover object-center rounded-full my-3 mr-1" alt="">
+
                         <a class="inline-block font-medium text-serv-button" href="{{ route('user.login.google') }}">Sign In with Google
                         </a>
+
                 </div>
 
                 <p href="#" class="text-center py-3">
                     Dont have account? <a href="#" class="text-serv-button" onclick="toggleModal('loginModal');toggleModal('registerModal') ">Sign up</a>
                 </p>
+
             </div>
         </form>
+        
     </div>
     </div>
 </div>

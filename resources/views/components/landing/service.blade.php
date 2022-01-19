@@ -1,5 +1,4 @@
 
-
 <a href="{{ route('detail.landing', $service->slug) }}" class="inline-block px-3">
     <div class="w-80 h-90 overflow-hidden md:p-5 p-4 bg-white hover:bg-gray-200 rounded-2xl inline-block">
         <div class="flex items-center space-x-2 mb-6">
@@ -11,7 +10,7 @@
 
             @else
             
-            <img class="w-14 h-14 object-cover object-center rounded-full mr-1"
+                <img class="w-14 h-14 object-cover object-center rounded-full mr-1"
                 src="{{ url('https://randomuser.me/api/portraits/men/1.jpg') }}" alt="random user" />
 
             @endif
@@ -28,13 +27,14 @@
         <!--Banner image-->
 
         @if ($service->thumbnail_service[0]->thumbnail != NULL)
+
             <img src="{{ url(Storage::url($service->thumbnail_service[0]->thumbnail)) }}" alt="photo freelancer" loading="lazy" class="w-full h-30 object-cover rounded-2xl ">
+
         @else
             
             <img class="rounded-2xl w-full" src="{{ url('https://via.placeholder.com/750x500') }}" alt="placeholder" />
 
         @endif
-
 
         <!--Title-->
         <h1 class="font-semibold text-gray-900 text-lg mt-1 leading-normal pt-4">

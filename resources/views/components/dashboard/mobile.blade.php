@@ -1,8 +1,10 @@
 <aside class="fixed inset-y-0 z-20 flex-shrink-0 w-64 overflow-y-auto bg-white md:hidden" x-show="isSideMenuOpen" x-transition:enter="transition ease-in-out duration-150" x-transition:enter-start="opacity-0 transform -translate-x-20" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in-out duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 transform -translate-x-20" @click.away="closeSideMenu" @keydown.escape="closeSideMenu" aria-label="aside">
     <div class=" text-gray-500 dark:text-gray-400">
+
         <a class="ml-6" href="{{ route('index') }}">
             <img src="{{ asset('/assets/images/logo.png') }}" alt="" class="ml-6">
         </a>
+
         <div class="flex items-center pt-5 pl-5 mt-10 space-x-2 border-t border-gray-100">
             <!--Author's profile photo-->
             
@@ -10,14 +12,12 @@
 
                             <img src="{{ url(Storage::url(auth()->user()->detail_user()->first()->photo)) }}" alt="Photo Profile" class="rounded-full w-16 h-16">
 
-            {{-- @if (Auth::user()->avatar)
-                        <img src="{{Auth::user()->avatar}}" class="inline mr-3 h-12 w-12 rounded-full" alt="Member profile"> --}}
                         @else    
-                        {{-- <img src="https://ui-avatars.com/api/?name=Admin" class="user-photo rounded-cilcle" alt="" style="border-radius: 50%"> --}}
                                         
                             <img class="inline mr-3 h-12 w-12 rounded-full" src="{{ url('https://randomuser.me/api/portraits/men/1.jpg') }}" alt="">
 
                         @endif
+
             <div>
                 <!--Author name-->
                 <p class="font-semibold text-gray-900 text-md">{{ Auth::user()->name ?? '' }}</p>
@@ -25,6 +25,7 @@
                     {{ auth()->user()->detail_user()->first()->role ?? '' }}
                 </p>
             </div>
+
         </div>
 
         <ul class="mt-6">
@@ -48,6 +49,7 @@
                     </svg>
                     <span class="ml-4">Dashboard</span>
                 </a>
+
             </li>
         </ul>
 
@@ -106,16 +108,9 @@
                         <rect x="11.3" y="7" width="1.4" height="10" rx="0.7" fill="#082431" />
                         <rect x="17" y="11" width="1.4" height="10" rx="0.7" transform="rotate(90 17 11)" fill="#082431" />
                     </svg>
-                    <!-- Active Icons -->
-                    <!-- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="2.25" y="1.25" width="19.5" height="21.5" rx="4.75" fill="#082431" stroke="#082431" stroke-width="1.5" />
-                        <rect x="11" y="7" width="2" height="10" rx="1" fill="white" />
-                        <rect x="17" y="11" width="2" height="10" rx="1" transform="rotate(90 17 11)" fill="white" />
-                    </svg> -->
                     <span class="ml-4">My Request</span>
                     <span class="inline-flex items-center justify-center px-3 py-2 ml-auto text-xs font-bold leading-none text-green-500 rounded-full bg-serv-green-badge">{{ auth()->user()->order_buyer()->count() }}</span>
-
-                </a>
+                 </a>
             </li>
 
             <li class="relative px-6 py-3">
@@ -139,16 +134,8 @@
                         <line x1="7.75" y1="11.25" x2="16.25" y2="11.25" stroke="#082431" stroke-width="1.5" stroke-linecap="round" />
                         <line x1="7.75" y1="15.25" x2="16.25" y2="15.25" stroke="#082431" stroke-width="1.5" stroke-linecap="round" />
                     </svg>
-                    <!-- Active Icons -->
-                    <!-- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="3" y="2" width="18" height="20" rx="4" fill="#082431" />
-                        <line x1="7.75" y1="7.25" x2="10.25" y2="7.25" stroke="white" stroke-width="1.5" stroke-linecap="round" />
-                        <line x1="7.75" y1="11.25" x2="16.25" y2="11.25" stroke="white" stroke-width="1.5" stroke-linecap="round" />
-                        <line x1="7.75" y1="15.25" x2="16.25" y2="15.25" stroke="white" stroke-width="1.5" stroke-linecap="round" />
-                    </svg> -->
                     <span class="ml-4">My Orders</span>
                     <span class="inline-flex items-center justify-center px-3 py-2 ml-auto text-xs font-bold leading-none text-green-500 rounded-full bg-serv-green-badge">{{ auth()->user()->order_freelancer()->count() }}</span>
-
                 </a>
             </li>
 

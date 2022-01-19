@@ -1,24 +1,23 @@
 <!-- Desktop sidebar -->
 <aside class="z-20 flex-shrink-0 hidden w-64 overflow-y-auto bg-white md:block" aria-label="aside">
     <div class="text-serv-bg">
+
         <a class="" href="{{ route('index') }}">
             <img src="{{ asset('/assets/images/logo.png') }}" alt="" class="object-center mx-auto my-4 ">
         </a>
+
         <div class="flex items-center pt-8 pl-5 space-x-2 border-t border-gray-100">
             <!--Author's profile photo-->
 
-                        @if (auth()->user()->detail_user()->first()->photo != NULL)
+                    @if (auth()->user()->detail_user()->first()->photo != NULL)
 
-                            <img src="{{ url(Storage::url(auth()->user()->detail_user()->first()->photo)) }}" alt="Photo Profile" class="rounded-full w-16 h-16">
+                        <img src="{{ url(Storage::url(auth()->user()->detail_user()->first()->photo)) }}" alt="Photo Profile" class="rounded-full w-16 h-16">
 
-            {{-- @if (Auth::user()->avatar)
-                        <img src="{{Auth::user()->avatar}}" class="inline mr-3 h-12 w-12 rounded-full" alt="Member profile"> --}}
-                        @else    
-                        {{-- <img src="https://ui-avatars.com/api/?name=Admin" class="user-photo rounded-cilcle" alt="" style="border-radius: 50%"> --}}
+                    @else    
                                         
-                            <img class="inline mr-3 h-12 w-12 rounded-full" src="{{ url('https://randomuser.me/api/portraits/men/1.jpg') }}" alt="">
+                        <img class="inline mr-3 h-12 w-12 rounded-full" src="{{ url('https://randomuser.me/api/portraits/men/1.jpg') }}" alt="">
 
-                        @endif
+                    @endif
             <div>
                 <!--Author name-->
                 <p class="font-semibold text-gray-900 text-md">{{ Auth::user()->name ?? '' }}</p>
@@ -26,7 +25,9 @@
                     {{ auth()->user()->detail_user()->first()->role ?? '' }}
                 </p>
             </div>
+
         </div>
+
         <ul class="mt-6">
             <li class="relative px-6 py-3">
 
@@ -48,12 +49,14 @@
                     </svg>
                     <span class="ml-4">Dashboard</span>
                 </a>
+
             </li>
         </ul>
 
         <ul>
+
             @can('admin')
-                    <li class="relative px-6 py-3">
+                <li class="relative px-6 py-3">
                     {{-- membuat kondisi aktif pada menu yang sedang dipilih --}}
                     @if (
                         request()->is('member/service') ||
@@ -86,10 +89,7 @@
                     </a>
                 </li>
 
-                
-
                 <li class="relative px-6 py-3">
-
                     {{-- membuat kondisi aktif pada menu yang sedang dipilih --}}
                     @if (
                         request()->is('member/order') ||

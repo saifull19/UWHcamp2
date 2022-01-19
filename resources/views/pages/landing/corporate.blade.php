@@ -20,7 +20,9 @@
         />
         <title>Landing | Tailwind Starter Kit by Creative Tim</title>
     </head>
+
     <body class="text-gray-800 antialiased">
+        
         <nav
             class="top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3"
         >
@@ -33,6 +35,7 @@
                     <a class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white" href="{{ route('index') }}">
                         <img src="{{ asset('/assets/favicon.png') }}" alt="" class="ml-6 h-12 w-12">
                     </a>
+                    
                     <button
                         class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
                         type="button"
@@ -40,13 +43,16 @@
                     >
                         <i class="text-white fas fa-bars"></i>
                     </button>
+                
                 </div>
+                
                 <div
                     class="lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none hidden"
                     id="example-collapse-navbar"
                 >
                     <ul class="flex flex-col lg:flex-row list-none mr-auto">
                         <li class="flex items-center">
+                
                             <a
                                 class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                                 href="{{ route('create') }}"
@@ -57,6 +63,7 @@
                             >
                         </li>
                     </ul>
+                
                     <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
                         <li class="flex items-center">
                             <a
@@ -64,24 +71,25 @@
                                 href="#pablo"
                                 ><i
                                     class="lg:text-gray-300 text-gray-500 fab fa-facebook text-lg leading-lg"
-                                ></i
-                                ><span class="lg:hidden inline-block ml-2"
-                                    >Share</span
-                                ></a
+                                ></i>
+                                
+                                <span class="lg:hidden inline-block ml-2">Share</span>
+                            </a
                             >
                         </li>
+
                         <li class="flex items-center">
                             <a
                                 class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                                 href="#pablo"
                                 ><i
                                     class="lg:text-gray-300 text-gray-500 fab fa-twitter text-lg leading-lg"
-                                ></i
-                                ><span class="lg:hidden inline-block ml-2"
-                                    >Tweet</span
-                                ></a
-                            >
+                                ></i>
+
+                                <span class="lg:hidden inline-block ml-2">Tweet</span>
+                            </a>
                         </li>
+
                         <li class="flex items-center">
                             <a
                                 class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
@@ -91,44 +99,34 @@
                                 ></i
                                 ><span class="lg:hidden inline-block ml-2"
                                     >Star</span
-                                ></a
-                            >
+                                >
+                            </a>
                         </li>
+
                         <li class="flex items-center">
-                            
-                            {{-- <button
-                                class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
-                                type="button"
-                                style="transition: all 0.15s ease 0s"
-                            >
-                                <i class="fas fa-arrow-alt-circle-down"></i>
-                                Download
-                            </button> --}}
 
                             @auth
-                                        <a href="{{ route('member.dashboard.index') }}" class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3" style="transition: all 0.15s ease 0s">
+
+                                <a href="{{ route('member.dashboard.index') }}" class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3" style="transition: all 0.15s ease 0s">
                                             MyDashboard
                                         </a>
-                                    @if (auth()->user()->detail_user()->first()->photo != NULL)
+                                @if (auth()->user()->detail_user()->first()->photo != NULL)
   
-                                        <img src="{{ url(Storage::url(auth()->user()->detail_user()->first()->photo)) }}" alt="Photo Profile" class="inline object-cover ml-3 h-12 w-12 rounded-full">
+                                    <img src="{{ url(Storage::url(auth()->user()->detail_user()->first()->photo)) }}" alt="Photo Profile" class="inline object-cover ml-3 h-12 w-12 rounded-full">
         
-                                        {{-- @if (Auth::user()->avatar)
-                                        <img src="{{Auth::user()->avatar}}" class="inline ml-3 h-12 w-12 rounded-full" alt="Member profile"> --}}
-                                        @else    
-                                        {{-- <img src="https://ui-avatars.com/api/?name=Admin" class="user-photo rounded-cilcle" alt="" style="border-radius: 50%"> --}}
+                                @else    
                                                         
-                                            <img class="inline ml-3 h-12 w-12 rounded-full" src="{{ url('https://randomuser.me/api/portraits/men/1.jpg') }}" alt="">
+                                    <img class="inline ml-3 h-12 w-12 rounded-full" src="{{ url('https://randomuser.me/api/portraits/men/1.jpg') }}" alt="">
     
-                                    @endif
+                                @endif
 
-                                    @endauth
+                            @endauth
 
-                                    @guest
-                                        <button onclick="toggleModal('loginModal')" class="bg-white text-gray-800 active:bg-gray-300 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3" style="transition: all 0.15s ease 0s">
+                            @guest
+                                <button onclick="toggleModal('loginModal')" class="bg-white text-gray-800 active:bg-gray-300 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3" style="transition: all 0.15s ease 0s">
                                         Login
-                                        </button>
-                                    @endguest
+                                </button>
+                            @endguest
 
                         </li>
                     </ul>
@@ -140,20 +138,18 @@
             <div
             class="relative pt-16 pb-32 flex content-center items-center justify-center"
             style="min-height: 75vh"
-            >
-            
-                    
+            >      
                 <div
                     class="absolute top-0 w-full h-full bg-center bg-cover"
                     style="
                         background-image: url('{{ url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1267&amp;q=80') }}');
-                    "
-                >
+                    ">
                     <span
                         id="blackOverlay"
                         class="w-full h-full absolute opacity-75 bg-black"
                     ></span>
                 </div>
+
                 <div class="container relative  mx-auto">
                     <div class="items-center flex flex-wrap">
                         <div
@@ -163,6 +159,7 @@
                                 <h1 class="text-white font-semibold text-5xl">
                                     Rekrut Talenta Digital Terbaik Untuk Tim Anda
                                 </h1>
+
                                 <p class="mt-4 text-lg text-gray-300">
                                     Lulusan terbaik UWHcamp telah melalui pelatihan Pemrogaman intensif dengan kurikulum terupdate. Jadi Hiring Partner kami dan mulai rekrutmen sekarang!
                                 </p>
@@ -170,6 +167,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div
                     class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
                     style="height: 70px"
@@ -187,9 +185,11 @@
                             class="text-gray-300 fill-current"
                             points="2560 0 2560 100 0 100"
                         ></polygon>
+
                     </svg>
                 </div>
             </div>
+
             <section class="pb-20 bg-gray-300 -mt-24">
                 <div class="container mx-auto px-4">
                     <div class="flex flex-wrap">
@@ -205,15 +205,18 @@
                                     >
                                         <i class="fas fa-award"></i>
                                     </div>
+
                                     <h6 class="text-xl font-semibold">
                                         Teknologi Terkini
                                     </h6>
+
                                     <p class="mt-2 mb-4 text-gray-600">
                                         UWHcamp hanya menggunakan kurikulum dan teknologi terkini untuk pendidikan para siswa. Kami pastikan siswa kami mendapatkan pelatihan dan pendidikan yang up-to-date dan intensif.
                                     </p>
                                 </div>
                             </div>
                         </div>
+
                         <div class="w-full md:w-4/12 px-4 text-center">
                             <div
                                 class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
@@ -224,15 +227,18 @@
                                     >
                                         <i class="fas fa-retweet"></i>
                                     </div>
+
                                     <h6 class="text-xl font-semibold">
                                         Efisien & Produktif
                                     </h6>
+
                                     <p class="mt-2 mb-4 text-gray-600">
                                         Dengan akses ke Hiring Portal kami Anda bisa melihat profil setiap kandidat dalam satu kali klik. Dengan fitur "filter" Anda dapat melihat kandidat dengan kualifikasi yang diinginkan.
                                     </p>
                                 </div>
                             </div>
                         </div>
+
                         <div class="pt-6 w-full md:w-4/12 px-4 text-center">
                             <div
                                 class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
@@ -243,9 +249,11 @@
                                     >
                                         <i class="fas fa-fingerprint"></i>
                                     </div>
+
                                     <h6 class="text-xl font-semibold">
                                         Kualifikasi Talenta yang Terukur
                                     </h6>
+
                                     <p class="mt-2 mb-4 text-gray-600">
                                         Siswa UWHcamp lulus dengan standar nilai dan melalui Final Project Evaluation yang membuat alumni UWHcamp adalah talenta IT yang siap kerja.
                                     </p>
@@ -253,6 +261,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="flex flex-wrap items-center mt-32">
                         <div class="w-full md:w-5/12 px-4 mr-auto ml-auto">
                             <div
@@ -260,11 +269,13 @@
                             >
                                 <i class="fas fa-user-friends text-xl"></i>
                             </div>
+
                             <h3
                                 class="text-3xl mb-2 font-semibold leading-normal"
                             >
                                 Mengapa Merekrut Lulusan UWHcamp
                             </h3>
+
                             <p
                                 class="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700"
                             >
@@ -273,11 +284,15 @@
                             
                             <p class="font-bold text-gray-800 mt-3 "> <i class="text-pink-600 mr-2 fas fa-check"></i> 
                                 Problem solver yang gigih.</p>
+
                             <p class="font-bold text-gray-800 mt-3"><i class="text-pink-600 mr-2 fas fa-check"></i>Memiliki growth mindset.</p>
+
                             <p class="font-bold text-gray-800 mt-3"><i class="text-pink-600 mr-2 fas fa-check"></i>Skill dan pengetahuan yang relevan dengan tren terkini.</p>
+
                             <p class="font-bold text-gray-800 mt-3"><i class="text-pink-600 mr-2 fas fa-check"></i>Memiliki Motivasi Tinggi</p>
 
                         </div>
+
                         <div class="w-full md:w-4/12 px-4 mr-auto ml-auto">
                             <div
                                 class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-pink-600"
@@ -300,9 +315,11 @@
                                             class="text-pink-600 fill-current"
                                         ></polygon>
                                     </svg>
+
                                     <h4 class="text-xl font-bold text-white">
                                         Akses Hiring Portal
                                     </h4>
+
                                     <p
                                         class="text-md font-light mt-2 text-white"
                                     >
@@ -314,6 +331,7 @@
                     </div>
                 </div>
             </section>
+
             <section class="relative py-10">
                 <div
                     class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
@@ -334,6 +352,7 @@
                         ></polygon>
                     </svg>
                 </div>
+
                 <div class="container mx-auto px-4">
                     <div class="items-center flex flex-wrap">
                         <div class="w-full md:w-4/12 ml-auto mr-auto px-4">
@@ -343,6 +362,7 @@
                                 src="{{ url('https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=634&amp;q=80') }}"
                             />
                         </div>
+
                         <div class="w-full md:w-5/12 ml-auto mr-auto px-4">
                             <div class="md:pr-12">
                                 <div
@@ -350,9 +370,11 @@
                                 >
                                     <i class="fas fa-rocket text-xl"></i>
                                 </div>
+
                                 <h3 class="text-3xl font-semibold">
                                     Profesi yang Bisa Ditempati Oleh Lulusan Kami
                                 </h3>
+
                                 <p
                                     class="mt-4 text-lg leading-relaxed text-gray-600"
                                 >
@@ -361,6 +383,7 @@
                                     can change the text and images and you're
                                     good to go.
                                 </p>
+
                                 <ul class="list-none mt-6">
                                     <li class="py-2">
                                         <div class="flex items-center text-lg">
@@ -372,6 +395,7 @@
                                                     ></i
                                                 ></span>
                                             </div>
+
                                             <div>
                                                 <h4 class="text-gray-600 font-bold">
                                                     Data Scientist
@@ -379,6 +403,7 @@
                                             </div>
                                         </div>
                                     </li>
+
                                     <li class="py-2">
                                         <div class="flex items-center text-lg">
                                             <div>
@@ -387,6 +412,7 @@
                                                     ><i class="fab fa-html5"></i
                                                 ></span>
                                             </div>
+
                                             <div>
                                                 <h4 class="text-gray-600 font-bold">
                                                     Fullstack Developer
@@ -394,6 +420,7 @@
                                             </div>
                                         </div>
                                     </li>
+
                                     <li class="py-2">
                                         <div class="flex items-center text-lg">
                                             <div>
@@ -404,6 +431,7 @@
                                                     ></i
                                                 ></span>
                                             </div>
+
                                             <div>
                                                 <h4 class="text-gray-600 font-bold">
                                                     Digital Marketing
@@ -417,6 +445,7 @@
                     </div>
                 </div>
             </section>
+
             <section class="pt-20 pb-48">
                 <div class="container mx-auto px-4">
                     <div
@@ -426,6 +455,7 @@
                             <h2 class="text-4xl font-semibold">
                                 Lulusan Kami yang Berbakat
                             </h2>
+
                             <p
                                 class="text-lg leading-relaxed m-4 text-gray-600"
                             >
@@ -433,6 +463,7 @@
                             </p>
                         </div>
                     </div>
+
                     <div class="flex flex-wrap">
                         <div
                             class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4"
@@ -448,36 +479,39 @@
                                     <h5 class="text-xl font-bold">
                                         Ryan Tompson
                                     </h5>
+
                                     <p
                                         class="mt-1 text-sm text-gray-500 uppercase font-semibold"
                                     >
                                         Web Developer
                                     </p>
+
                                     <div class="mt-6">
                                         <button
                                             class="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                                            type="button"
-                                        >
+                                            type="button">
                                             <i
                                                 class="fab fa-twitter"
-                                            ></i></button
-                                        ><button
+                                            ></i>
+                                        </button>
+                                        
+                                        <button
                                             class="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                                            type="button"
-                                        >
+                                            type="button">
                                             <i
                                                 class="fab fa-facebook-f"
-                                            ></i></button
-                                        ><button
+                                            ></i>
+                                        </button>
+                                        <button
                                             class="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                                            type="button"
-                                        >
+                                            type="button">
                                             <i class="fab fa-dribbble"></i>
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div
                             class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4"
                         >
@@ -492,11 +526,13 @@
                                     <h5 class="text-xl font-bold">
                                         Romina Hadid
                                     </h5>
+
                                     <p
                                         class="mt-1 text-sm text-gray-500 uppercase font-semibold"
                                     >
                                         Marketing Specialist
                                     </p>
+
                                     <div class="mt-6">
                                         <button
                                             class="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
@@ -504,17 +540,19 @@
                                         >
                                             <i
                                                 class="fab fa-google"
-                                            ></i></button
-                                        ><button
+                                            ></i>
+                                        </button>
+
+                                        <button
                                             class="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                                            type="button"
-                                        >
+                                            type="button">
                                             <i class="fab fa-facebook-f"></i>
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div
                             class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4"
                         >
@@ -529,27 +567,31 @@
                                     <h5 class="text-xl font-bold">
                                         Alexa Smith
                                     </h5>
+
                                     <p
                                         class="mt-1 text-sm text-gray-500 uppercase font-semibold"
                                     >
                                         UI/UX Designer
                                     </p>
+
                                     <div class="mt-6">
                                         <button
                                             class="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                                            type="button"
-                                        >
+                                            type="button">
                                             <i
                                                 class="fab fa-google"
-                                            ></i></button
-                                        ><button
+                                            ></i>
+                                        </button>
+
+                                        <button
                                             class="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                                            type="button"
-                                        >
+                                            type="button">
                                             <i
                                                 class="fab fa-twitter"
-                                            ></i></button
-                                        ><button
+                                            ></i>
+                                        </button>
+
+                                        <button
                                             class="bg-gray-800 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
                                             type="button"
                                         >
@@ -559,6 +601,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div
                             class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4"
                         >
@@ -569,41 +612,46 @@
                                     class="shadow-lg rounded-full max-w-full mx-auto"
                                     style="max-width: 120px"
                                 />
+
                                 <div class="pt-6 text-center">
                                     <h5 class="text-xl font-bold">
                                         Jenna Kardi
                                     </h5>
+
                                     <p
                                         class="mt-1 text-sm text-gray-500 uppercase font-semibold"
                                     >
                                         Founder and CEO
                                     </p>
+
                                     <div class="mt-6">
                                         <button
                                             class="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                                            type="button"
-                                        >
+                                            type="button">
                                             <i
                                                 class="fab fa-dribbble"
-                                            ></i></button
-                                        ><button
+                                            ></i>
+                                        </button>
+                                        
+                                        <button
                                             class="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                                            type="button"
-                                        >
+                                            type="button">
                                             <i
                                                 class="fab fa-google"
-                                            ></i></button
-                                        ><button
+                                            ></i>
+                                        </button>
+
+                                        <button
                                             class="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                                            type="button"
-                                        >
+                                            type="button">
                                             <i
                                                 class="fab fa-twitter"
-                                            ></i></button
-                                        ><button
+                                            ></i>
+                                        </button>
+
+                                        <button
                                             class="bg-gray-800 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                                            type="button"
-                                        >
+                                            type="button">
                                             <i class="fab fa-instagram"></i>
                                         </button>
                                     </div>
@@ -613,6 +661,7 @@
                     </div>
                 </div>
             </section>
+
             <section class="pb-20 relative block bg-gray-900">
                 <div
                     class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
@@ -633,12 +682,14 @@
                         ></polygon>
                     </svg>
                 </div>
+
                 <div class="container mx-auto px-4 lg:pt-24 lg:pb-64">
                     <div class="flex flex-wrap text-center justify-center">
                         <div class="w-full lg:w-6/12 px-4">
                             <h2 class="text-4xl font-semibold text-white">
                                 Siap untuk Merekrut?
                             </h2>
+
                             <p
                                 class="text-lg leading-relaxed mt-4 mb-4 text-gray-500"
                             >
@@ -646,6 +697,7 @@
                             </p>
                         </div>
                     </div>
+
                     <div class="flex flex-wrap mt-12 justify-center">
                         <div class="w-full lg:w-3/12 px-4 text-center">
                             <div
@@ -653,35 +705,43 @@
                             >
                                 <i class="fas fa-medal text-xl"></i>
                             </div>
+
                             <h6 class="text-xl mt-5 font-semibold text-white">
                                 Pendaftaran
                             </h6>
+
                             <p class="mt-2 mb-4 text-gray-500">
                                 Isi formulir pendaftaran dan tim UWHcamp akan menghubungi Anda.
                             </p>
                         </div>
+
                         <div class="w-full lg:w-3/12 px-4 text-center">
                             <div
                                 class="text-gray-900 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center"
                             >
                                 <i class="fas fa-poll text-xl"></i>
                             </div>
+
                             <h5 class="text-xl mt-5 font-semibold text-white">
                                 Syarat dan Ketentuan
                             </h5>
+
                             <p class="mt-2 mb-4 text-gray-500">
                                 Tim kami akan mengirimkan syarat dan ketentuan menjadi Hiring Partner yang akan ditanda tangani oleh Anda dan UWHcamp.
                             </p>
                         </div>
+
                         <div class="w-full lg:w-3/12 px-4 text-center">
                             <div
                                 class="text-gray-900 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center"
                             >
                                 <i class="fas fa-lightbulb text-xl"></i>
                             </div>
+
                             <h5 class="text-xl mt-5 font-semibold text-white">
                                 Akses Hiring Portal
                             </h5>
+
                             <p class="mt-2 mb-4 text-gray-500">
                                 UWHcamp akan memberikan akses ke Hiring Portal di mana Anda dapat dengan mudah mencari programmer/developer yang sesuai untuk tim Anda.
                             </p>
@@ -689,6 +749,7 @@
                     </div>
                 </div>
             </section>
+
             <section class="relative block py-24 lg:pt-0 bg-gray-900">
                 <div class="container mx-auto px-4">
                     <div class="flex flex-wrap justify-center lg:-mt-64 -mt-48">
@@ -701,11 +762,13 @@
                                        Siap untuk Merekrut?
 
                                     </h4>
+
                                     <p
                                         class="leading-relaxed mt-1 mb-4 text-gray-600"
                                     >
                                         Isi form berikut dan bangun tim IT idaman Anda.
                                     </p>
+
                                     <div class="relative w-full mb-3 mt-8">
                                         <label
                                             class="block uppercase text-gray-700 text-xs font-bold mb-2"
@@ -720,6 +783,7 @@
                                             "
                                         />
                                     </div>
+
                                     <div class="relative w-full mb-3">
                                         <label
                                             class="block uppercase text-gray-700 text-xs font-bold mb-2"
@@ -734,6 +798,7 @@
                                             "
                                         />
                                     </div>
+
                                     <div class="relative w-full mb-3">
                                         <label
                                             class="block uppercase text-gray-700 text-xs font-bold mb-2"
@@ -746,6 +811,7 @@
                                             placeholder="Type a message..."
                                         ></textarea>
                                     </div>
+
                                     <div class="text-center mt-6">
                                         <button
                                             class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
@@ -764,6 +830,7 @@
                 </div>
             </section>
         </main>
+
         <footer class="relative bg-gray-300 pt-8 pb-6">
             <div
                 class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
@@ -784,90 +851,109 @@
                     ></polygon>
                 </svg>
             </div>
+
             <div class="container mx-auto px-4">
                 <div class="mt-8 sm:mt-0 sm:w-full flex flex-col md:flex-row justify-between">
                             <div class="flex-1 mt-2 flex-col">
                                 <h2 class="font-medium text-gray-600 font-bold text-lg mb-4">Company</h2>
+                                
                                 <div class="my-3">
                                     <a href="{{ route('index') }}" class="text-gray-600 hover:text-gray-700 font-normal">
                                         Home
                                     </a>
                                 </div>
+
                                 <div class="my-3">
                                     <a href="{{ route('explore.landing') }}" class="text-gray-600 hover:text-gray-700 font-normal">
                                         Bootcamp
                                     </a>
                                 </div>
+
                                 <div class="my-3">
                                     <a href="#" class="text-gray-600 hover:text-gray-700 font-normal">
                                         Professional Development
                                     </a>
                                 </div>
+
                                 <div class="my-3">
                                     <a href="#" class="text-gray-600 hover:text-gray-700 font-normal">
                                         Corporate
                                     </a>
                                 </div>
+
                                 <div class="my-3">
                                     <a href="#" class="text-gray-600 hover:text-gray-700 font-normal">
                                         About
                                     </a>
                                 </div>
                             </div>
+
                             <div class="flex-1 mt-2 flex-col">
                                 <h4 class="font-medium text-gray-600 font-bold text-lg mt-4 md:mt-0 mb-4">Featured Services</h4>
+
                                 <div class="my-3">
                                     <a href="#" class="text-gray-600 hover:text-gray-700 font-normal">
                                         Programming &amp; Tech
                                     </a>
                                 </div>
+
                                 <div class="my-3">
                                     <a href="#" class="text-gray-600 hover:text-gray-700 font-normal">
                                         Graphics &amp; Design
                                     </a>
                                 </div>
+
                                 <div class="my-3">
                                     <a href="#" class="text-gray-600 hover:text-gray-700 font-normal">
                                         Digital Marketing
                                     </a>
                                 </div>
+
                                 <div class="my-3">
                                     <a href="#" class="text-gray-600 hover:text-gray-700 font-normal">
                                         Business
                                     </a>
                                 </div>
                             </div>
+
                             <div class="flex-1 mt-2 flex-col">
                                 <h4 class="font-medium text-gray-600 font-bold text-lg mt-4 md:mt-0 mb-4">Our Community</h4>
+
                                 <div class="my-3">
                                     <a href="#" class="text-gray-600 hover:text-gray-700 font-normal">
                                         Instagram
                                     </a>
                                 </div>
+
                                 <div class="my-3">
                                     <a href="#" class="text-gray-600 hover:text-gray-700 font-normal">
                                         Telegram
                                     </a>
                                 </div>
+
                                 <div class="my-3">
                                     <a href="#" class="text-gray-600 hover:text-gray-700 font-normal">
                                         Facebook
                                     </a>
                                 </div>
+
                                 <div class="my-3">
                                     <a href="#" class="text-gray-600 hover:text-gray-700 font-normal">
                                         Discord
                                     </a>
                                 </div>
                             </div>
+
                             <div class="flex-1 mt-2 flex-col lg:mr-28">
                                 <h4 class="font-medium text-gray-600 font-bold text-lg mt-4 md:mt-0 mb-4">
                                     Get Weekly Updates & Tips
                                 </h4>
+
                                 <div class="my-3">
                                     <p class="text-gray-600 hover:text-gray-700 font-normal">
                                         Berlangganan buletin kami untuk mendapatkan berita mingguan, pembaruan, kiat, dan penawaran khusus Anda. Di setiap hari Senin!
                                     </p>
+
                                     <div class="flex flex-wrap items-stretch w-full mt-4 relative h-15 hover:text-black font-bold bg-serv-email rounded-lg items-center rounded mb-2 pr-5">
                                         <div class="flex -mr-px justify-center w-15 p-4">
                                             <span
@@ -881,9 +967,11 @@
                                         </div>
                                         
                                     </div>
+
                                     <button onclick="toggleModal('loginModal')" id="navAction" class="mx-auto lg:mx-0 hover:underline bg-gray-700 text-white font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                                     Subscribe
                                     </button>
+
                                 </div>
                             </div>
                         </div>
@@ -906,28 +994,28 @@
         </footer>
         
         @include('components.modal.login')
-                    @include('components.modal.register')
+        @include('components.modal.register')
         
         <script src="{{ asset('/js/toggleModal.js') }}"></script>
-    {{-- <script src="{{ asset('/js/bootstrap.min.js') }}"></script> --}}
-    <script>
-        $(document).ready(function() {
-            $(".modal").on('click', ':not(.relative)', function (e) {
-                e.stopPropagation();
+        {{-- <script src="{{ asset('/js/bootstrap.min.js') }}"></script> --}}
+        <script>
+            $(document).ready(function() {
+                $(".modal").on('click', ':not(.relative)', function (e) {
+                    e.stopPropagation();
+                });
+                $("#loginModal").on('click', function (e) {
+                    toggleModal('loginModal');
+                });
+                $("#registerModal").on('click', function (e) {
+                    toggleModal('registerModal');
+                });
             });
-            $("#loginModal").on('click', function (e) {
-                toggleModal('loginModal');
-            });
-            $("#registerModal").on('click', function (e) {
-                toggleModal('registerModal');
-            });
-        });
-    </script>
-    <script>
-        function toggleNavbar(collapseID) {
-            document.getElementById(collapseID).classList.toggle("hidden");
-            document.getElementById(collapseID).classList.toggle("block");
-        }
-    </script>
+        </script>
+        <script>
+            function toggleNavbar(collapseID) {
+                document.getElementById(collapseID).classList.toggle("hidden");
+                document.getElementById(collapseID).classList.toggle("block");
+            }
+        </script>
     </body>
 </html>
