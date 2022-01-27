@@ -20,6 +20,10 @@ class Order extends Model
         'deleted_at'
     ];
 
+    // protected $with = [
+    //     'service', 'order_status'
+    // ];
+
     protected $guarded = [
         'id'
     ];

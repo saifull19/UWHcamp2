@@ -28,7 +28,9 @@ class RequestController extends Controller
     {
         $orders = Order::where('buyer_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
 
-        return view('pages.dashboard.request.index', compact('orders'));
+        return view('pages.dashboard.request.index', [
+            'orders' => $orders->load('service', 'order_status', 'user_buyer', 'user_freelancer')
+        ]);
     }
 
     /**
