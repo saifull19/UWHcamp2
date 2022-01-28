@@ -4,6 +4,15 @@ use Illuminate\Support\Facades\Route;
 
 // front (landing)
 use App\Http\Controllers\Landing\LandingController;
+// admin dashboard
+
+use App\Http\Controllers\Dashboard\Admin\DashboardController;
+use App\Http\Controllers\Dashboard\Admin\MentorController;
+use App\Http\Controllers\Dashboard\Admin\MenuController;
+use App\Http\Controllers\Dashboard\Admin\OrderController;
+use App\Http\Controllers\Dashboard\Admin\ProfilController;
+use App\Http\Controllers\Dashboard\Admin\RoleController;
+use App\Http\Controllers\Dashboard\Admin\ServicController;
 
 // member (dashboard)
 use App\Http\Controllers\Dashboard\MemberController;
@@ -12,6 +21,7 @@ use App\Http\Controllers\Dashboard\ProfileController;
 use App\Http\Controllers\Dashboard\RequestController;
 use App\Http\Controllers\Dashboard\ServiceController;
 use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +45,33 @@ Route::get('detail/{slug:slug}', [LandingController::class, 'detail'])->name('de
 Route::get('explore', [LandingController::class, 'explore'])->name('explore.landing');
 Route::resource('/', LandingController::class);
 
+// route group menggunakan middleware admin
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'verified', 'admin']], function() {
+
+    // dashboard
+    Route::resource('dashboard', DashboardController::class);
+
+    // service
+    Route::resource('servic', ServicController::class);
+
+    // order
+    Route::resource('order', OrderController::class);
+
+    // mentor
+    Route::resource('mentor', MentorController::class);
+
+    // role
+    Route::resource('role', RoleController::class);
+
+    // menu
+    Route::resource('menu', MenuController::class);
+
+    // profile
+    Route::get('delete_photo', [ProfilController::class, 'delete'])->name('delete.photo.profile');
+    Route::get('editt', [ProfilController::class, 'editt'])->name('profile.editt');
+    Route::resource('profil', ProfilController::class);
+});
+
 // route group yang menggunakan middleware
 Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth:sanctum', 'verified']], function() {
 
@@ -42,22 +79,24 @@ Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth:sa
     Route::resource('dashboard', MemberController::class);
 
     // service
-    Route::resource('service', ServiceController::class)->middleware('admin');
+    Route::resource('service', ServiceController::class);
 
     // request
     Route::get('approve_request/{id}', [RequestController::class, 'approve'])->name('approve.request');
     Route::resource('request', RequestController::class);
 
     // My order
-    Route::get('accept/order/{id}', [MyOrderController::class, 'accepted'])->name('accept.order')->middleware('admin');
-    Route::get('reject/order/{id}', [MyOrderController::class, 'rejected'])->name('reject.order')->middleware('admin');
-    Route::resource('order', MyOrderController::class)->middleware('admin');
+    Route::get('accept/order/{id}', [MyOrderController::class, 'accepted'])->name('accept.order');
+    Route::get('reject/order/{id}', [MyOrderController::class, 'rejected'])->name('reject.order');
+    Route::resource('order', MyOrderController::class);
 
     // profile
     Route::get('delete_photo', [ProfileController::class, 'delete'])->name('delete.photo.profile');
     Route::get('editt', [ProfileController::class, 'editt'])->name('profile.editt');
     Route::resource('profile', ProfileController::class);
 });
+
+
 
 
 // route socialite
