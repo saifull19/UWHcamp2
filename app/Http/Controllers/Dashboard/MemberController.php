@@ -34,6 +34,17 @@ class MemberController extends Controller
     {
         $orders = Order::where('freelancer_id', Auth::user()->id)->get();
 
+        $progresss = Order::where('freelancer_id', Auth::user()->id)
+                        ->where('order_status_id', 2)
+                        ->count();
+        $completedd = Order::where('freelancer_id', Auth::user()->id)
+                        ->where('order_status_id', 1)
+                        ->count();
+        $freelancerr = Order::where('buyer_id', Auth::user()->id)
+                        ->where('order_status_id', 2)
+                        ->distinct('freelancer_id')
+                        ->count();
+
         
 
         $service = Service::all();
@@ -54,7 +65,7 @@ class MemberController extends Controller
 
         // $freelancer = User::where('buyer_id', Auth::user()->id)->where('order_status_id', 2)->distinct('freelancer_id')->count();
 
-        return view('pages.dashboard.index', compact('orders', 'service', 'progress', 'completed', 'freelancer'));
+        return view('pages.dashboard.index', compact('orders','progresss', 'completedd', 'freelancerr', 'service', 'progress', 'completed', 'freelancer'));
     }
 
     /**

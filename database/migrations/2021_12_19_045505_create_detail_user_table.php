@@ -18,7 +18,7 @@ class CreateDetailUserTable extends Migration
             // $table->integer('users_id')->nullable();
             $table->foreignId('users_id')->nullable()->index('fk_detail_user_to_users');
             $table->longText('photo')->nullable();
-            $table->string('role')->default('Member');
+            $table->string('role')->nullable();
             $table->string('contact_number')->nullable();
             $table->text('address')->nullable();
             $table->longText('biography')->nullable();

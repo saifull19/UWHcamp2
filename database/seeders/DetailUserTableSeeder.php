@@ -16,15 +16,25 @@ class DetailUserTableSeeder extends Seeder
     {
          $detail_user = [
             [
-                'users_id' => 1,
+                'users_id' => 3,
                 'photo' => '',
-                'role' => 'Full Stack Developer',
+                'role' => 'Tutor',
                 'contact_number' => '',
                 'biography' => '',
                 'address' => '',
                 'created_at' => date('Y-m-d h:i:s'),
                 'updated_at' => date('Y-m-d h:i:s')
-            ]
+            ],
+            [
+                'users_id' => 4,
+                'photo' => '',
+                'role' => 'Member',
+                'contact_number' => '',
+                'biography' => '',
+                'address' => '',
+                'created_at' => date('Y-m-d h:i:s'),
+                'updated_at' => date('Y-m-d h:i:s')
+            ],
             
         ];
 

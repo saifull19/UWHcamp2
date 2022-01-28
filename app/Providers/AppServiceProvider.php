@@ -26,7 +26,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Gate::define('admin', function(User $user) {
-            return $user->is_admin;
+            return $user->user_role_id === 1;
+        });
+        Gate::define('mentor', function(User $user) {
+            return $user->user_role_id === 2;
+        });
+        Gate::define('member', function(User $user) {
+            return $user->user_role_id === 4;
         });
     }
 }
