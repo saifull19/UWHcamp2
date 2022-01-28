@@ -13,6 +13,7 @@ use App\Http\Controllers\Dashboard\Admin\OrderController;
 use App\Http\Controllers\Dashboard\Admin\ProfilController;
 use App\Http\Controllers\Dashboard\Admin\RoleController;
 use App\Http\Controllers\Dashboard\Admin\ServicController;
+use App\Http\Controllers\Dashboard\Admin\WebinarController;
 
 // member (dashboard)
 use App\Http\Controllers\Dashboard\MemberController;
@@ -56,6 +57,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'v
 
     // order
     Route::resource('order', OrderController::class);
+    
+    // webinar
+    Route::resource('webinar', WebinarController::class);
 
     // mentor
     Route::resource('mentor', MentorController::class);
