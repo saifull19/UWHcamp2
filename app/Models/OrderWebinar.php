@@ -23,4 +23,15 @@ class OrderWebinar extends Model
     protected $guarded = [
         'id'
     ];
+
+    // mengembalikan relationship one to many
+    public function webinar()
+    {
+        return $this->belongsTo('App\Models\Webinar', 'webinar_id', 'id');
+    }
+
+    public function member()
+    {
+        return $this->belongsTo('App\Models\User', 'member_id', 'id');
+    }
 }

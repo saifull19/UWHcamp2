@@ -43,7 +43,7 @@
                         <main class="col-span-12 p-4 md:pt-0">
                             <div class="px-2 py-2 mt-2 bg-white rounded-xl">
 
-                                <form action="{{ route('member.service.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('admin.webinar.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
 
                                     <div class="">
@@ -55,9 +55,9 @@
 
                                                     <label for="title" class="block mb-3 font-medium text-gray-700 text-md">Judul Webinar</label>
 
-                                                {{-- </div>
+                                                </div>
 
-                                                <div class="col-span-6 sm:col-span-3"> --}}
+                                                <div class="col-span-6 sm:col-span-3">
                                                     <input placeholder="Service apa yang ingin kamu tawarkan?" type="text" name="title" id="title" autocomplete="title" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('title') }}" required>
 
                                                     @if ($errors->has('title'))
@@ -66,30 +66,23 @@
 
                                                 </div>
 
-                                                {{-- <div class="col-span-6 sm:col-span-3">
+                                                <div class="col-span-6 sm:col-span-3">
 
-                                                    <select id="category" name="category_id" autocomplete="category" class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                                                    <select id="title" name="kuota" autocomplete="title" class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
                                                         
-                                                        <option>Category Service</option>
-                                                        
-                                                        @foreach ($category as $ctg)
-                                                            @if (old('category_id') == $ctg->id)
-                                                                    
-                                                                <option value="{{ $ctg->id }}" selected>{{ $ctg->name }}</option>
-                                                            @else
-                                                                <option value="{{ $ctg->id }}">{{ $ctg->name }}</option>
-                                                            @endif
-
-                                                        @endforeach
-
+                                                        <option>Kuota Webinar</option>
+                                                        <option value="10" selected>10 Orang</option>
+                                                        <option value="20" selected>20 Orang</option>
+                                                        <option value="30" selected>30 Orang</option>
+                                                      
                                                     </select>
 
-                                                    @if ($errors->has('category_id'))
-                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('category_id') }}</p>
+                                                    @if ($errors->has('kuota'))
+                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('kuota') }}</p>
                                                     @endif
                                                     
                                                 </div>
-                                                 --}}
+                                                
 
                                                 <div class="col-span-6">
 
@@ -105,131 +98,84 @@
 
                                                 <div class="col-span-6">
 
-                                                    <label for="description" class="block mb-3 font-medium text-gray-700 text-md">Deskripsi Service</label>
+                                                    <label for="instructors" class="block mb-2 font-medium text-gray-700 text-md">Instructors</label>
+                                                    
+                                                    <input placeholder="Name,,?" type="text" name="instructors" id="instructors" autocomplete="instructors" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('instructors') }}" required>
 
-                                                    {{-- <input placeholder="Jelaskan Service apa yang kamu tawarkan?" type="text" name="description" id="description" autocomplete="description" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('description') }}" required>
-
-                                                    @if ($errors->has('description'))
-                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('description') }}</p>
-                                                    @endif --}}
-
-                                                    <textarea placeholder="Jelaskan Service apa yang kamu tawarkan?" type="text" name="description" id="description" autocomplete="description" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" rows="4" value="{{ old('description') }}">{{ 'description' ?? '' }}</textarea>
-
-                                                    @if ($errors->has('description'))
-                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('description') }}</p>
+                                                    @if ($errors->has('instructors'))
+                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('instructors') }}</p>
                                                     @endif
 
                                                 </div>
 
                                                 <div class="col-span-6">
 
-                                                    <label for="advantage-service" class="block mb-2 font-medium text-gray-700 text-md">Keunggulan Service kamu</label>
-                                                    
-                                                    <p class="block mb-3 text-sm text-gray-700">
-                                                        Hal apa aja yang didapakan dari service kamu?
-                                                    </p>
+                                                    <label for="description" class="block mb-3 font-medium text-gray-700 text-md">Deskripsi Webinar</label>
 
-                                                    <input placeholder="Keunggulan Service 1" type="text" name="advantage-service[]" id="advantage-service" autocomplete="advantage-service" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('advantage-service[]') }}" required>
+                                                    <textarea placeholder="Jelaskan Webinar apa yang kamu tawarkan?" type="text" name="description" id="description" autocomplete="description" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" rows="4" value="{{ old('description') }}">{{ 'description' ?? '' }}</textarea>
 
-                                                    <input placeholder="Keunggulan Service 2" type="text" name="advantage-service[]" id="advantage-service" autocomplete="advantage-service" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('advantage-service[]') }}" required>
-
-                                                    <input placeholder="Keunggulan Service 3" type="text" name="advantage-service[]" id="advantage-service" autocomplete="advantage-service" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('advantage-service[]') }}" required>
-
-                                                    <div id="newServicesRow"></div>
-
-                                                    <button type="button" class="inline-flex justify-center px-3 py-2 mt-3 text-xs font-medium text-gray-700 bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" id="addServicesRow">
-                                                        Tambahkan Keunggulan +
-                                                    </button>
+                                                    @if ($errors->has('description'))
+                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('description') }}</p>
+                                                    @endif
 
                                                 </div>
 
                                                 <div class="col-span-6 -mb-6">
-                                                    <label for="estimation & revision" class="block mb-3 font-medium text-gray-700 text-md">Estimasi Service & Jumlah Revisi</label>
+                                                    <label for="waktu" class="block mb-3 font-medium text-gray-700 text-md">Webinar Time</label>
                                                 </div>
 
                                                 <div class="col-span-6 sm:col-span-3">
 
-                                                    <select id="delivery_time" name="delivery_time" autocomplete="delivery_time" class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                                                    <input placeholder="12-jan-2022" type="date" name="tanggal" id="tanggal" autocomplete="tanggal" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('tanggal') }}" required>
 
-                                                        <option>Butuh Berapa hari service kamu selesai?</option>
-                                                        <option value="30">30 Hari</option>
-                                                        <option value="40">40 Hari</option>
-                                                        <option value="60">60 Hari</option>
-                                                        <option value="70">70 Hari</option>
-                                                        <option value="90">90 Hari</option>
-
-                                                    </select>
-
-                                                    @if ($errors->has('delivery_time'))
-                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('delivery_time') }}</p>
+                                                    @if ($errors->has('tanggal'))
+                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('tanggal') }}</p>
                                                     @endif
 
                                                 </div>
 
                                                 <div class="col-span-6 sm:col-span-3">
-                                                    <select id="revision_limit" name="revision_limit" autocomplete="revision_limit" class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
 
-                                                        <option>Maksimal Revisi service kamu</option>
+                                                    <input placeholder="12-jan-2022" type="time" name="waktu" id="waktu" autocomplete="waktu" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('waktu') }}" required>
 
-                                                        <option value="2">2 Revisi</option>
-                                                        <option value="5">5 Revisi</option>
-                                                        <option value="7">7 Revisi</option>
-                                                        <option value="10">10 Revisi</option>
-                                                        <option value="12">12 Revisi</option>
-
-                                                    </select>
-
-                                                    @if ($errors->has('revision_limit'))
-                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('revision_limit') }}</p>
+                                                    @if ($errors->has('waktu'))
+                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('waktu') }}</p>
                                                     @endif
 
                                                 </div>
 
                                                 <div class="col-span-6">
 
-                                                    <label for="price" class="block mb-3 font-medium text-gray-700 text-md">Harga Service Kamu</label>
+                                                    <label for="lokasi" class="block mb-3 font-medium text-gray-700 text-md">Lokasi Webinar</label>
 
-                                                    <input placeholder="Total Harga Service Kamu" type="number" name="price" id="price" autocomplete="price" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('price') }}" required>
+                                                    <input placeholder="Lokasi Webinar Kamu" type="text" name="lokasi" id="lokasi" autocomplete="lokasi" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('lokasi') }}" required>
 
-                                                    @if ($errors->has('price'))
-                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('price') }}</p>
+                                                    @if ($errors->has('lokasi'))
+                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('lokasi') }}</p>
                                                     @endif
 
                                                 </div>
 
                                                 <div class="col-span-6">
 
-                                                    <label for="thumbnail" class="block mb-3 font-medium text-gray-700 text-md">Thumbnail Service Feeds</label>
+                                                    <label for="photo" class="block mb-3 font-medium text-gray-700 text-md">photo Webinar Feeds</label>
 
-                                                    <input placeholder="Thumbnail 1" type="file" name="thumbnail[]" id="thumbnail" autocomplete="thumbnail" class="block w-full py-3 pl-5 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                                                    <input placeholder="photo " type="file" name="photo" id="photo" autocomplete="photo" class="block w-full py-3 pl-5 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
 
-                                                    <input placeholder="Thumbnail 2" type="file" name="thumbnail[]" id="thumbnail" autocomplete="thumbnail" class="block w-full py-3 pl-5 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
-
-                                                    <input placeholder="Thumbnail 3" type="file" name="thumbnail[]" id="thumbnail" autocomplete="thumbnail" class="block w-full py-3 pl-5 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
-
-                                                    <div id="newThumbnailRow"></div>
-
-                                                    <button type="button" class="inline-flex justify-center px-3 py-2 mt-3 text-xs font-medium text-gray-700 bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" id="addThumbnailRow">
-                                                        Tambahkan Gambar +
-                                                    </button>
-
+                                                    @if ($errors->has('photo'))
+                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('photo') }}</p>
+                                                    @endif
                                                 </div>
 
                                                 <div class="col-span-6">
 
-                                                    <label for="advantage-user" class="block mb-3 font-medium text-gray-700 text-md">Keunggulan kamu</label>
+                                                    <label for="information" class="block mb-3 font-medium text-gray-700 text-md">Information</label>
 
-                                                    <input placeholder="Keunggulan Kamu 1" type="text" name="advantage-user[]" id="advantage-user" autocomplete="advantage-user" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('advantage-user[]') }}" required>
+                                                    <input placeholder="Information " type="text" name="information" id="information" autocomplete="information" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('information') }}" required>
 
-                                                    <input placeholder="Keunggulan Kamu 2" type="text" name="advantage-user[]" id="advantage-user" autocomplete="advantage-user" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('advantage-user[]') }}" required>
-
-                                                    <input placeholder="Keunggulan Kamu 3" type="text" name="advantage-user[]" id="advantage-user" autocomplete="advantage-user" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('advantage-user[]') }}" required>
-                                                    <div id="newAdvantagesRow"></div>
-
-                                                    <button type="button" class="inline-flex justify-center px-3 py-2 mt-3 text-xs font-medium text-gray-700 bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" id="addAdvantagesRow">
-                                                        Tambahkan Keunggulan +
-                                                    </button>
-
+                                                    @if ($errors->has('information'))
+                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('information') }}</p>
+                                                    @endif
                                                 </div>
 
                                                 <div class="col-span-6">
@@ -244,38 +190,17 @@
 
                                                 </div>
 
-                                                <div class="col-span-6">
-
-                                                    <label for="tagline" class="block mb-3 font-medium text-gray-700 text-md">Yang akan di dapatkan dari Service? 
-                                                        <span class="text-gray-400">(Optional)</span>
-                                                    </label>
-
-                                                    <input placeholder="Hal apa yang akan di dapatkan dari Service?" type="text" name="tagline[]" id="tagline" autocomplete="tagline" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('tagline') }}" required>
-
-                                                    @if ($errors->has('tagline'))
-                                                        <p class="text-red-500 mb-3 text-sm">
-                                                            {{ $errors->first('tagline') }}
-                                                        </p>
-                                                    @endif
-
-                                                    <div id="newTaglineRow"></div>
-
-                                                    <button type="button" class="inline-flex justify-center px-3 py-2 mt-3 text-xs font-medium text-gray-700 bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" id="addTaglineRow">
-                                                        Tambahkan Tagline +
-                                                    </button>
-
-                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="px-4 py-3 text-right sm:px-6">
 
-                                            <a href="{{ route('member.service.index') }}" type="button" class="inline-flex justify-center px-4 py-2 mr-4 text-sm font-medium text-gray-700 bg-white border border-gray-600 rounded-lg shadow-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300" onclick="return confirm('Are you sure want to cancel? , Any changes you make will not be saved !')">
+                                            <a href="{{ route('admin.webinar.index') }}" type="button" class="inline-flex justify-center px-4 py-2 mr-4 text-sm font-medium text-gray-700 bg-white border border-gray-600 rounded-lg shadow-sm hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300" onclick="return confirm('Are you sure want to cancel? , Any changes you make will not be saved !')">
                                                 Cancel
                                             </a>
 
                                             <button type="submit" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" onclick="return confirm('Are you sure want to submit this data ?')">
-                                                Create Service
+                                                Create Webinar
                                             </button>
 
                                         </div>
@@ -290,68 +215,4 @@
     
     @endsection
 
-    @push('after-script')
     
-        <script src="{{ url('https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js') }}"></script>
-
-        <script type="text/javascript">
-            // add row
-            $("#addAdvantagesRow").click(function() {
-                var html = '';
-                html += '<input placeholder="Keunggulan Kamu" type="text" name="advantage-user[]" id="advantage-user" autocomplete="advantage-user" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>';
-
-                $('#newAdvantagesRow').append(html);
-            });
-
-            // remove row
-            $(document).on('click', '#removeAdvantagesRow', function() {
-                $(this).closest('#inputFormAdvantagesRow').remove();
-            });
-        </script>
-        
-        <script type="text/javascript">
-            // add row
-            $("#addServicesRow").click(function() {
-                var html = '';
-                html += '<input placeholder="Keunggulan Service" type="text" name="advantage-service[]" id="advantage-service" autocomplete="advantage-service" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>';
-
-                $('#newServicesRow').append(html);
-            });
-
-            // remove row
-            $(document).on('click', '#removeServicesRow', function() {
-                $(this).closest('#inputFormServicesRow').remove();
-            });
-        </script>
-        
-        <script type="text/javascript">
-            // add row
-            $("#addTaglineRow").click(function() {
-                var html = '';
-                html += '<input placeholder="Hal yang akan di dapatkan dari service?" type="text" name="tagline[]" id="tagline" autocomplete="tagline" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>';
-
-                $('#newTaglineRow').append(html);
-            });
-
-            // remove row
-            $(document).on('click', '#removeTaglineRow', function() {
-                $(this).closest('#inputFormTaglineRow').remove();
-            });
-        </script>
-        
-        <script type="text/javascript">
-            // add row
-            $("#addThumbnailRow").click(function() {
-                var html = '';
-                html += '<input placeholder="Thumbnail 3" type="file" name="thumbnail[]" id="thumbnail" autocomplete="thumbnail" class="block w-full py-3 pl-5 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>';
-
-                $('#newThumbnailRow').append(html);
-            });
-
-            // remove row
-            $(document).on('click', '#removeThumbnailRow', function() {
-                $(this).closest('#inputFormThumbnailRow').remove();
-            });
-        </script>
-
-    @endpush

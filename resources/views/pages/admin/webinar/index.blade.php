@@ -4,7 +4,7 @@
 
 @section('content')
 
-{{-- @if (count($services))
+@if (count($webinar))
 
     <main class="h-full overflow-y-auto">
 
@@ -13,18 +13,18 @@
                         <div class="col-span-8">
 
                             <h2 class="mt-8 mb-1 text-2xl font-semibold text-gray-700">
-                                My Services
+                                My Webinars
                             </h2>
                             
                             <p class="text-sm text-gray-400">
-                                {{ auth()->user()->service()->count() }} Total Services
+                                {{ auth()->user()->Webinar()->count() }} Total Webinars
                             </p>
                         </div>
                         
                         <div class="col-span-4 lg:text-right">
                             <div class="relative mt-0 md:mt-6">
-                                <a href="{{ route('member.service.create') }}" class="inline-block px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-button">
-                                    + Add Service
+                                <a href="{{ route('admin.webinar.create') }}" class="inline-block px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-button">
+                                    + Add Webinar
                                 </a>
                             </div>
                         </div>
@@ -39,26 +39,26 @@
                                     
                                     <thead>
                                         <tr class="text-sm font-normal text-left text-gray-900 border-b border-b-gray-600">
-                                            <th class="py-4" scope="">Service Details</th>
-                                            <th class="py-4" scope="">Category</th>
-                                            <th class="py-4" scope="">Price</th>
-                                            <th class="py-4" scope="">Status</th>
+                                            <th class="py-4" scope="">Webinar Details</th>
+                                            <th class="py-4" scope="">Instructors</th>
+                                            <th class="py-4" scope="">Kuota</th>
+                                            <th class="py-4" scope="">Time</th>
                                             <th class="py-4" scope="">Action</th>
                                         </tr>
                                     </thead>
 
                                     <tbody class="bg-white">
 
-                                        @forelse ($services as $key => $service)
+                                        @forelse ($webinar as $key => $wbn)
                                             
                                             <tr class="text-gray-700 border-b">
                                                 <td class="w-2/6 px-1 py-5">
                                                     <div class="flex items-center text-sm">
                                                         <div class="relative w-10 h-10 mr-3 rounded-full md:block">
 
-                                                            @if (isset($service->thumbnail_service[0]->thumbnail) != null )
+                                                            @if (isset($wbn->photo) != null )
 
-                                                                <img class="object-cover w-full h-full rounded" src="{{ url(Storage::url($service->thumbnail_service[0]->thumbnail)) }}" alt="thumbnail" loading="lazy" />
+                                                                <img class="object-cover w-full h-full rounded" src="{{ url(Storage::url($wbn->photo)) }}" alt="thumbnail" loading="lazy" />
 
                                                             @else
                                                             
@@ -71,8 +71,8 @@
 
                                                         <div>
                                                             
-                                                            <a href="{{ route('member.order.show', $service->id) }}" class="font-medium text-black">
-                                                                {{ $service->title ?? '' }}
+                                                            <a href="{{ route('admin.webinar.show', $wbn->id) }}" class="font-medium text-black">
+                                                                {{ $wbn->title ?? '' }}
                                                             </a>
 
                                                         </div>
@@ -80,26 +80,39 @@
                                                 </td>
 
                                                 <td class="px-1 py-5 text-sm">
-                                                    {{ $service->category->name ?? '' }}
+                                                    {{ $wbn->instructors ?? '' }}
                                                 </td>
 
                                                 <td class="px-1 py-5 text-sm">
-                                                    {{ 'Rp '.number_format($service->price ?? '') }}
+                                                    {{ $wbn->kuota ?? '' }}
                                                 </td>
 
-                                                <td class="px-1 py-5 text-sm text-green-500 text-md">
-                                                    {{ 'Active' }}
+                                                <td class="px-1 py-5 text-sm">
+                                                    {{ $wbn->tanggal ?? '' }} | {{ $wbn->waktu ?? '' }}
                                                 </td>
                                                 
                                                 <td class="px-1 py-5 text-sm">
-                                                    <a href="{{ route('member.service.edit', $service['slug']) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email">
-                                                        Edit Service
+                                                    <a href="{{ route('admin.webinar.show', $wbn['slug']) }}" class="py-2 mt-2 text-serv-yellow hover:text-gray-800">
+                                                        <i class="fas fa-eye fa-lg"></i>
                                                     </a>
+                                                    <a href="{{ route('admin.webinar.edit', $wbn['slug']) }}" class="px-3 py-2 mt-2 text-green-500 hover:text-gray-800">
+                                                        <i class="fas fa-edit fa-lg"></i>
+                                                        
+                                                    </a>
+
+                                                    <form action="{{ route('admin.webinar.destroy', $wbn->id) }}" method="post" >
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button class="ml-4 py-2 mt-2 text-red-500 hover:text-gray-800" onclick="return confirm('Are you sure?')">
+                                                        <i class="fas fa-trash-alt fa-lg"></i>
+                                                        
+                                                    </button>
+                                                    </form>
                                                 </td>
                                             </tr>
 
                                         @empty
-                                            
+                                            {{-- empty --}}
                                         @endforelse
 
                                     </tbody>
@@ -110,7 +123,7 @@
                 </section>
     </main>
 
-@else --}}
+@else
 
         <div class="flex h-screen">
             <div class="m-auto text-center">
@@ -131,6 +144,6 @@
             </div>
         </div>
 
-{{-- @endif --}}
+@endif
     
 @endsection

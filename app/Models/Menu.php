@@ -23,4 +23,10 @@ class Menu extends Model
     protected $guarded = [
         'id'
     ];
+
+    // menjadi object relationship one to many
+    public function akses() 
+    {
+        return $this->hasMany('App\Models\Akses', 'menu_id');
+    }
 }

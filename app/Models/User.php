@@ -82,6 +82,16 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Service', 'users_id');
     }
 
+    public function webinar()
+    {
+        return $this->hasMany('App\Models\Webinar', 'users_id');
+    }
+
+    public function order()
+    {
+        return $this->hasMany('App\Models\OrderWebinar', 'member_id');
+    }
+
     public function order_buyer()
     {
         return $this->hasMany('App\Models\Order', 'buyer_id');
@@ -90,5 +100,11 @@ class User extends Authenticatable
     public function order_freelancer()
     {
         return $this->hasMany('App\Models\Order', 'freelancer_id');
+    }
+
+    // mengembalikan relationship one to many
+    public function user_role()
+    {
+        return $this->belongsTo('App\Models\UserRole', 'user_role_id', 'id');
     }
 }

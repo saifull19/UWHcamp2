@@ -23,4 +23,15 @@ class UserRole extends Model
     protected $guarded = [
         'id'
     ];
+
+    // menjadi object relationship one to many
+    public function user() 
+    {
+        return $this->hasMany('App\Models\User', 'user_role_id');
+    }
+    
+    public function akses() 
+    {
+        return $this->hasMany('App\Models\Akses', 'user_role_id');
+    }
 }

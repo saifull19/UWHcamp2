@@ -23,4 +23,10 @@ class WebinarStatus extends Model
     protected $guarded = [
         'id'
     ];
+
+    // menjadi object relationship one to many
+    public function webinar() 
+    {
+        return $this->hasMany('App\Models\Webinar', 'status_id');
+    }
 }

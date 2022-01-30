@@ -92,8 +92,16 @@
                                                 </td>
                                                 
                                                 <td class="px-1 py-5 text-sm">
-                                                    <a href="{{ route('member.service.edit', $service['slug']) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email">
-                                                        Edit Service
+                                                    <a href="{{ route('member.order.show', $service->id) }}" class="py-2 mt-2 text-serv-yellow hover:text-gray-800">
+                                                        <i class="fas fa-eye fa-lg"></i>
+                                                    </a>
+                                                    <a href="{{ route('member.service.edit', $service['slug']) }}" class="px-3 py-2 mt-2 text-green-500 hover:text-gray-800">
+                                                        <i class="fas fa-edit fa-lg"></i>
+                                                        
+                                                    </a>
+                                                    <a href="{{ route('member.service.destroy', $service['slug']) }}" class="py-2 mt-2 text-red-500 hover:text-gray-800">
+                                                        <i class="fas fa-trash-alt fa-lg"></i>
+                                                        
                                                     </a>
                                                 </td>
                                             </tr>

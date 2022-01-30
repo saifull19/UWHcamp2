@@ -23,4 +23,15 @@ class Akses extends Model
     protected $guarded = [
         'id'
     ];
+
+    // mengembalikan relationship one to many
+    public function user_role()
+    {
+        return $this->belongsTo('App\Models\UserRole', 'user_role_id', 'id');
+    }
+
+    public function menu()
+    {
+        return $this->belongsTo('App\Models\Menu', 'menu_id', 'id');
+    }
 }

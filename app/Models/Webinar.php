@@ -28,8 +28,7 @@ class Webinar extends Model
     public function user()
     {
         return $this->belongsTo('App\Models\User', 'users_id', 'id');
-    }
-    
+    }   
     
     public function status()
     {
@@ -37,8 +36,19 @@ class Webinar extends Model
     }
 
     // menjadi object relationship one to many
-    public function order()
+    public function order() 
     {
         return $this->hasMany('App\Models\OrderWebinar', 'webinar_id');
+    }
+    
+    // menjadi object relationship one to many
+    public function thumbnail() 
+    {
+        return $this->hasMany('App\Models\ThumbnailWebinar', 'webinar_id');
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }
