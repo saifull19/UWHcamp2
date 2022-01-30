@@ -32,7 +32,7 @@
                                     
                                     <thead>
                                         <tr class="text-sm font-normal text-left text-gray-900 border-b border-b-gray-600">
-                                            <th class="py-4" scope="">Freelancer Name</th>
+                                            <th class="py-4" scope="">Mentor Name</th>
                                             <th class="py-4" scope="">Service Details</th>
                                             <th class="py-4" scope="">Price</th>
                                             <th class="py-4" scope="">Payment Status</th>
@@ -57,7 +57,8 @@
 
                                                             @else
 
-                                                                <img class="object-cover w-full h-full rounded-full" src="{{ asset('/assets/1.png') }}" alt="Photo freelancer" loading="lazy" />
+                                                                <img class="object-cover w-full h-full rounded-full" src="{{ url('https://randomuser.me/api/portraits/men/1.jpg') }}" alt="">
+                                                                
 
                                                             @endif
 

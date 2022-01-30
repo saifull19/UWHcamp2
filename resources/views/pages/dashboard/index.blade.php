@@ -102,11 +102,11 @@
 
                                     <div>
                                         <h2 class="mb-1 text-xl font-semibold">
-                                            Latest Orders
+                                            Browser Log
                                         </h2>
 
                                         <p class="text-sm text-gray-400">
-                                            {{ $progress ?? '' }} Total Orders On Progress
+                                            {{ $progress ?? '' }} View All
                                         </p>
                                     </div>
 
@@ -115,8 +115,8 @@
                                         <thead>
                                             <tr class="text-sm font-normal text-left text-gray-900 border-b border-b-gray-600">
                                                 <th class="py-4" scope="">Name</th>
-                                                <th class="py-4" scope="">Services Name</th>
-                                                <th class="py-4" scope="">Deadline</th>
+                                                <th class="py-4" scope="">Status</th>
+                                                <th class="py-4" scope="">Browser</th>
                                             </tr>
                                         </thead>
 
@@ -214,71 +214,6 @@
 
                                 </div>   
 
-                            <div class="p-6 mt-8 bg-white rounded-xl">
-                                <div>
-                                    <h2 class="mb-1 text-xl font-semibold">
-                                        Latest Services
-                                    </h2>
-
-                                    <p class="text-sm text-gray-400">
-                                        {{ $progress ?? '' }} Total Service on Progress
-                                    </p>
-                                </div>
-
-                                <table class="w-full mt-4" aria-label="Table">
-
-                                    <thead>
-                                        <tr class="text-sm font-normal text-left text-gray-900 border-b border-b-gray-600">
-                                            {{-- <th class="py-4" scope="">Name</th> --}}
-                                            <th class="py-4" scope="">Services Name</th>
-                                            <th class="py-4" scope="">Action</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody class="bg-white">
-
-                                        @forelse ($service as $svc)
-                                        <tr class="text-gray-700">
-                                        
-                                            <td class="w-2/4 px-1 py-5">
-                                                <div class="flex items-center text-sm">
-                                                    <div class="relative w-10 h-10 mr-3 rounded-full md:block">
-                                                
-                                                        <img class="object-cover w-full h-full rounded" src="{{ asset('/assets/favicon.png') }}" alt="">
-
-                                                        <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-
-                                                    </div>
-
-                                                    <div>
-                                                        <p class="font-medium text-black">
-                                                            {{ $svc->title }}
-                                                        </p>
-                                                    </div>
-                                                    
-                                                </div>
-                                            </td>
-
-                                            <td class="px-1 py-5 text-sm text-green-500 hover:text-gray-900">
-                                                <a href="{{ route('detail.landing', $svc->slug) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email hover:bg-green-700">
-                                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="inline mb-1">
-                                                    <path d="M7.0002 12.8332C10.2219 12.8332 12.8335 10.2215 12.8335 6.99984C12.8335 3.77818 10.2219 1.1665 7.0002 1.1665C3.77854 1.1665 1.16687 3.77818 1.16687 6.99984C1.16687 10.2215 3.77854 12.8332 7.0002 12.8332Z" stroke="#e0ffec" stroke-linecap="round" stroke-linejoin="round" />
-                                                    <path d="M7 3.5V7L9.33333 8.16667" stroke="#e0ffec" stroke-linecap="round" stroke-linejoin="round" />
-                                                    </svg>
-                                                    Show
-                                                </a>
-                                            </td>
-
-                                        </tr>
-                                        @empty
-                                            {{-- Empty --}}
-                                        @endforelse
-
-                                    </tbody>
-                                </table>
-
-                            </div>
-
                         </main>
 
                         <aside class="p-4 lg:col-span-5 md:col-span-12 md:pt-0">
@@ -292,7 +227,7 @@
                                             <div class="">
 
                                                 <p class="font-light">
-                                                    Your Balance
+                                                    {{ Auth::user()->name ?? '' }}
                                                 </h1>
 
                                                 <p class="font-medium tracking-widest">
@@ -624,7 +559,7 @@
                                     <div class="flex justify-between">
                                         <div class="">
                                             <p class="font-light">
-                                                Your Balance
+                                                {{ Auth::user()->name ?? '' }}
                                                 </h1>
                                             <p class="font-medium tracking-widest">
                                                 Rp 21.000.000
