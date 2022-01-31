@@ -290,7 +290,7 @@
                     <li class="relative px-6 py-3">
                         {{-- membuat kondisi aktif pada menu yang sedang dipilih --}}
                         @if (
-                            request()->is('admin/service') ||
+                            request()->is('member/service') ||
                             request()->is('member/service/*') ||
                             request()->is('member/*/service') ||
                             request()->is('member/*/service/*') 
