@@ -75,9 +75,10 @@ class WebinarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Webinar $webinar)
     {
-        return view('pages.admin.webinar.detail');
+        $status = WebinarStatus::where('id', $webinar['status_id'])->first();
+        return view('pages.admin.webinar.detail', compact('webinar', 'status'));
     }
 
     /**
@@ -103,13 +104,28 @@ class WebinarController extends Controller
     {
         $rules = [
             'status_id' => 'required',
-            'title' => 'required|max:255',
-            'image' => 'image|file|max:1024',
-            'description' => 'required'
+            'title' => 'required|string|max:255',
+            'instructors' => 'required|string|max:255',
+            'description' => 'required',
+            'photo' => 'image|file|max:3024',
+            'kuota' => 'required|integer|max:100',
+            'tanggal' => 'required|max:100',
+            'waktu' => 'required|max:100',
+            'note' => 'required|string|max:255',
+            'lokasi' => 'required|string|max:255',
+            'information' => 'required|string|max:255',
         ];
 
         $validatedData = $request->validate($rules);
 
+        if($request->file('photo')) {
+            
+            $validatedData['photo'] = $request->file('photo')->store('assets/webinar', 'public');
+        }
+        
+        $validatedData['users_id'] = auth()->user()->id;
+        Webinar::where('id', $webinar->id)->update($validatedData);
+        
         // Add to thumbnail service
         if ($request->hasfile('thumbnail')) {
             foreach ($request->file('thumbnail') as $file) {
@@ -121,10 +137,6 @@ class WebinarController extends Controller
                 $thumbnail_webinar->save();
             }
         }
-
-        
-        $validatedData['users_id'] = auth()->user()->id;
-        Webinar::where('id', $webinar->id)->update($validatedData);
 
         toast()->success('Update has been succes');
         return redirect()->route('admin.webinar.index');

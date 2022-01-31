@@ -9,6 +9,10 @@ use File;
 use Auth;
 
 use App\Models\Service;
+use App\Models\AdvantageService;
+use App\Models\AdvantageUser;
+use App\Models\Tagline;
+use App\Models\ThumbnailService;
 
 class ServicController extends Controller
 {
@@ -56,20 +60,12 @@ class ServicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Service $slug)
+    public function show(Service $service)
     {
-        $service = Service::where('id', $slug)->first();
+    //    $service = Service::where('slug')->get();
+        // $service = Service::all();
 
-        return view('pages.admin.service.detail', [
-            "active" => "explore",
-            "thumbnail" => $slug->thumbnail_service,
-            "advantage_user" => $slug->advantage_user,
-            "advantage_service" => $slug->advantage_service,
-            "tagline" => $slug->tagline,
-            "service" => $slug
-        ], 
-            compact('service')
-        );
+        return view('pages.admin.service.detail', compact('service'));
     }
 
     /**

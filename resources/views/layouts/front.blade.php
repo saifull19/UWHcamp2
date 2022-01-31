@@ -3,7 +3,7 @@
     <head>
         @include('includes.landing.meta')
 
-        <title>@yield('title') | SERV</title>
+        <title>@yield('title') | UWHcamp</title>
 
         @stack('before-style')
 

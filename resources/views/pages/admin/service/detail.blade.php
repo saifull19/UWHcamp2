@@ -35,7 +35,7 @@
 
                         <li class="flex items-center">
 
-                            <a href="{{ route('member.order.index') }}" class="text-gray-400">My Service</a>
+                            <a href="{{ route('admin.servic.index') }}" class="text-gray-400">My Service</a>
                             <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                                 <path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" />
                             </svg>
@@ -58,7 +58,6 @@
 
                                         <main class="p-4 lg:col-span-7 md:col-span-12">
 
-                                            <span class="inline-flex items-center justify-center px-3 py-2 mb-4 mr-2 text-xs leading-none text-green-500 rounded-full bg-serv-green-badge">Active<span>
 
                                             <!-- details heading -->
                                             <div class="details-heading">
@@ -70,21 +69,19 @@
 
                                             <div class="p-3 my-4 bg-gray-100 rounded-lg image-gallery" x-data="gallery()">
 
-                                                <img :src="featured" alt="" class="rounded-lg cursor-pointer w-100" data-lity>
+                                                {{-- <img src="{{ url(Storage::url($service->thumbnail_service->thumbnail)) }}" alt="" class="rounded-lg cursor-pointer w-100" data-lity> --}}
 
-                                                <div class="flex overflow-x-scroll hide-scroll-bar dragscroll">
-                                                    <div class="flex mt-2 flex-nowrap">
+                                                @if (isset($service->thumbnail_service[0]->thumbnail) != null )
 
-                                                        @forelse ($thumbnail as $item)
+                                                                <img class="rounded-lg cursor-pointer w-100" src="{{ url(Storage::url($service->thumbnail_service[0]->thumbnail)) }}" alt="thumbnail" loading="lazy" />
 
-                                                            <img :class="{ 'border-4 border-serv-button': active === {{ $item->id }} }" @click="changeThumbnail('{{ url(Storage::url($item->thumbnail)) }}', {{ $item->id }})" src="{{ url(Storage::url($item->thumbnail)) }}" alt="Thumbnail service" class="inline-block mr-2 rounded-lg cursor-pointer h-20 w-36 object-cover">
-                                                        
-                                                        @empty
-                                                                {{-- empty --}}
-                                                        @endforelse
+                                                            @else
+                                                            
+                                                                <img class="rounded-lg cursor-pointer w-100" src="{{ url('https://randomuser.me/api/portraits/men/3.jpg') }}" alt="" loading="lazy" />
 
-                                                    </div>
-                                                </div>
+                                                            @endif
+
+                                                
                                             </div>
 
                                             <div class="content">
@@ -104,13 +101,13 @@
 
                                                         <ul class="mb-4 list-check">
 
-                                                            @forelse ($advantage_service as $item)
+                                                            <li class="pl-10 flex my-2"><img class="mr-3" src="{{ asset('/assets/images/check-icon.svg') }}" alt="">{{ $service->advantage_service[0]->advantage ?? '' }}</li>
+                                                            {{-- @forelse ($advantage_service as $item)
                                                                 
-                                                                <li class="pl-10 flex my-2"><img class="mr-3" src="{{ asset('/assets/images/check-icon.svg') }}" alt="">{{ $item->advantage ?? '' }}</li>
 
                                                             @empty
+                                                            @endforelse 
                                                                 {{-- empty --}}
-                                                            @endforelse
 
                                                         </ul>
 
@@ -151,13 +148,13 @@
                                                 <div class="px-4 pt-4 pb-2 features-list">
                                                     <ul class="mb-4 text-sm list-check">
                                                         <li class="pl-10 my-4">{{ $service->advantage_user->count() }} Pages</li>
-                                                        @forelse ($advantage_user as $item)
-
-                                                        <li class="pl-10 flex my-4"><img class="mr-3" src="{{ asset('/assets/images/ic_secure.svg') }}" alt="">{{ $item->advantage ?? '' }}</li>
-                                                            
+                                                        
+                                                        <li class="pl-10 flex my-4"><img class="mr-3" src="{{ asset('/assets/images/ic_secure.svg') }}" alt="">{{ $service->advantage_user[0]->advantage ?? '' }}</li>
+                                                        
+                                                        {{-- @forelse ($advantage_user as $item)
                                                         @empty
                                                             
-                                                        @endforelse
+                                                        @endforelse --}}
                                                     </ul>
                                                 </div>
 
@@ -180,15 +177,15 @@
 
                                         <div class=" lg:col-span-6 md:col-span-12">
                                             
-                                            @forelse ($tagline as $item)
-                                                
-                                                <button type="submit" class="inline-flex justify-center px-3 py-3 mb-2 text-sm font-medium text-black bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                                                    {{ $item->tagline ?? '' }}
-                                                </button>
+                                            
+                                            <button type="submit" class="inline-flex justify-center px-3 py-3 mb-2 text-sm font-medium text-black bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                                                {{ $service->tagline[0]->tagline ?? '' }}
+                                            </button>
+                                            {{-- @forelse ($tagline as $item)
 
                                             @empty
+                                            @endforelse  --}}
                                                 {{--  empty--}}
-                                            @endforelse 
 
                                         </div>
 
@@ -211,18 +208,3 @@
             </main>
 
 @endsection
-
-@push('after-script')
-    <script>
-        function gallery() {
-            return {
-                featured: 'https://source.unssplash.com/_SgRNwAVNKw/1600x900/',
-                active: 1,
-                changeThumbnail: function(url, position) {
-                    this.featured = url;
-                    this.active = position;
-                }
-            }
-        }
-    </script>
-@endpush

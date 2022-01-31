@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit, My Service')
+@section('title', 'Edit, My Bootcamp')
 
 @section('content')
 
@@ -11,11 +11,11 @@
                         <div class="col-span-12">
 
                             <h2 class="mt-8 mb-1 text-2xl font-semibold text-gray-700">
-                                Edit Your Service
+                                Edit Your Bootcamp
                             </h2>
 
                             <p class="text-sm text-gray-400">
-                                Edit the services you provide
+                                Edit the Bootcamps you provide
                             </p>
 
                         </div>
@@ -27,14 +27,14 @@
                     <ol class="inline-flex p-0 list-none">
 
                         <li class="flex items-center">
-                            <a href="{{ route('member.service.index') }}" class="text-gray-400">My Services</a>
+                            <a href="{{ route('member.service.index') }}" class="text-gray-400">My Bootcamp</a>
                             <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                                 <path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" />
                             </svg>
                         </li>
 
                         <li class="flex items-center">
-                            <a href="#" class="font-medium">Edit Your Service</a>
+                            <a href="#" class="font-medium">Edit Your Bootcamp</a>
                         </li>
 
                     </ol>
@@ -45,7 +45,7 @@
                         <main class="col-span-12 p-4 md:pt-0">
                             <div class="px-2 py-2 mt-2 bg-white rounded-xl">
 
-                                <form action="{{ route('member.service.update', [$service->id]) }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('member.service.update', [$service->slug]) }}" method="POST" enctype="multipart/form-data">
 
                                     @method('PUT')
                                     @csrf
@@ -56,9 +56,9 @@
 
                                                 <div class="col-span-6 sm:col-span-3">
 
-                                                    <label for="title" class="block mb-3 font-medium text-gray-700 text-md">Judul Service</label>
+                                                    <label for="title" class="block mb-3 font-medium text-gray-700 text-md">Judul Bootcamp</label>
                                                     
-                                                    <input placeholder="Service apa yang ingin kamu tawarkan?" type="text" name="title" id="title" autocomplete="title" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ $service->title ?? '' }}" required>
+                                                    <input placeholder="Bootcamp apa yang ingin kamu tawarkan?" type="text" name="title" id="title" autocomplete="title" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ $service->title ?? '' }}" required>
 
                                                     @if ($errors->has('title'))
                                                         <p class="text-red-500 mb-3 text-sm">{{ $errors->first('title') }}</p>
@@ -67,7 +67,7 @@
                                                 </div>
                                                 
                                                 <div class="col-span-6 sm:col-span-3">
-                                                    <label for="category_id" class="block mb-3 font-medium text-gray-700 text-md">Category Service</label>
+                                                    <label for="category_id" class="block mb-3 font-medium text-gray-700 text-md">Category Bootcamp</label>
                                                     
                                                     <select id="category_id" name="category_id" autocomplete="category_id" class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
                                                         
@@ -105,9 +105,9 @@
                                                 
                                                 <div class="col-span-6">
                                                     
-                                                    <label for="description" class="block mb-3 font-medium text-gray-700 text-md">Deskripsi Service</label>
+                                                    <label for="description" class="block mb-3 font-medium text-gray-700 text-md">Deskripsi Bootcamp</label>
                                                     
-                                                    <input placeholder="Jelaskan Service apa yang kamu tawarkan?" type="text" name="description" id="description" autocomplete="description" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ $service->description ?? '' }}" required>
+                                                    <input placeholder="Jelaskan Bootcamp apa yang kamu tawarkan?" type="text" name="description" id="description" autocomplete="description" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ $service->description ?? '' }}" required>
 
                                                     @if ($errors->has('description'))
                                                         <p class="text-red-500 mb-3 text-sm">{{ $errors->first('description') }}</p>
@@ -117,15 +117,15 @@
 
                                                 <div class="col-span-6">
                                                     
-                                                    <label for="advantage-services" class="block mb-2 font-medium text-gray-700 text-md">Keunggulan Service kamu</label>
+                                                    <label for="advantage-services" class="block mb-2 font-medium text-gray-700 text-md">Key Point Bootcamp </label>
                                                     
                                                     <p class="block mb-3 text-sm text-gray-700">
-                                                        Hal apa aja yang didapakan dari service kamu?
+                                                        Hal apa aja yang didapakan dari Bootcamp kamu?
                                                     </p>
 
                                                     @forelse ($advantage_service as $item)
                                                     
-                                                        <input placeholder="Keunggulan Service" type="text" name="{{ ('advantage-services['.$item->id.']') }}" id="advantage-services" autocomplete="advantage-services" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ $item->advantage ?? '' }}" required>
+                                                        <input placeholder="Keunggulan Bootcamp" type="text" name="{{ ('advantage-services['.$item->id.']') }}" id="advantage-services" autocomplete="advantage-services" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ $item->advantage ?? '' }}" required>
 
                                                     @empty
                                                         {{-- empty --}}
@@ -140,13 +140,13 @@
                                                 </div>
 
                                                 <div class="col-span-6 -mb-6">
-                                                    <label for="delivery & revision" class="block mb-3 font-medium text-gray-700 text-md">Estimasi Service & Jumlah Revisi</label>
+                                                    <label for="delivery & revision" class="block mb-3 font-medium text-gray-700 text-md">Estimasi Bootcamp & Jumlah Revisi</label>
                                                 </div>
 
                                                 <div class="col-span-6 sm:col-span-3">
                                                     
                                                     <select id="estimation" name="delivery_time" autocomplete="estimation" class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-                                                        <option>Butuh Berapa hari service kamu selesai?</option>
+                                                        <option>Butuh Berapa hari Bootcamp kamu selesai?</option>
                                                         <option value="30" {{ $service->delivery_time == '30' ? 'selected' : '' }}>30 Hari</option>
                                                         <option value="40" {{ $service->delivery_time == '40' ? 'selected' : '' }}>40 Hari</option>
                                                         <option value="60" {{ $service->delivery_time == '60' ? 'selected' : '' }}>60 Hari</option>
@@ -159,7 +159,7 @@
                                                 <div class="col-span-6 sm:col-span-3">
                                                 
                                                     <select id="estimation" name="revision_limit" autocomplete="estimation" class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-                                                        <option>Maksimal Revisi service kamu</option>
+                                                        <option>Maksimal Revisi Bootcamp kamu</option>
                                                         <option value="2" {{ $service->revision_limit == '2' ? 'selected' : '' }}>2 Kali</option>
                                                         <option value="5" {{ $service->revision_limit == '5' ? 'selected' : '' }}>5 Kali</option>
                                                         <option value="7" {{ $service->revision_limit == '7' ? 'selected' : '' }}>7 Kali</option>
@@ -171,9 +171,9 @@
 
                                                 <div class="col-span-6">
                                                     
-                                                    <label for="price" class="block mb-3 font-medium text-gray-700 text-md">Harga Service Kamu</label>
+                                                    <label for="price" class="block mb-3 font-medium text-gray-700 text-md">Harga Bootcamp Kamu</label>
                                                     
-                                                    <input placeholder="Total Harga Service Kamu" type="number" name="price" id="price" autocomplete="price" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ $service->price ?? '' }}" required>
+                                                    <input placeholder="Total Harga Bootcamp Kamu" type="number" name="price" id="price" autocomplete="price" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ $service->price ?? '' }}" required>
 
                                                     @if ($errors->has('price'))
                                                         <p class="text-red-500 mb-3 text-sm">{{ $errors->first('price') }}</p>
@@ -209,7 +209,7 @@
 
                                                 <div class="col-span-6">
                                                 
-                                                    <label for="advantage-users" class="block mb-3 font-medium text-gray-700 text-md">Keunggulan kamu</label>
+                                                    <label for="advantage-users" class="block mb-3 font-medium text-gray-700 text-md">Detail Bootcamp</label>
                                                     
                                                     @forelse ($advantage_user as $item)
                                                     
@@ -241,11 +241,11 @@
 
                                                 <div class="col-span-6">
                                                 
-                                                    <label for="taglines" class="block mb-3 font-medium text-gray-700 text-md">Tagline <span class="text-gray-400">(Optional)</span></label>
+                                                    <label for="taglines" class="block mb-3 font-medium text-gray-700 text-md">Benefit <span class="text-gray-400">(??)</span></label>
 
                                                     @forelse ($tagline as $item)
                                                     
-                                                        <input placeholder="Tagline" type="text" name="{{ ('taglines['.$item->id.']') }}" id="taglines" autocomplete="taglines" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ $item->tagline ?? '' }}" required>
+                                                        <input placeholder="Benefits" type="text" name="{{ ('taglines['.$item->id.']') }}" id="taglines" autocomplete="taglines" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ $item->tagline ?? '' }}" required>
 
                                                     @empty
                                                         {{-- empty --}}

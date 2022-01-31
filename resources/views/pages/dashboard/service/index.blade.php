@@ -99,10 +99,15 @@
                                                         <i class="fas fa-edit fa-lg"></i>
                                                         
                                                     </a>
-                                                    <a href="{{ route('member.service.destroy', $service['slug']) }}" class="py-2 mt-2 text-red-500 hover:text-gray-800">
+                                                    
+                                                    <form action="{{ route('member.service.destroy', $service->slug) }}" method="post" >
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button class="ml-4 py-2 mt-2 text-red-500 hover:text-gray-800" onclick="return confirm('Are you sure?')">
                                                         <i class="fas fa-trash-alt fa-lg"></i>
                                                         
-                                                    </a>
+                                                    </button>
+                                                    </form>
                                                 </td>
                                             </tr>
 

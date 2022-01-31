@@ -15,7 +15,7 @@
                 <ol class="inline-flex p-0 list-none">
 
                     <li class="flex items-center">
-                        <a href="{{ route('explore.landing') }}" class="text-gray-400">Service</a>
+                        <a href="{{ route('explore.landing') }}" class="text-gray-400">Bootcamp</a>
                         
                         <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                             <path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" />
@@ -94,6 +94,23 @@
 
                                 </ul>
 
+                                <h3 class="my-4 text-lg font-semibold">Benefits Bootcamp</h3>
+                            
+                                <div class="mb-8 skills">
+
+                                    @forelse ($tagline as $item)
+                                        
+                                        
+                                        <li class="pl-10 flex my-2 ">
+                                            <img class="mr-3" src="{{ asset('/assets/images/check-icon.svg') }}" alt=""><span class="inline-block px-3 py-2 mr-2 rounded bg-serv-services-bg">{{ $item->tagline ?? '' }}</span>
+                                        </li>
+
+                                    @empty
+                                        {{-- Empty --}}
+                                    @endforelse
+                                    
+                                </div>
+
                                     <p class="mb-5">
                                         {{ $service->user->detail_user->biography ?? '' }}
                                     </p>
@@ -104,7 +121,7 @@
                             </div>
                             
                             <div x-show.transition.duration.500ms="tab === 'seller'" class="leading-8 text-md">
-                                <h2 class="mb-4 text-xl font-semibold">About <span class="text-serv-button">Service</span></h2>
+                                <h2 class="mb-4 text-xl font-semibold">About <span class="text-serv-button">Bootcamp</span></h2>
                             
                                 <div class="grid md:grid-cols-12">
                                     <div class="flex items-center col-span-12 p-2 lg:col-span-6">
@@ -136,7 +153,7 @@
                                     </div>
                                 </div>
                             
-                                <h3 class="my-4 text-lg font-semibold">Description Service</h3>
+                                <h3 class="my-4 text-lg font-semibold">Description Bootcamp</h3>
                             
                                 <div class="mt-4 mb-8 content-description">
                                     <p>
@@ -144,7 +161,7 @@
                                     </p>
                                 </div>
                             
-                                <h3 class="my-4 text-lg font-semibold">My Experiences</h3>
+                                <h3 class="my-4 text-lg font-semibold">Details Bootcamp</h3>
                             
                                 <ul class="mb-8 list-check">
 
@@ -157,21 +174,7 @@
                                     @endforelse
 
                                 </ul>
-                            
-                                <h3 class="my-4 text-lg font-semibold">Skills</h3>
-                            
-                                <div class="mb-8 skills">
 
-                                    @forelse ($tagline as $item)
-                                        
-                                        <span class="inline-block px-3 py-2 mr-2 rounded bg-serv-services-bg">{{ $item->tagline ?? '' }}</span>
-
-                                    @empty
-                                        {{-- Empty --}}
-                                    @endforelse
-                                    
-                                </div>
-                             
                                 <hr class="border-serv-services-bg">
                              
                                 <p class="my-4 text-lg text-gray-400">
@@ -239,11 +242,11 @@
                         <div class="px-4 pt-4 pb-2 features-list">
                             <ul class="mb-4 text-sm list-check">
 
-                                <li class="pl-10 my-4">{{ $service->advantage_user->count() }} Pages</li>
+                                <li class="pl-10 my-4">{{ $service->tagline->count() }} Pages</li>
                                 
-                                @forelse ($advantage_user as $item)
+                                @forelse ($tagline as $item)
 
-                                        <li class="pl-10 flex my-4"><img class="mr-3" src="{{ asset('/assets/images/ic_secure.svg') }}" alt="">{{ $item->advantage ?? '' }}</li>
+                                        <li class="pl-10 flex my-4"><img class="mr-3" src="{{ asset('/assets/images/ic_secure.svg') }}" alt="">{{ $item->tagline ?? '' }}</li>
                                         
                                 @empty
                                         {{-- empty --}}

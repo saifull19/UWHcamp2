@@ -17,7 +17,7 @@
                             </h2>
                             
                             <p class="text-sm text-gray-400">
-                                {{ auth()->user()->service()->count() }} Total Services
+                                {{ $services->count() }} Total Services
                             </p>
                         </div>
                         
@@ -46,7 +46,7 @@
                                             <th class="py-4" scope="">Category</th>
                                             <th class="py-4" scope="">Price</th>
                                             <th class="py-4" scope="">Status</th>
-                                            <th class="py-4" scope="">Action</th>
+                                            <th class="py-4" scope="">Created</th>
                                         </tr>
                                     </thead>
 
@@ -75,7 +75,7 @@
 
                                                         <div>
                                                             
-                                                            <a href="{{ route('admin.mentor.show', $service->id) }}" class="font-medium text-black">
+                                                            <a  class="font-medium text-black">
                                                                 {{ $service->user->name ?? '' }}
                                                             </a>
 
@@ -102,7 +102,7 @@
 
                                                         <div>
                                                             
-                                                            <a href="{{ route('admin.servic.show', $service->id) }}" class="font-medium text-black">
+                                                            <a  class="font-medium text-black">
                                                                 {{ $service->title ?? '' }}
                                                             </a>
 
@@ -123,9 +123,9 @@
                                                 </td>
                                                 
                                                 <td class="px-1 py-5 text-sm">
-                                                    <a href="{{ route('admin.servic.show', $service->slug) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email">
-                                                        Detail
-                                                    </a>
+                                                    <p class="py-2 mt-2 text-white rounded-xl text-center bg-serv-email">
+                                                        {{ $service->created_at->diffForHumans() }}
+                                                    </p>
                                                 </td>
                                             </tr>
 

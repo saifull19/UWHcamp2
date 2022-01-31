@@ -58,7 +58,6 @@
 
                                         <main class="p-4 lg:col-span-7 md:col-span-12">
 
-                                            <span class="inline-flex items-center justify-center px-3 py-2 mb-4 mr-2 text-xs leading-none text-green-500 rounded-full bg-serv-green-badge">Active<span>
 
                                             <!-- details heading -->
                                             <div class="details-heading">

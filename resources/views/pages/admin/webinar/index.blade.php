@@ -84,7 +84,7 @@
                                                 </td>
 
                                                 <td class="px-1 py-5 text-sm">
-                                                    {{ $wbn->kuota ?? '' }}
+                                                    {{ $wbn->kuota ?? '' }} Orang
                                                 </td>
 
                                                 <td class="px-1 py-5 text-sm">

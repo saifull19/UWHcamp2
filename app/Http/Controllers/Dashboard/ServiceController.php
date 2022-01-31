@@ -256,8 +256,11 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Service $service)
     {
-        return abort('404');
+        Service::destroy($service->id);
+
+        toast()->success('Deleted has been success');
+        return redirect()->route('member.service.index');
     }
 }

@@ -28,7 +28,7 @@ class UpdateDetailUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'photo' => ['nullable', 'file', 'max:1024'],
+            'photo' => ['nullable', 'file', 'max:4024'],
             'role' => ['nullable', 'string', 'max:100'],
             'contact_number' => ['required', 'regex:/^([0-9\s\-\+(\)]*)$/', 'max:12'],
             'biography' => ['nullable', 'string', 'max:5000'],
