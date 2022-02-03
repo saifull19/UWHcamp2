@@ -21,6 +21,8 @@ use App\Http\Controllers\Dashboard\MyOrderController;
 use App\Http\Controllers\Dashboard\ProfileController;
 use App\Http\Controllers\Dashboard\RequestController;
 use App\Http\Controllers\Dashboard\ServiceController;
+use App\Http\Controllers\Dashboard\MyClassController;
+use App\Http\Controllers\Dashboard\ProgressController;
 use App\Http\Controllers\UserController;
 
 
@@ -54,7 +56,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'v
 
     // service
     Route::resource('servic', ServicController::class);
-
+    
     // order
     Route::resource('order', OrderController::class);
     
@@ -63,13 +65,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'v
 
     // mentor
     Route::resource('mentor', MentorController::class);
-
+    
     // role
     Route::resource('role', RoleController::class);
-
+    
     // menu
     Route::resource('menu', MenuController::class);
-
+    
     // profile
     Route::get('delete_photo', [ProfilController::class, 'delete'])->name('delete.photo.profile');
     Route::get('editt', [ProfilController::class, 'editt'])->name('profile.editt');
@@ -78,16 +80,23 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'v
 
 // route group yang menggunakan middleware
 Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth:sanctum', 'verified']], function() {
-
+    
     // dashboard
     Route::resource('dashboard', MemberController::class);
-
+    
     // service
+    Route::get('submit-materi', [ServicController::class, 'materi'])->name('service.materi');
     Route::resource('service', ServiceController::class);
-
+    
     // request
     Route::get('approve_request/{id}', [RequestController::class, 'approve'])->name('approve.request');
     Route::resource('request', RequestController::class);
+   
+    // service
+    Route::resource('progress', ProgressController::class);
+
+    // service
+    Route::resource('class', MyClassController::class);
 
     // My order
     Route::get('accept/order/{id}', [MyOrderController::class, 'accepted'])->name('accept.order');

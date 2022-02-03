@@ -9,15 +9,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Akses extends Model
 {
-    // use HasFactory;
-    use SoftDeletes;
+    use HasFactory;
+    // use SoftDeletes;
 
     public $table = 'akses';
 
     protected $dates = [
         'updated_at',
         'created_at',
-        'deleted_at'
     ];
 
     protected $guarded = [

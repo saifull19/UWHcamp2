@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Dashboard\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Menu;
+
 class MenuController extends Controller
 {
     /**
@@ -14,7 +16,8 @@ class MenuController extends Controller
      */
     public function index()
     {
-        return view('pages.admin.menu.index');
+        $menu = Menu::all();
+        return view('pages.admin.menu.index', compact('menu'));
     }
 
     /**
@@ -24,7 +27,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.menu.create');
     }
 
     /**
@@ -35,7 +38,20 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $validatedData = $request->validate([
+            'nama_menu' => 'required|string|max:255',
+            'level_menu' => 'required|string|max:255',
+            'master_menu' => 'required|integer|max:100',
+            'no_urut' => 'required|integer|max:100',
+            'url' => 'required|max:100',
+            'icon' => 'required|max:100',
+        ]);
+
+        Menu::create($validatedData);
+
+        // toast untuk sweetalert
+        toast()->success('Created Data has been success');
+        return redirect()->route('admin.menu.index');
     }
 
     /**
@@ -55,9 +71,10 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Menu $menu)
     {
-        //
+        
+        return view('pages.admin.menu.edit', compact('menu'));
     }
 
     /**
@@ -67,9 +84,26 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Menu $menu)
     {
-        //
+        $rules = [
+            'nama_menu' => 'required|string|max:255',
+            'level_menu' => 'required|string|max:255',
+            'master_menu' => 'required|integer|max:100',
+            'no_urut' => 'required|integer|max:100',
+            'url' => 'required|max:100',
+            'icon' => 'required|max:100',
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        
+        Menu::where('id', $menu->id)->update($validatedData);
+        
+       
+
+        toast()->success('Update has been succes');
+        return redirect()->route('admin.menu.index');
     }
 
     /**

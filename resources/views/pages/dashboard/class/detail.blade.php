@@ -9,27 +9,20 @@
                         <div class="col-span-8">
 
                             <h2 class="mt-8 mb-1 text-2xl font-semibold text-gray-700">
-                                My Webinar {{ $webinar->title ?? '' }}
+                                My Services
                             </h2>
 
                             <p class="text-sm text-gray-400">
-                                {{ auth()->user()->webinar()->count() }} Total Webinars
+                                {{ auth()->user()->service()->count() }} Total Services
                             </p>
 
                         </div>
                         <div class="col-span-4 lg:text-right">
                             <div class="relative mt-0 md:mt-6">
 
-                                <button class="">
-                                    
+                                <button class="px-4 py-2 mt-2 text-left text-white bg-red-400 rounded-xl">
+                                    Delete Service
                                 </button>
-                                 <form action="{{ route('admin.webinar.destroy', $webinar->id) }}" method="post" >
-                                  @method('delete')
-                                  @csrf
-                                    <button class="px-4 py-2 mt-2 text-left text-white bg-red-400 rounded-xl" onclick="return confirm('Are you sure?')">
-                                         <i class="fas fa-trash-alt fa-lg"></i> Delete Webinar
-                                    </button>
-                                </form>
 
                             </div>
                         </div>
@@ -42,7 +35,7 @@
 
                         <li class="flex items-center">
 
-                            <a href="{{ route('admin.webinar.index') }}" class="text-gray-400">My Webinar</a>
+                            <a href="{{ route('member.order.index') }}" class="text-gray-400">My Order</a>
                             <svg class="w-3 h-3 mx-3 text-gray-400 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                                 <path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" />
                             </svg>
@@ -50,7 +43,7 @@
                         </li>
 
                         <li class="flex items-center">
-                            <a href="#" class="font-medium">Details Webinar</a>
+                            <a href="#" class="font-medium">Details Service</a>
                         </li>
 
                     </ol>
@@ -65,9 +58,10 @@
 
                                         <main class="p-4 lg:col-span-7 md:col-span-12">
 
+
                                             <!-- details heading -->
                                             <div class="details-heading">
-                                                <h1 class="text-2xl font-semibold">{{ $webinar->title ?? '' }}</h1>
+                                                <h1 class="text-2xl font-semibold">{{ $order->service->title ?? '' }}</h1>
                                                 <div class="my-3">
                                                     @include('components.dashboard.rating')
                                                 </div>
@@ -75,7 +69,21 @@
 
                                             <div class="p-3 my-4 bg-gray-100 rounded-lg image-gallery" x-data="gallery()">
 
-                                                <img src="{{ url(Storage::url($webinar->photo)) }}" alt="" class="rounded-lg cursor-pointer w-100" data-lity>
+                                                <img :src="featured" alt="" class="rounded-lg cursor-pointer w-100" data-lity>
+
+                                                <div class="flex overflow-x-scroll hide-scroll-bar dragscroll">
+                                                    <div class="flex mt-2 flex-nowrap">
+
+                                                        @forelse ($thumbnail as $item)
+
+                                                            <img :class="{ 'border-4 border-serv-button': active === {{ $item->id }} }" @click="changeThumbnail('{{ url(Storage::url($item->thumbnail)) }}', {{ $item->id }})" src="{{ url(Storage::url($item->thumbnail)) }}" alt="Thumbnail service" class="inline-block mr-2 rounded-lg cursor-pointer h-20 w-36 object-cover">
+                                                        
+                                                        @empty
+                                                                {{-- empty --}}
+                                                        @endforelse
+
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <div class="content">
@@ -83,32 +91,30 @@
                                                     <!-- The tabs content -->
                                                     <div class="leading-8 text-md">
 
-                                                        <h2 class="text-xl font-semibold">Instructors This <span class="text-serv-button">Webinars</span></h2>
+                                                        <h2 class="text-xl font-semibold">About This <span class="text-serv-button">Services</span></h2>
 
                                                         <div class="mt-4 mb-8 content-description">
                                                             <p>
-                                                                {{ $webinar->instructors ?? '' }}
+                                                                {{ $order->service->description ?? '' }}
                                                             </p>
                                                         </div>
 
-                                                        <h2 class="text-xl font-semibold">Description This <span class="text-serv-button">Webinars</span></h2>
-
-                                                        <div class="mt-4 mb-8 content-description">
-                                                            <p>
-                                                                {{ $webinar->description ?? '' }}
-                                                            </p>
-                                                        </div>
-
-                                                        <h3 class="my-4 pb-4 text-lg font-semibold">Information?</h3>
+                                                        <h3 class="my-4 pb-4 text-lg font-semibold">Why choose my Service?</h3>
 
                                                         <ul class="mb-4 list-check">
+
+                                                            @forelse ($advantage_service as $item)
                                                                 
-                                                                <li class="pl-10 flex my-2"><img class="mr-3" src="{{ asset('/assets/images/check-icon.svg') }}" alt="">{{ $webinar->information ?? '' }}</li>
+                                                                <li class="pl-10 flex my-2"><img class="mr-3" src="{{ asset('/assets/images/check-icon.svg') }}" alt="">{{ $item->advantage ?? '' }}</li>
+
+                                                            @empty
+                                                                {{-- empty --}}
+                                                            @endforelse
 
                                                         </ul>
 
                                                         <p class="pt-4 font-semibold">
-                                                            {{ $webinar->note ?? '' }}
+                                                            {{ $service->note ?? '' }}
                                                         </p>
                                                         
                                                     </div>
@@ -125,7 +131,7 @@
                                                             <circle cx="12" cy="12" r="8" stroke="#082431" stroke-width="1.5" />
                                                             <path d="M12 7V12L15 13.5" stroke="#082431" stroke-width="1.5" stroke-linecap="round" />
                                                         </svg>
-                                                        {{ $webinar->tanggal ?? '' }} | {{ $webinar->waktu ?? '' }}
+                                                        {{ $order->Service->delivery_time ?? '' }} Days Delivery
                                                     </div>
 
                                                     <div class="flex-1 text-sm font-medium text-center">
@@ -136,17 +142,21 @@
                                                             <path d="M7 21.5L4.14142 18.6414C4.06332 18.5633 4.06332 18.4247 4.14142 18.3586L7 15.5" stroke="#082431" stroke-width="1.5" stroke-linecap="round" />
                                                             <path d="M16 3L18.8586 5.85858C18.9247 5.92468 18.9247 6.06332 18.8586 6.14142L16 9" stroke="#082431" stroke-width="1.5" stroke-linecap="round" />
                                                         </svg>
-                                                        {{ $webinar->kuota ?? '' }} Orang
+                                                        {{ $order->service->revision_limit ?? '' }} Revision Limit
                                                     </div>
 
                                                 </div>
 
                                                 <div class="px-4 pt-4 pb-2 features-list">
                                                     <ul class="mb-4 text-sm list-check">
-                                                        <li class="pl-10 my-4">Online on Google Meet</li>
+                                                        <li class="pl-10 my-4">{{ $service->advantage_user->count() }} Pages</li>
+                                                        @forelse ($advantage_user as $item)
 
-                                                        <li class="pl-10 flex my-4"><img class="mr-3" src="{{ asset('/assets/images/ic_secure.svg') }}" alt="">Kota {{ $webinar->lokasi ?? '' }}</li>
+                                                        <li class="pl-10 flex my-4"><img class="mr-3" src="{{ asset('/assets/images/ic_secure.svg') }}" alt="">{{ $item->advantage ?? '' }}</li>
                                                             
+                                                        @empty
+                                                            
+                                                        @endforelse
                                                     </ul>
                                                 </div>
 
@@ -154,10 +164,10 @@
                                                     <table class="w-full mb-4">
                                                         <tr>
                                                             <td class="text-sm leading-7 text-serv-text">
-                                                                Status:
+                                                                Price starts from:
                                                             </td>
                                                             <td class="mb-4 text-xl font-semibold text-right text-serv-button">
-                                                                {{ $webinar->status->name ?? '' }}
+                                                                {{ 'Rp '.number_format($order->service->price) ?? '' }}
                                                             </td>
                                                         </tr>
 
@@ -169,9 +179,15 @@
 
                                         <div class=" lg:col-span-6 md:col-span-12">
                                             
+                                            @forelse ($tagline as $item)
+                                                
                                                 <button type="submit" class="inline-flex justify-center px-3 py-3 mb-2 text-sm font-medium text-black bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                                                    {{ $webinar->user->name ?? '' }}
+                                                    {{ $item->tagline ?? '' }}
                                                 </button>
+
+                                            @empty
+                                                {{--  empty--}}
+                                            @endforelse 
 
                                         </div>
 
@@ -180,8 +196,8 @@
                                                 See Reviews
                                             </a>
 
-                                            <a href="{{ route('admin.webinar.edit', $webinar->slug) }}" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-lg shadow-sm bg-serv-email hover:bg-serv-email-text focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-serv-email">
-                                                Edit Webinar
+                                            <a href="{{ route('member.service.edit', $service->slug) }}" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white border border-transparent rounded-lg shadow-sm bg-serv-email hover:bg-serv-email-text focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-serv-email">
+                                                Edit Service
                                             </a>
                                         </div>
                                         

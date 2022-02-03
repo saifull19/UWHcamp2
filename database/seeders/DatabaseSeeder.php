@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
             // CategoryTableSeeder::class,
             // UserRolesSeeder::class,
             // MenuTableSeeder::class,
-            WebinarStatusSeeder::class,
-            // AksesTableSeeder::class
+            // WebinarStatusSeeder::class,
+            AksesTableSeeder::class
         ]);
     }
 }

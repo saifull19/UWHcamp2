@@ -1,18 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard\Admin;
+namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use File;
 use Auth;
-use App\Models\UserRole;
-use App\Models\User;
-use App\Models\Akses;
-use App\Models\Menu;
 
+use App\Models\Order;
 
-class RoleController extends Controller
+class ProgressController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,8 +24,10 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $role = UserRole::all();
-        return view('pages.admin.role.index', compact('role'));
+        $orders = Order::where('freelancer_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+
+
+        return view('pages.dashboard.progress.index', compact('orders'));
     }
 
     /**
@@ -51,13 +57,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show( $id)
+    public function show($id)
     {
-        $role = UserRole::where('id', $id)->first();
-        $akses = Akses::where('user_role_id', $id)->get();
-        
-
-        return view('pages.admin.role.detail', compact('akses', 'role'));
+        //
     }
 
     /**
