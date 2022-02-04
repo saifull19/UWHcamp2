@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Respponse;
 
-use File;
+use Illuminate\Support\Facades\File;
 use Auth;
 
 use App\Models\Service;
@@ -262,5 +262,10 @@ class ServiceController extends Controller
 
         toast()->success('Deleted has been success');
         return redirect()->route('member.service.index');
+    }
+
+    public function materi(Service $service)
+    {
+        return view('pages.dashboard.service.materi', compact('service'));
     }
 }
