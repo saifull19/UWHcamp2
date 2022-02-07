@@ -5,6 +5,10 @@ namespace App\Actions\Fortify;
 use App\Models\Team;
 use App\Models\User;
 use App\Models\DetailUser;
+
+// model spatie
+use Spatie\Activitylog\Models\Activity;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -48,6 +52,18 @@ class CreateNewUser implements CreatesNewUsers
                 $detail_user->address = NULL;
                 $detail_user->biography = NULL;
                 $detail_user->save();
+                
+                // add to Activity
+                $activity = new Activity;
+                $activity->log_name = $user->name;
+                $activity->description = 'This user Registration ';
+                $activity->subject_type = 'App\Models\User';
+                $activity->event = 'Registration';
+                $activity->subject_id = $user->id;
+                $activity->causer_type = 'App\Models\User';
+                $activity->causer_id = $user->id;
+                $activity->properties = $user->email;
+                $activity->save();
             });
         });
     }

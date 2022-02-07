@@ -7,10 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
+
+use Auth;
+
 class Webinar extends Model
 {
     // use HasFactory;
-    use SoftDeletes;
+    use SoftDeletes, LogsActivity;
 
     public $table = 'webinar';
 
@@ -23,6 +28,12 @@ class Webinar extends Model
     protected $guarded = [
         'id'
     ];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()->useLogName(Auth::user()->name)->logOnly(['title'])->setDescriptionForEvent(fn(string $eventName) => "This Webinars has been {$eventName}");
+        
+    }
 
     // mengembalikan relationship one to many
     public function user()

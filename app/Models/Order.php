@@ -7,10 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
+
+use Auth;
+
 class Order extends Model
 {
     // use HasFactory;
-    use SoftDeletes;
+    use SoftDeletes, LogsActivity;
 
     public $table = 'order';
 
@@ -47,6 +52,12 @@ class Order extends Model
     public function order_status()
     {
         return $this->belongsTo('App\Models\OrderStatus', 'order_status_id', 'id');
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()->useLogName(Auth::user()->name)->logOnly(['service.title', 'order_status.name'])->setDescriptionForEvent(fn(string $eventName) => "Order Has Been {$eventName}");
+        // Chain fluent methods for configuration options
     }
 
     

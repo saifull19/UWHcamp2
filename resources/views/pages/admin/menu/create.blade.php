@@ -9,7 +9,7 @@
                         <div class="col-span-12">
 
                             <h2 class="mt-8 mb-1 text-2xl font-semibold text-gray-700">
-                                Add Menu
+                                Add Materi {{ $service->name }}
                             </h2>
 
                             <p class="text-sm text-gray-400">

@@ -9,9 +9,11 @@ use Auth;
 
 use Illuminate\Support\Facades\Hash;
 
-use App\Models\User;
+use App\Models\Mentor;
 use App\Models\DetailUser;
 use App\Models\UserRole;
+
+use Spatie\Activitylog\Facades\CauserResolver;
 
 class MentorController extends Controller
 {
@@ -23,7 +25,7 @@ class MentorController extends Controller
     public function index()
     {
 
-        $mentor = User::where('user_role_id', 2)->get();
+        $mentor = Mentor::where('user_role_id', 2)->get();
         // $status = WebinarStatus::where('id', $webinar['status_id'])->first();
         return view('pages.admin.mentor.index', compact('mentor'));
     }
@@ -61,18 +63,20 @@ class MentorController extends Controller
         $validatedData['password'] = Hash::make($validatedData['password']);
         $validatedData['email_verified_at'] = date('Y-n-d H:i:s', time());
         // dd('register berhasil');
-        $user = User::create($validatedData);
+        $user = Mentor::create($validatedData);
+
         
-                // add to detail users
-                        $detail_user = new DetailUSer;
-                        $detail_user->users_id = $user->id;
-                        $detail_user->photo = NULL;
-                        $detail_user->role = 'Mentor';
-                        $detail_user->contact_number = NULL;
-                        $detail_user->address = NULL;
-                        $detail_user->biography = NULL;
-                        $detail_user->save();
+        // add to detail users
+        $detail_user = new DetailUSer;
+        $detail_user->users_id = $user->id;
+        $detail_user->photo = NULL;
+        $detail_user->role = 'Mentor';
+        $detail_user->contact_number = NULL;
+        $detail_user->address = NULL;
+        $detail_user->biography = NULL;
+        $detail_user->save();
         
+
         // toast untuk sweetalert
         toast()->success('Create Mentor has been success');
         return redirect()->route('admin.mentor.index');
@@ -84,7 +88,7 @@ class MentorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $mentor)
+    public function show(Mentor $mentor)
     {
         return view('pages.admin.mentor.detail', compact('mentor'));
     }
@@ -95,7 +99,7 @@ class MentorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $mentor)
+    public function edit(Mentor $mentor)
     {
         return view('pages.admin.mentor.edit', compact('mentor'));
     }
@@ -118,10 +122,10 @@ class MentorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $mentor,DetailUser  $detail_user)
+    public function destroy(Mentor $mentor,DetailUser  $detail_user)
     {
         
-            User::destroy($mentor->id);
+            Mentor::destroy($mentor->id);
             
 
         toast()->success('Deleted has been success');

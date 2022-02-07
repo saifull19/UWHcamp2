@@ -122,6 +122,27 @@
 
                                                 <div class="col-span-6">
 
+                                                    <label for="advantage-service" class="block mb-2 font-medium text-gray-700 text-md">Materi Bootcamp</label>
+                                                    
+                                                    <p class="block mb-3 text-sm text-gray-700">
+                                                        Materi dengan tema apa di setiap sesi pada Bootcamp ini?
+                                                    </p>
+
+                                                    <input placeholder="Tema 1" type="text" name="materi[]" id="materi" autocomplete="materi" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('materi[]') }}" required>
+
+                                                    <input placeholder="Teema 2" type="text" name="materi[]" id="materi" autocomplete="materi" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('materi[]') }}" required>
+
+                                                    <input placeholder="Teema 3" type="text" name="materi[]" id="materi" autocomplete="materi" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('materi[]') }}" required>
+
+                                                    <div id="newMateriRow"></div>
+
+                                                    <button type="button" class="inline-flex justify-center px-3 py-2 mt-3 text-xs font-medium text-gray-700 bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" id="addMateriRow">
+                                                        Tambahkan Materi +
+                                                    </button>
+
+                                                </div>
+                                                <div class="col-span-6">
+
                                                     <label for="advantage-service" class="block mb-2 font-medium text-gray-700 text-md">Key Point Bootcamp</label>
                                                     
                                                     <p class="block mb-3 text-sm text-gray-700">
@@ -308,6 +329,21 @@
             });
         </script>
         
+        <script type="text/javascript">
+            // add row
+            $("#addMateriRow").click(function() {
+                var html = '';
+                html += '<input placeholder="Keunggulan Service" type="text" name="advantage-service[]" id="advantage-service" autocomplete="advantage-service" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>';
+
+                $('#newMateriRow').append(html);
+            });
+
+            // remove row
+            $(document).on('click', '#removeServicesRow', function() {
+                $(this).closest('#inputFormServicesRow').remove();
+            });
+        </script>
+
         <script type="text/javascript">
             // add row
             $("#addServicesRow").click(function() {

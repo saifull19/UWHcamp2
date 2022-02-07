@@ -39,10 +39,11 @@
                                     
                                     <thead>
                                         <tr class="text-sm font-normal text-left text-gray-900 border-b border-b-gray-600">
+                                            <th class="py-4" scope="">ID</th>
                                             <th class="py-4" scope="">Service Details</th>
                                             <th class="py-4" scope="">Category</th>
                                             <th class="py-4" scope="">Price</th>
-                                            <th class="py-4" scope="">Upload</th>
+                                            <th class="py-4" scope="">Update</th>
                                             <th class="py-4" scope="">Action</th>
                                         </tr>
                                     </thead>
@@ -52,6 +53,7 @@
                                         @forelse ($services as $key => $service)
                                             
                                             <tr class="text-gray-700 border-b">
+                                                <td class="font-bold">{{ $service->id }}</td>
                                                 <td class="w-2/6 px-1 py-5">
                                                     <div class="flex items-center text-sm">
                                                         <div class="relative w-10 h-10 mr-3 rounded-full md:block">
@@ -88,7 +90,7 @@
                                                 </td>
 
                                                 <td class="px-1 py-5 text-sm text-green-500 text-md">
-                                                    <a href="{{ route('member.service.materi', $service->slug) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email hover:bg-gray-300">
+                                                    <a href="{{ route('member.materi.show', $service->id) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email hover:bg-gray-300">
                                                         Materi
                                                     </a>
                                                 </td>

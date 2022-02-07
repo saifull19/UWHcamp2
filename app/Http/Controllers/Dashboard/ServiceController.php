@@ -21,6 +21,7 @@ use App\Models\ThumbnailService;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Materi;
 
 
 
@@ -79,6 +80,14 @@ class ServiceController extends Controller
             $advantage_service->advantage = $value;
             $advantage_service->save();
         }
+        
+        // add to advantage service
+        foreach ($data['materi'] as $key => $value) {
+            $materi = new Materi;
+            $materi->service_id = $service->id;
+            $materi->title = $value;
+            $materi->save();
+        }
 
         // add to avantage user 
         foreach ($data['advantage-user'] as $key => $value) {
@@ -134,13 +143,14 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
+        $materi = Materi::where('service_id', $service['id'])->get();
         $advantage_service = AdvantageService::where('service_id', $service['id'])->get();
         $tagline = Tagline::where('service_id', $service['id'])->get();
         $advantage_user = AdvantageUser::where('service_id', $service['id'])->get();
         $thumbnail_service = ThumbnailService::where('service_id', $service['id'])->get();
         $category = Category::all();
 
-        return view('pages.dashboard.service.edit', compact('service', 'advantage_service', 'advantage_user', 'thumbnail_service', 'tagline', 'category'));
+        return view('pages.dashboard.service.edit', compact('service','materi', 'advantage_service', 'advantage_user', 'thumbnail_service', 'tagline', 'category'));
     }
 
     /**
@@ -156,6 +166,23 @@ class ServiceController extends Controller
        
         // updateto service
         $service->update($data);
+
+        // update to materi 
+        foreach ($data['materis'] as $key => $value) {
+            $materi = Materi::find($key);
+            $materi->title = $value;
+            $materi->save();
+        }
+
+        // add new materi 
+        if (isset($data['materi'])) {
+            foreach ($data['materi'] as $key => $value) {
+                $materi = new Materi;
+                $materi->service_id = $service['id'];
+                $materi->title = $value;
+                $materi->save();
+            }
+        }
 
         // update to advantage service
         foreach ($data['advantage-services'] as $key => $value) {

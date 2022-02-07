@@ -107,12 +107,41 @@
                                                     
                                                     <label for="description" class="block mb-3 font-medium text-gray-700 text-md">Deskripsi Bootcamp</label>
                                                     
-                                                    <input placeholder="Jelaskan Bootcamp apa yang kamu tawarkan?" type="text" name="description" id="description" autocomplete="description" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ $service->description ?? '' }}" required>
+
+                                                    <textarea placeholder="Jelaskan Service apa yang kamu tawarkan?" type="text" name="description" id="description" autocomplete="description" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" rows="4" value="{{ $service->description ?? '' }}">{{ $service->description ?? '' }}</textarea>
 
                                                     @if ($errors->has('description'))
                                                         <p class="text-red-500 mb-3 text-sm">{{ $errors->first('description') }}</p>
                                                     @endif
 
+                                                    @if ($errors->has('description'))
+                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('description') }}</p>
+                                                    @endif
+
+                                                </div>
+
+                                                <div class="col-span-6">
+                                                    
+                                                    <label for="materi" class="block mb-2 font-medium text-gray-700 text-md">Your Materi Bootcamp </label>
+                                                    
+                                                    <p class="block mb-3 text-sm text-gray-700">
+                                                        Tema materi pada setiap sesi pada Bootcamp kamu?
+                                                    </p>
+
+                                                    @forelse ($materi as $item)
+                                                    
+                                                        <input placeholder="Keunggulan Bootcamp" type="text" name="{{ ('materis['.$item->id.']') }}" id="materi" autocomplete="materi" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ $item->title ?? '' }}" required>
+
+                                                    @empty
+                                                        {{-- empty --}}
+                                                    @endforelse
+
+                                                    <div id="newMateriRow"></div>
+                                                    
+                                                    <button type="button" class="inline-flex justify-center px-3 py-2 mt-3 text-xs font-medium text-gray-700 bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" id="addMateriRow">
+                                                        Tambahkan Materi +
+                                                    </button>
+                                                
                                                 </div>
 
                                                 <div class="col-span-6">
@@ -303,6 +332,21 @@
             });
         </script>
         
+        <script type="text/javascript">
+            // add row
+            $("#addMateriRow").click(function() {
+                var html = '';
+                html += '<input placeholder="Materi Bootcamp" type="text" name="materi[]" id="materi" autocomplete="materi" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">';
+
+                $('#newMateriRow').append(html);
+            });
+
+            // remove row
+            $(document).on('click', '#removeServicesRow', function() {
+                $(this).closest('#inputFormServicesRow').remove();
+            });
+        </script>
+
         <script type="text/javascript">
             // add row
             $("#addServicesRow").click(function() {

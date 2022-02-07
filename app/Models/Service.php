@@ -7,10 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
+
+use Auth;
+
 class Service extends Model
 {
     // use HasFactory;
-    use SoftDeletes;
+    use SoftDeletes, LogsActivity;
 
     public $table = 'service';
 
@@ -25,6 +30,12 @@ class Service extends Model
     protected $guarded = [
         'id'
     ];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()->useLogName(Auth::user()->name)->logOnly(['title'])->setDescriptionForEvent(fn(string $eventName) => "This Service has been {$eventName}");
+        // Chain fluent methods for configuration options
+    }
 
     // mengembalikan relationship one to many
     public function user()
@@ -56,6 +67,11 @@ class Service extends Model
     public function order()
     {
         return $this->hasMany('App\Models\Order', 'service_id');
+    }
+    
+    public function materi()
+    {
+        return $this->hasMany('App\Models\Materi', 'service_id');
     }
     
     public function category()

@@ -109,7 +109,7 @@
                                                         
                                                     </a>
 
-                                                    <form action="{{ route('admin.mentor.destroy', $men->detail_user->id) }}" method="post" >
+                                                    <form action="{{ route('admin.mentor.destroy', $men->id) }}" method="post" >
                                                     @method('delete')
                                                     @csrf
                                                     <button class="ml-4 py-2 mt-2 text-red-500 hover:text-gray-800" onclick="return confirm('Are you sure?')">

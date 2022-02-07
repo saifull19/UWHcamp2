@@ -23,7 +23,11 @@ use App\Http\Controllers\Dashboard\RequestController;
 use App\Http\Controllers\Dashboard\ServiceController;
 use App\Http\Controllers\Dashboard\MyClassController;
 use App\Http\Controllers\Dashboard\ProgressController;
+use App\Http\Controllers\Dashboard\MateriController;
 use App\Http\Controllers\UserController;
+
+// model spatie
+use Spatie\Activitylog\Models\Activity;
 
 
 /*
@@ -50,6 +54,12 @@ Route::resource('/', LandingController::class);
 
 // route group menggunakan middleware admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'verified', 'admin']], function() {
+
+    // activity log
+    Route::get('activity', function() {
+        $activity = Activity::latest()->paginate(10);
+        return view('pages.admin.activity-log', compact('activity'));
+    })->name('activity.index');
 
     // dashboard
     Route::resource('dashboard', DashboardController::class);
@@ -85,18 +95,21 @@ Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth:sa
     Route::resource('dashboard', MemberController::class);
     
     // service
-    Route::get('submit-materi', [ServicController::class, 'materi'])->name('service.materi');
     Route::resource('service', ServiceController::class);
     
+    // service
+    Route::resource('progress', ProgressController::class);
+
+    // Materi
+    Route::resource('materi', MateriController::class);
+
+    // Class
+    Route::resource('class', MyClassController::class);
+
     // request
     Route::get('approve_request/{id}', [RequestController::class, 'approve'])->name('approve.request');
     Route::resource('request', RequestController::class);
    
-    // service
-    Route::resource('progress', ProgressController::class);
-
-    // service
-    Route::resource('class', MyClassController::class);
 
     // My order
     Route::get('accept/order/{id}', [MyOrderController::class, 'accepted'])->name('accept.order');

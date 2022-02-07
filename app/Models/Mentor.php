@@ -18,7 +18,7 @@ use Auth;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends Authenticatable
+class Mentor extends Authenticatable
 {
     use HasApiTokens;
     use HasFactory;
@@ -36,7 +36,7 @@ class User extends Authenticatable
      * @var string[]
      */
 
-     protected static $recordEvents = [ 'updated', 'deleted'];
+    public $table = 'users';
 
      protected $dates = [
         'updated_at',
@@ -74,7 +74,7 @@ class User extends Authenticatable
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults()->useLogName(Auth::user()->name)->logOnly(['name', 'email', 'user_role.role_user'])->setDescriptionForEvent(fn(string $eventName) => "This Users has been {$eventName}");
+        return LogOptions::defaults()->useLogName(Auth::user()->name)->logOnly(['name', 'email'])->setDescriptionForEvent(fn(string $eventName) => "This Mentor has been {$eventName}");
         
     }
 
@@ -116,11 +116,6 @@ class User extends Authenticatable
     public function order_freelancer()
     {
         return $this->hasMany('App\Models\Order', 'freelancer_id');
-    }
-    
-    public function akses_materi()
-    {
-        return $this->hasMany('App\Models\AksesMateri', 'users_id');
     }
 
     // mengembalikan relationship one to many

@@ -7,9 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
+
+use Auth;
+
 class UserRole extends Model
 {
-    use HasFactory;
+    use HasFactory, LogsActivity;
     // use SoftDeletes;
 
     public $table = 'user_roles';
@@ -23,6 +28,12 @@ class UserRole extends Model
     protected $guarded = [
         'id'
     ];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()->useLogName(Auth::user()->name)->logOnly(['role_user'])->setDescriptionForEvent(fn(string $eventName) => "This User Role has been {$eventName}");
+        
+    }
 
     // menjadi object relationship one to many
     public function user() 

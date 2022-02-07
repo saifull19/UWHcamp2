@@ -16,7 +16,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menu = Menu::all();
+        $menu = Menu::latest()->paginate(7);
         return view('pages.admin.menu.index', compact('menu'));
     }
 
@@ -112,8 +112,11 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Menu $menu)
     {
-        //
+        Menu::destroy($menu->id);
+
+        toast()->success('Deleted has been success');
+        return redirect()->route('admin.menu.index');
     }
 }
