@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Auth;
 
 use App\Models\Order;
+use App\Models\Service;
+use App\Models\Materi;
 
 class MyClassController extends Controller
 {
@@ -53,7 +55,10 @@ class MyClassController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = Order::where('id', $id)->first();
+        $materi = Materi::where('service_id', $order['service_id'])->get();
+        // dd($materi);
+        return view('pages.dashboard.class.detail', compact('order', 'materi'));
     }
 
     /**
