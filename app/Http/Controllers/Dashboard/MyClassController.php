@@ -69,7 +69,10 @@ class MyClassController extends Controller
      */
     public function edit($id)
     {
-        //
+        $detail_materi = Materi::where('id', $id)->first();
+        $materis = Materi::all();
+
+        return view('pages.dashboard.class.detail-materi', compact('materis', 'detail_materi'));
     }
 
     /**

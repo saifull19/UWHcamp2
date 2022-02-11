@@ -122,6 +122,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\AksesMateri', 'users_id');
     }
+    
+    public function tugas_materi()
+    {
+        return $this->hasMany('App\Models\TugasMateri', 'users_id');
+    }
+    
 
     // mengembalikan relationship one to many
     public function user_role()

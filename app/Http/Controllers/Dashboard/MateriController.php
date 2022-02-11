@@ -4,12 +4,18 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\Materi\StoreMateriRequest;
+use App\Http\Requests\Materi\UpdateMateriRequest;
 
+use Illuminate\Support\Facades\Auth;
+use App\Models\DetailMateri;
 use App\Models\Service;
 use App\Models\Materi;
 
 class MateriController extends Controller
 {
+
+    
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +23,9 @@ class MateriController extends Controller
      */
     public function index()
     {
-        // 
+        $service = Service::where('users_id', Auth::user()->id)->orderBy('created_at', 'desc')->first();
+        $materi = Materi::where('service_id', $service->id)->get();
+        return view('pages.dashboard.materi.index', compact('materi', 'service'));
     }
 
     /**
@@ -25,9 +33,9 @@ class MateriController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Materi $materi)
+    public function create()
     {
-        return view('pages.dashboard.materi.create', compact('materi'));
+        return view('pages.dashboard.materi.create');
     }
 
     /**
@@ -36,32 +44,24 @@ class MateriController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMateriRequest $request)
     {
-        $validatedData = $request->validate([
-            'service_id' => 'required|integer|max:100',
-            'title' => 'required|string|max:255',
-            'level_title' => 'required|string|max:255',
-            'master_title' => 'required|integer|max:100',
-            'url' => 'required|max:100'
-        ]);
-
+        $data = $request->all();
         // add to advantage service
-        foreach ($validatedData['service_id'.'title'.'level_title'.'master_title'.'master_title'.'url'] as $key => $value) {
-            $materi = new Materi;
-            $materi->service_id = $value;
-            $materi->title = $value;
-            $materi->level_title = $value;
-            $materi->master_title = $value;
-            $materi->url = $value;
-            $materi->save();
-        }
+        $materi = Materi::create($data);
 
-        Materi::create($validatedData);
+
+
+        foreach ($data['description'] as $key => $value) {
+            $detail_materi = new DetailMateri;
+            $detail_materi->materi_id = $materi->id;
+            $detail_materi->description = $value;
+            $detail_materi->save();
+        }
 
         // toast untuk sweetalert
         toast()->success('Created Data has been success');
-        return redirect()->route('member.service.index');
+        return redirect()->route('member.materi.index');
     }
 
     /**
@@ -70,13 +70,14 @@ class MateriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show( $id)
+    public function show(Materi $materi)
     {
-        $service = Service::where('id', $id)->first();
+        // $service = Service::where('id', $id)->first();
         
-        $materi = Materi::where('service_id', $id)->get();
+        // $materi = Materi::where('id', $materi)->get();
+        $detail_materi = DetailMateri::where('materi_id', $materi)->get();
 
-        return view('pages.dashboard.materi.detail', compact('materi', 'service'));
+        return view('pages.dashboard.materi.detail', compact('materi', 'detail_materi'));
     }
 
     /**
@@ -87,7 +88,9 @@ class MateriController extends Controller
      */
     public function edit(Materi $materi)
     {
-        return view('pages.dashboard.materi.edit', compact('materi'));
+        
+        $detail_materi = DetailMateri::where('materi_id', $materi['id'])->get();
+        return view('pages.dashboard.materi.edit', compact('materi', 'detail_materi'));
     }
 
     /**
@@ -97,21 +100,41 @@ class MateriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateMateriRequest $request, Materi $materi)
     {
-        $rules = [
-            'title' => 'required|string|max:255',
-            'level_title' => 'required|string|max:255',
-            'master_title' => 'required|integer|max:100',
-            'url' => 'required|max:100',
-        ];
-
-        $validatedData = $request->validate($rules);
-
         
-        Materi::where('id', $id)->update($validatedData);
+
+        $data = $request->all();
+
+        // updateto service
+        $materi->update($data);
+
+        // Materi::where('id', $materi)->update($data);
+
+        // add new materi 
+
+        foreach ($data['detail-materi'] as $key => $value) {
+                $detail_materi = new DetailMateri;
+                $detail_materi->materi_id = $materi['id'];
+                $detail_materi->description = $value;
+                $detail_materi->save();
+            }
+        if (isset($data['detail-materis'])) {
+            
+            // update to materi 
+            foreach ($data['detail-materis'] as $key => $value) {
+            
+                $detail_materi = DetailMateri::find($key);
+                $detail_materi->description = $value;
+                $detail_materi->save();
+            }
+        }
+
+
+
+
         toast()->success('Update has been succes');
-        return redirect()->route('member.service.index');
+        return redirect()->route('member.materi.index');
     }
 
     /**
@@ -120,11 +143,11 @@ class MateriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Materi $materi)
     {
-        Materi::destroy($id);
+        Materi::destroy($materi->id);
 
         toast()->success('Deleted has been success');
-        return redirect()->route('member.service.index');
+        return redirect()->route('member.materi.index');
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Create My Service')
+@section('title', 'Create My Materi')
 @section('content')
 
     <main class="h-full overflow-y-auto">
@@ -32,7 +32,7 @@
                         </li>
 
                         <li class="flex items-center">
-                            <a href="#" class="font-medium">Add Your Bootcamp</a>
+                            <a href="#" class="font-medium">Add Your Materi Bootcamp</a>
                         </li>
 
                     </ol>
@@ -43,7 +43,7 @@
                         <main class="col-span-12 p-4 md:pt-0">
                             <div class="px-2 py-2 mt-2 bg-white rounded-xl">
 
-                                <form action="{{ route('member.materi.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('member.materi.store') }}" method="POST" >
                                     @csrf
 
                                     <div class="">
@@ -58,7 +58,7 @@
                                                 </div>
 
                                                 <div class="col-span-6 sm:col-span-3">
-                                                    <input placeholder="Your Service ID" type="number" name="service_id[]" id="service_id" autocomplete="service_id" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('service_id') }}" required>
+                                                    <input placeholder="Your Service ID" type="number" name="service_id" id="service_id" autocomplete="service_id" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('service_id') }}" required>
 
                                                     @if ($errors->has('service_id'))
                                                         <p class="text-red-500 mb-3 text-sm">{{ $errors->first('service_id') }}</p>
@@ -72,49 +72,33 @@
 
                                                 </div>
 
-                                                <div class="col-span-6 sm:col-span-3">
-                                                    <input placeholder="Your Tema in Materi" type="text" name="title[]" id="title" autocomplete="title" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('title') }}" required>
+                                                <div class="col-span-6 ">
+                                                    <input placeholder="Your Tema in Materi" type="text" name="title" id="title" autocomplete="title" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('title') }}" required>
 
                                                     @if ($errors->has('title'))
                                                         <p class="text-red-500 mb-3 text-sm">{{ $errors->first('title') }}</p>
                                                     @endif
 
                                                 </div>
-
-                                                <div class="col-span-6 sm:col-span-3">
-
-                                                    <select id="level_title" name="level_title[]" autocomplete="level_title" class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-                                                        
-                                                        <option>Level Menu</option>
-                                                        <option value="main_title" selected>main_title</option>
-                                                        <option value="sub_title" selected>sub_title</option>
-                                                      
-                                                    </select>
-
-                                                    @if ($errors->has('level_title'))
-                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('level_title') }}</p>
-                                                    @endif
-                                                    
-                                                </div>
                                                 
 
-                                                <div class="col-span-6 sm:col-span-3">
+                                                <div class="col-span-6">
 
-                                                    <label for="master_title" class="block mb-3 font-medium text-gray-700 text-md">Master Menu</label>
+                                                    <label for="tugas_materi" class="block mb-3 font-medium text-gray-700 text-md">Tugas Materi</label>
 
-                                                    <input placeholder="Master master" type="number" name="master_title[]" id="master_title" autocomplete="master_title" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('master_title') }}" required>
+                                                    <input placeholder="Tugas apa yang kamu berikan pada materi tersebut ?" type="text" name="tugas_materi" id="tugas_materi" autocomplete="tugas_materi" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('tugas_materi') }}" >
 
-                                                    @if ($errors->has('master_title'))
-                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('master_title') }}</p>
+                                                    @if ($errors->has('tugas_materi'))
+                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('tugas_materi') }}</p>
                                                     @endif
 
                                                 </div>
 
-                                                <div class="col-span-6 sm:col-span-3">
+                                                <div class="col-span-6">
 
-                                                    <label for="url" class="block mb-2 font-medium text-gray-700 text-md">Url Title</label>
+                                                    <label for="url" class="block mb-2 font-medium text-gray-700 text-md">Url Video (EMBED)</label>
                                                     
-                                                   <input placeholder="Url Materi" type="text" name="url[]" id="url" autocomplete="url" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('url') }}" required>
+                                                   <input placeholder="Url Video (EMBED)" type="text" name="url" id="url" autocomplete="url" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('url') }}">
 
                                                     @if ($errors->has('url'))
                                                         <p class="text-red-500 mb-3 text-sm">{{ $errors->first('url') }}</p>
@@ -122,14 +106,31 @@
 
                                                 </div>
 
+                                                <div class="col-span-6">
+                                                    
+                                                    <label for="description" class="block mb-2 font-medium text-gray-700 text-md">Your Materi Detail </label>
+                                                    
+                                                    <p class="block mb-3 text-sm text-gray-700">
+                                                        Description pada materi yang kamu berikan?
+                                                    </p>
+                                                    
+                                                        <input placeholder="Description Materi" type="text" name="description[]" id="description" autocomplete="description" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('description') }}" required>
+
+                                                        <input placeholder="Description Materi" type="text" name="description[]" id="description" autocomplete="description" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('description') }}" required>
+
+
+                                                    <div id="newDescriptionRow"></div>
+
+                                                    <button type="button" class="inline-flex justify-center px-3 py-2 mt-3 text-xs font-medium text-gray-700 bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" id="addDescriptionRow">
+                                                        Tambahkan Description +
+                                                    </button>
+                                                
+                                                </div>
+
                                             </div>
                                         </div>
 
-                                        <div id="newServicesRow"></div>
-
-                                                    <button type="button" class="inline-flex justify-center px-3 py-2 mt-3 text-xs font-medium text-gray-700 bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" id="addServicesRow">
-                                                        Tambahkan Keunggulan +
-                                                    </button>
+                                    
 
                                         <div class="px-4 py-3 text-right sm:px-6">
 
@@ -154,31 +155,15 @@
     @endsection
 
     @push('after-script')
-    
         <script src="{{ url('https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js') }}"></script>
 
         <script type="text/javascript">
             // add row
-            $("#addAdvantagesRow").click(function() {
+            $("#addDescriptionRow").click(function() {
                 var html = '';
-                html += '<input placeholder="Keunggulan Kamu" type="text" name="advantage-user[]" id="advantage-user" autocomplete="advantage-user" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>';
+                html += '<input placeholder="Keunggulan Service" type="text" name="detail-materi[]" id="advantage-service" autocomplete="advantage-service" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>';
 
-                $('#newAdvantagesRow').append(html);
-            });
-
-            // remove row
-            $(document).on('click', '#removeAdvantagesRow', function() {
-                $(this).closest('#inputFormAdvantagesRow').remove();
-            });
-        </script>
-        
-        <script type="text/javascript">
-            // add row
-            $("#addServicesRow").click(function() {
-                var html = '';
-                html += '<div class="px-4 py-5 sm:p-6"><div class="grid grid-cols-6 gap-6"><div class="col-span-6 -mb-6"><label for="service_id" class="block mb-3 font-medium text-gray-700 text-md">Service ID</label></div><div class="col-span-6 sm:col-span-3"><input placeholder="Your Service ID" type="number" name="service_id[]" id="service_id" autocomplete="service_id" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('service_id') }}" required>@if ($errors->has('service_id'))<p class="text-red-500 mb-3 text-sm">{{ $errors->first('service_id') }}</p>@endif</div><div class="col-span-6 -mb-6"><label for="title" class="block mb-3 font-medium text-gray-700 text-md">Tema Materi</label></div><div class="col-span-6 sm:col-span-3"><input placeholder="Your Tema in Materi" type="text" name="title[]" id="title" autocomplete="title" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('title') }}" required>@if ($errors->has('title'))<p class="text-red-500 mb-3 text-sm">{{ $errors->first('title') }}</p>@endif</div><div class="col-span-6 sm:col-span-3"><select id="level_title" name="level_title[]" autocomplete="level_title" class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required><option>Level Menu</option><option value="main_title" selected>main_title</option><option value="sub_title" selected>sub_title</option></select>@if ($errors->has('level_title'))<p class="text-red-500 mb-3 text-sm">{{ $errors->first('level_title') }}</p>@endif</div><div class="col-span-6 sm:col-span-3"><label for="master_title" class="block mb-3 font-medium text-gray-700 text-md">Master Menu</label><input placeholder="Master master" type="number" name="master_title[]" id="master_title" autocomplete="master_title" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('master_title') }}" required>@if ($errors->has('master_title'))<p class="text-red-500 mb-3 text-sm">{{ $errors->first('master_title') }}</p>@endif</div><div class="col-span-6 sm:col-span-3"><label for="url" class="block mb-2 font-medium text-gray-700 text-md">Url Title</label><input placeholder="Url Materi" type="text" name="url[]" id="url" autocomplete="url" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ old('url') }}" required>@if ($errors->has('url'))<p class="text-red-500 mb-3 text-sm">{{ $errors->first('url') }}</p>@endif</div></div></div>';
-
-                $('#newServicesRow').append(html);
+                $('#newDescriptionRow').append(html);
             });
 
             // remove row
@@ -186,35 +171,6 @@
                 $(this).closest('#inputFormServicesRow').remove();
             });
         </script>
-        
-        <script type="text/javascript">
-            // add row
-            $("#addTaglineRow").click(function() {
-                var html = '';
-                html += '<input placeholder="Hal yang akan di dapatkan dari service?" type="text" name="tagline[]" id="tagline" autocomplete="tagline" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>';
-
-                $('#newTaglineRow').append(html);
-            });
-
-            // remove row
-            $(document).on('click', '#removeTaglineRow', function() {
-                $(this).closest('#inputFormTaglineRow').remove();
-            });
-        </script>
-        
-        <script type="text/javascript">
-            // add row
-            $("#addThumbnailRow").click(function() {
-                var html = '';
-                html += '<input placeholder="Thumbnail 3" type="file" name="thumbnail[]" id="thumbnail" autocomplete="thumbnail" class="block w-full py-3 pl-5 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>';
-
-                $('#newThumbnailRow').append(html);
-            });
-
-            // remove row
-            $(document).on('click', '#removeThumbnailRow', function() {
-                $(this).closest('#inputFormThumbnailRow').remove();
-            });
-        </script>
-
     @endpush
+
+    

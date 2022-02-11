@@ -90,7 +90,7 @@
                                                 </td>
 
                                                 <td class="px-1 py-5 text-sm text-green-500 text-md">
-                                                    <a href="{{ route('member.materi.show', $service->id) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email hover:bg-gray-300">
+                                                    <a href="{{ route('member.materi.index') }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email hover:bg-gray-300">
                                                         Materi
                                                     </a>
                                                 </td>

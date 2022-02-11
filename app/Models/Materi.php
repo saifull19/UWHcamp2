@@ -34,10 +34,22 @@ class Materi extends Model
     {
         return $this->belongsTo('App\Models\Service', 'service_id', 'id');
     }
+    
 
     // menjadi objeck relationship
     public function akses_materi()
     {
         return $this->hasMany('App\Models\AksesMateri', 'materi_id');
+    }
+    
+    // menjadi objeck relationship
+    public function detail_materi()
+    {
+        return $this->hasMany('App\Models\DetailMateri', 'materi_id');
+    }
+    // menjadi objeck relationship
+    public function tugas_materi()
+    {
+        return $this->hasMany('App\Models\TugasMateri', 'materi_id');
     }
 }

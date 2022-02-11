@@ -4,7 +4,7 @@
 
 @section('content')
 
-@if (count($services))
+@if (count($materi))
 
     <main class="h-full overflow-y-auto">
 
@@ -13,19 +13,21 @@
                         <div class="col-span-8">
 
                             <h2 class="mt-8 mb-1 text-2xl font-semibold text-gray-700">
-                                My Services
+                                My Materi {{ $service->title ?? '' }}
                             </h2>
                             
                             <p class="text-sm text-gray-400">
-                                {{ auth()->user()->service()->count() }} Total Services
+                                {{ $materi->count() }} Total Materi
                             </p>
                         </div>
                         
                         <div class="col-span-4 lg:text-right">
                             <div class="relative mt-0 md:mt-6">
-                                <a href="{{ route('member.service.create') }}" class="inline-block px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-button">
-                                    + Add Service
+
+                                <a href="{{ route('member.materi.create') }}" class="inline-block px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-button">
+                                    + Add Materi
                                 </a>
+
                             </div>
                         </div>
                     </div>
@@ -39,73 +41,60 @@
                                     
                                     <thead>
                                         <tr class="text-sm font-normal text-left text-gray-900 border-b border-b-gray-600">
-                                            <th class="py-4" scope="">Service Details</th>
-                                            <th class="py-4" scope="">Category</th>
-                                            <th class="py-4" scope="">Price</th>
-                                            <th class="py-4" scope="">Upload</th>
-                                            <th class="py-4" scope="">Action</th>
+                                            {{-- <th class="py-4" scope="">ID</th> --}}
+                                            <th class="py-4 pr-5" scope="">Service ID</th>
+                                            <th class="py-4" scope="">Title</th>
+                                            <th class="py-4 pl-5" scope="">Tugas Materi</th>
+                                            <th class="py-4 text-center" scope="">Url Video</th>
+                                            <th class="py-4 text-center" scope="">Action</th>
                                         </tr>
                                     </thead>
 
                                     <tbody class="bg-white">
 
-                                        @forelse ($services as $key => $service)
+                                        @forelse ($materi as $key => $mtr)
                                             
                                             <tr class="text-gray-700 border-b">
+
+                                                 <td class="px-1 py-5 font-bold text-sm">
+                                                    {{ $mtr->service_id ?? '' }}
+                                                </td>
+
                                                 <td class="w-2/6 px-1 py-5">
                                                     <div class="flex items-center text-sm">
-                                                        <div class="relative w-10 h-10 mr-3 rounded-full md:block">
-
-                                                            @if (isset($service->thumbnail_service[0]->thumbnail) != null )
-
-                                                                <img class="object-cover w-full h-full rounded" src="{{ url(Storage::url($service->thumbnail_service[0]->thumbnail)) }}" alt="thumbnail" loading="lazy" />
-
-                                                            @else
-                                                            
-                                                                <img class="object-cover w-full h-full rounded" src="{{ url('https://randomuser.me/api/portraits/men/3.jpg') }}" alt="" loading="lazy" />
-                                                                <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-
-                                                            @endif
-
-                                                        </div>
-
                                                         <div>
                                                             
-                                                            <a href="{{ route('member.order.show', $service->id) }}" class="font-medium text-black">
-                                                                {{ $service->title ?? '' }}
+                                                            <a  class="font-medium text-black">
+                                                                {{ $mtr->title ?? '' }}
                                                             </a>
 
                                                         </div>
                                                     </div>
                                                 </td>
 
-                                                <td class="px-1 py-5 text-sm">
-                                                    {{ $service->category->name ?? '' }}
+                                                <td class="px-1 py-5 text-center  text-sm">
+                                                    {{ $mtr->tugas_materi ?? '' }}
                                                 </td>
 
                                                 <td class="px-1 py-5 text-sm">
-                                                    {{ 'Rp '.number_format($service->price ?? '') }}
+                                                    <p class="py-2 mt-2 text-sm text-center">
+                                                        {{ $mtr->url ?? '' }}
+                                                    </p>
                                                 </td>
 
-                                                <td class="px-1 py-5 text-sm text-green-500 text-md">
-                                                    <a href="{{ route('member.service.materi', $service->slug) }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-email hover:bg-gray-300">
-                                                        Materi
-                                                    </a>
-                                                </td>
-                                                
-                                                <td class="px-1 py-5 text-sm">
-                                                    <a href="{{ route('member.order.show', $service->id) }}" class="py-2 mt-2 text-serv-yellow hover:text-gray-800">
+                                                <td class="pl-5 px-1 py-5 text-sm text-center">
+                                                    <a href="{{ route('member.materi.show', $mtr['id']) }}" class="py-2 mt-2 text-serv-yellow hover:text-gray-800">
                                                         <i class="fas fa-eye fa-lg"></i>
                                                     </a>
-                                                    <a href="{{ route('member.service.edit', $service['slug']) }}" class="px-3 py-2 mt-2 text-green-500 hover:text-gray-800">
+                                                    <a href="{{ route('member.materi.edit', $mtr->id) }}" class="px-3 py-2 mt-2 text-green-500 hover:text-gray-800">
                                                         <i class="fas fa-edit fa-lg"></i>
                                                         
                                                     </a>
-                                                    
-                                                    <form action="{{ route('member.service.destroy', $service->slug) }}" method="post" >
+
+                                                    <form class="inline" action="{{ route('member.materi.destroy', $mtr->id) }}" method="post" >
                                                     @method('delete')
                                                     @csrf
-                                                    <button class="ml-4 py-2 mt-2 text-red-500 hover:text-gray-800" onclick="return confirm('Are you sure?')">
+                                                    <button class=" py-2 mt-2 text-red-500 hover:text-gray-800" onclick="return confirm('Are you sure?')">
                                                         <i class="fas fa-trash-alt fa-lg"></i>
                                                         
                                                     </button>

@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" href="/assets/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Materi Service UWHcamp
+    Materi UWHcamp
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <link href="{{ url('https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css') }}" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -33,21 +33,18 @@
       <div class="sidebar-wrapper">
         <ul class="nav ">
           
-          <li class="nav-item active">
-            <a class="nav-link" href="./icons.html">
-              <i class="material-icons">bubble_chart</i>
-              <p>{{ $materi[0]->title }}</p>
-            </a>
-          </li>
+          
 
-          @forelse ($materi->skip(1) as $item)
-              <li class="nav-item me-5" >
-                <a class="nav-link" href="{{ route('member.class.edit', $item->id) }}">
-                  <i class="material-icons">bubble_chart</i>
-                  <p class="">{{ $item->title ?? ''}}</p>
-                </a>
-                <div class=""></div>
-              </li>
+          @forelse ($materis as $item)
+              @if ($item->service_id == $detail_materi->service_id)
+                <li class="nav-item ">
+                  <a class="nav-link" href="{{ route('member.class.edit', $item->id) }}">
+                    <i class="material-icons">bubble_chart</i>
+                    <p>{{ $item->title }}</p>
+                  </a>
+                </li>
+                  
+              @endif
           @empty
               
           @endforelse
@@ -61,7 +58,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:void(0)">{{ $materi[0]->title ?? '' }}</a>
+            <a class="navbar-brand" href="javascript:void(0)">{{ $detail_materi->title ?? '' }}</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
             <span class="sr-only">Toggle navigation</span>
@@ -70,6 +67,8 @@
             <span class="navbar-toggler-icon icon-bar"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end">
+
+            </ul>
           </div>
         </div>
       </nav>
@@ -84,7 +83,7 @@
                   <div class="ct-chart" >
 
                     <div class="ratio ratio-16x9">
-                      <iframe src="{{ $materi[0]->url }}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      <iframe src="{{ $detail_materi->url ?? ''}}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
 
                   </div>
@@ -93,11 +92,11 @@
                 <div class="card-body">
                   <h4 class="card-title">Description</h4>
                   <p class="card-category">
-                    <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
+                    <span class="text-success"><i class="fa fa-long-arrow-up"></i> 45% </span> increase in today sales.</p>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">access_time</i> updated {{ $materi[0]->updated_at ?? '' }}
+                    <i class="material-icons">access_time</i> updated $detail_materi->updated_at ?? ''
                   </div>
                 </div>
               </div>
@@ -130,7 +129,7 @@
                         
                         <li class="nav-item">
                           <a class="nav-link" href="#tugas" data-toggle="tab">
-                            <i class="material-icons">code</i> Tugas
+                            <i class="material-icons">code</i> Tugas Materi 
                             <div class="ripple-container"></div>
                           </a>
                         </li>
@@ -159,7 +158,7 @@
                                 </label>
                               </div>
                             </td>
-                            <td class="h4">{{ $materi[0]->detail_materi[0]->description ?? '' }}</td>
+                            <td class="h4">{{ $detail_materi->detail_materi[0]->description ?? '' }}</td>
                             
                           </tr>
                           
@@ -181,7 +180,7 @@
                                 </label>
                               </div>
                             </td>
-                            <td class="h4">{{ $materi[0]->detail_materi[1]->description ?? '' }}</td>
+                            <td class="h4">{{ $detail_materi->detail_materi[1]->description ?? '' }}</td>
                             
                           </tr>
                         </tbody>
@@ -202,8 +201,7 @@
                                 </label>
                               </div>
                             </td>
-                            <td class="h4">{{ $materi[0]->tugas_materi ?? '' }}
-                            </td>
+                            <td class="h4">{{ $detail_materi->tugas_materi ?? '' }}</td>
                             
                           </tr>
                         </tbody>

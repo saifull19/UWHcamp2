@@ -16,24 +16,24 @@ class AksesTableSeeder extends Seeder
     {
         DB::table('akses')->insert([
             [
-                'user_role_id' => 1,
-                'menu_id' => 13,
+                'user_role_id' => 2,
+                'menu_id' => 14,
                 'akses' => 1,
                 'tambah' => 1,
                 'edit' => 1,
                 'hapus' => 1
             ],
             [
-                'user_role_id' => 4,
-                'menu_id' => 13,
+                'user_role_id' => 1,
+                'menu_id' => 14,
                 'akses' => 0,
                 'tambah' => 0,
                 'edit' => 0,
                 'hapus' => 0
             ],
             [
-                'user_role_id' => 2,
-                'menu_id' => 13,
+                'user_role_id' => 4,
+                'menu_id' => 14,
                 'akses' => 0,
                 'tambah' => 0,
                 'edit' => 0,
