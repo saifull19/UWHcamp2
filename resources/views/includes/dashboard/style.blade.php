@@ -3,6 +3,3 @@
         crossorigin="anonymous" />
 <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('/icon/css/all.css') }}">
-
-{{-- summernote --}}
-<link rel="stylesheet" href="{{ asset('/summernote/summernote.min.css') }}">

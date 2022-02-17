@@ -156,9 +156,9 @@
                                 <h3 class="my-4 text-lg font-semibold">Description Bootcamp</h3>
                             
                                 <div class="mt-4 mb-8 content-description">
-                                    <p>
-                                        {{ $service->description ?? '' }}
-                                    </p>
+                                   
+                                        {!! $service->description ?? '' !!}
+                                   
                                 </div>
                             
                                 <h3 class="my-4 text-lg font-semibold">Details Bootcamp</h3>

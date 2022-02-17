@@ -108,11 +108,31 @@
                                                     <label for="description" class="block mb-3 font-medium text-gray-700 text-md">Deskripsi Bootcamp</label>
                                                     
 
-                                                    <textarea placeholder="Jelaskan Service apa yang kamu tawarkan?" type="text" name="description" id="description" autocomplete="description" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" rows="4" value="{{ $service->description ?? '' }}">{{ $service->description ?? '' }}</textarea>
+                                                    @push('after-style')
+                                                        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+                                                        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+                                                        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+                                                    @endpush
 
-                                                    @if ($errors->has('description'))
-                                                        <p class="text-red-500 mb-3 text-sm">{{ $errors->first('description') }}</p>
-                                                    @endif
+                                                     <textarea name="description" id="summernote" cols="30" rows="10">{!! $service->description ?? '' !!}</textarea>
+                                                        <script>
+                                                            $('#summernote').summernote({
+                                                            tabsize: 4,
+                                                            height: 320,
+                                                            minHeight: 320,             // set minimum height of editor
+                                                            maxHeight: 500,             // set maximum height of editor
+                                                            focus: true,
+                                                            toolbar: [
+                                                                ['style', ['style']],
+                                                                ['font', ['bold', 'underline', 'clear']],
+                                                                ['color', ['color']],
+                                                                ['para', ['ul', 'ol', 'paragraph']],
+                                                                ['table', ['table']],
+                                                                ['insert', ['link', 'picture', 'video']],
+                                                                ['view', ['fullscreen', 'codeview', 'help']]
+                                                            ]
+                                                            });
+                                                        </script>
 
                                                     @if ($errors->has('description'))
                                                         <p class="text-red-500 mb-3 text-sm">{{ $errors->first('description') }}</p>

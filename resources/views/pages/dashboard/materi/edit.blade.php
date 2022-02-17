@@ -119,22 +119,100 @@
                                                     <label for="description" class="block mb-2 font-medium text-gray-700 text-md">Your Materi Detail </label>
                                                     
                                                     <p class="block mb-3 text-sm text-gray-700">
-                                                        Berikan detail materi pada Bootcamp kamu?
+                                                        Detail materi pada Bootcamp kamu
                                                     </p>
+
+                                                    
+                                                    @push('after-style')
+                                                        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+                                                        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+                                                        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+                                                    @endpush
+
+                                                     
+
 
                                                     @forelse ($detail_materi as $item)
                                                     
-                                                        <input placeholder="Description Materi" type="text" name="{{ ('detail-materis['.$item->id.']') }}" id="description" autocomplete="description" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" value="{{ $item->description ?? '' }}" required>
+                                                    <div class="py-4">
+                                                        <textarea name="{{ ('detail-materis['.$item->id.']') }}" id="{{ $item->id }}"  cols="30" rows="10">{!! $item->description ?? '' !!}</textarea>
+                                                        
+                                                    </div>    
+
+
+                                                        <script>
+                                                            $('#{{ $item->id }}').summernote({
+                                                            tabsize: 4,
+                                                            height: 320,
+                                                            minHeight: 320,             // set minimum height of editor
+                                                            maxHeight: 500,             // set maximum height of editor
+                                                            focus: true,
+                                                            toolbar: [
+                                                                ['style', ['style']],
+                                                                ['font', ['bold', 'underline', 'clear']],
+                                                                ['color', ['color']],
+                                                                ['para', ['ul', 'ol', 'paragraph']],
+                                                                ['view', [ 'codeview', 'help']]
+                                                            ]
+                                                            });
+                                                        </script>
+
 
                                                     @empty
                                                         {{-- empty --}}
                                                     @endforelse
 
-                                                    <div id="newDescriptionRow"></div>
+                                                    <textarea name="detail-materi[]" id="summernote" cols="30" rows="10">{{ old('description') }}</textarea>
+                                                     
+                                                     <p class="block mt-4 py-5 text-sm text-gray-700">
+                                                        Description 2 pada materi yang kamu berikan?
+                                                    </p>
+
+                                                     <textarea name="detail-materi[]" id="summernotee" cols="30" rows="10">{{ old('description') }}</textarea>
+
+                                                        <script>
+                                                            $('#summernote').summernote({
+                                                            tabsize: 4,
+                                                            height: 320,
+                                                            minHeight: 320,             // set minimum height of editor
+                                                            maxHeight: 500,             // set maximum height of editor
+                                                            focus: true,
+                                                            toolbar: [
+                                                                ['style', ['style']],
+                                                                ['font', ['bold', 'underline', 'clear']],
+                                                                ['color', ['color']],
+                                                                ['para', ['ul', 'ol', 'paragraph']],
+                                                                ['table', ['table']],
+                                                                ['insert', ['link', 'picture', 'video']],
+                                                                ['view', ['fullscreen', 'codeview', 'help']]
+                                                            ]
+                                                            });
+                                                        </script>
+                                                        
+                                                        <script>
+                                                            $('#summernotee').summernote({
+                                                            tabsize: 4,
+                                                            height: 320,
+                                                            minHeight: 320,             // set minimum height of editor
+                                                            maxHeight: 500,             // set maximum height of editor
+                                                            focus: true,
+                                                            toolbar: [
+                                                                ['style', ['style']],
+                                                                ['font', ['bold', 'underline', 'clear']],
+                                                                ['color', ['color']],
+                                                                ['para', ['ul', 'ol', 'paragraph']],
+                                                                ['table', ['table']],
+                                                                ['insert', ['link', 'picture', 'video']],
+                                                                ['view', ['fullscreen', 'codeview', 'help']]
+                                                            ]
+                                                            });
+                                                        </script>
+
+                                                    {{-- <div id="newDescriptionRow"></div>
 
                                                     <button type="button" class="inline-flex justify-center px-3 py-2 mt-3 text-xs font-medium text-gray-700 bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" id="addDescriptionRow">
                                                         Tambahkan Description +
-                                                    </button>
+                                                    </button> --}}
                                                 
                                                 </div>
 
@@ -164,12 +242,12 @@
            
 @endsection
 
-@push('after-script')
+{{-- @push('after-script')
      <script src="{{ url('https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js') }}"></script>
         
         
         <script type="text/javascript">
-            // add row
+           
             $("#addDescriptionRow").click(function() {
                 var html = '';
                 html += '<input placeholder="Deskripsikan materi kamu" type="text" name="detail-materi[]" id="description" autocomplete="description" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">';
@@ -177,11 +255,10 @@
                 $('#newDescriptionRow').append(html);
             });
 
-            // remove row
             $(document).on('click', '#removeDescriptionRow', function() {
                 $(this).closest('#inputFormDescriptionRow').remove();
             });
         </script>
         
        
-@endpush
+@endpush --}}

@@ -51,7 +51,7 @@
                                                             
                                                             <div class="mt-4 mb-8 content-description">
                                                                 <p>
-                                                                    {{ $item->description ?? '' }}
+                                                                    {!! $item->description ?? '' !!}
                                                                 </p>
                                                             </div>
                                                             

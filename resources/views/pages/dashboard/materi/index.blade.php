@@ -43,8 +43,8 @@
                                         <tr class="text-sm font-normal text-left text-gray-900 border-b border-b-gray-600">
                                             {{-- <th class="py-4" scope="">ID</th> --}}
                                             <th class="py-4 pr-5" scope="">Service ID</th>
-                                            <th class="py-4" scope="">Title</th>
-                                            <th class="py-4 pl-5" scope="">Tugas Materi</th>
+                                            <th class="py-4 text-center" scope="">Title</th>
+                                            <th class="py-4 text-center pl-5" scope="">Tugas Materi</th>
                                             <th class="py-4 text-center" scope="">Url Video</th>
                                             <th class="py-4 text-center" scope="">Action</th>
                                         </tr>
@@ -60,7 +60,7 @@
                                                     {{ $mtr->service_id ?? '' }}
                                                 </td>
 
-                                                <td class="w-2/6 px-1 py-5">
+                                                <td class=" px-1 py-5">
                                                     <div class="flex items-center text-sm">
                                                         <div>
                                                             
@@ -129,7 +129,7 @@
 
                 <div class="relative mt-0 md:mt-6">
                     <a href="{{ route('member.service.create') }}" class="px-4 py-2 mt-2 text-left text-white rounded-xl bg-serv-button">
-                        + Add Services
+                        + Add Materi
                     </a>
                 </div>
             </div>

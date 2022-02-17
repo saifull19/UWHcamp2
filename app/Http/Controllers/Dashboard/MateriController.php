@@ -75,7 +75,7 @@ class MateriController extends Controller
         // $service = Service::where('id', $id)->first();
         
         // $materi = Materi::where('id', $materi)->get();
-        $detail_materi = DetailMateri::where('materi_id', $materi)->get();
+        $detail_materi = DetailMateri::where('materi_id', $materi['id'])->get();
 
         return view('pages.dashboard.materi.detail', compact('materi', 'detail_materi'));
     }
@@ -113,17 +113,18 @@ class MateriController extends Controller
 
         // add new materi 
 
+        // update to materi 
+        
         foreach ($data['detail-materi'] as $key => $value) {
-                $detail_materi = new DetailMateri;
-                $detail_materi->materi_id = $materi['id'];
-                $detail_materi->description = $value;
-                $detail_materi->save();
-            }
+            $detail_materi = new DetailMateri;
+            $detail_materi->materi_id = $materi['id'];
+            $detail_materi->description = $value;
+            $detail_materi->save();
+        }
         if (isset($data['detail-materis'])) {
             
-            // update to materi 
             foreach ($data['detail-materis'] as $key => $value) {
-            
+                
                 $detail_materi = DetailMateri::find($key);
                 $detail_materi->description = $value;
                 $detail_materi->save();

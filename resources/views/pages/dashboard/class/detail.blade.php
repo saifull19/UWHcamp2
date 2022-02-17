@@ -11,6 +11,11 @@
     Materi Service UWHcamp
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
   <link href="{{ url('https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css') }}" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
   <!--     Fonts and icons     -->
@@ -20,6 +25,8 @@
   <link href="{{ asset('/assets/css/material-dashboard.css?v=2.1.0') }}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{{ asset('/assets/demo/demo.css') }}" rel="stylesheet" />
+
+  
 </head>
 
 <body class="dark-edition">
@@ -204,10 +211,32 @@
                             </td>
                             <td class="h4">{{ $materi[0]->tugas_materi ?? '' }}
                             </td>
-                            
                           </tr>
                         </tbody>
                       </table>
+
+                      <div class="bg-light">
+                        <form action="" method="post">
+                        <textarea name="description" id="summernote"  rows="10"></textarea>
+                        <script>
+                            $('#summernote').summernote({
+                              tabsize: 4,
+                              height: 320,
+                              minHeight: 320,             // set minimum height of editor
+                              maxHeight: 500,             // set maximum height of editor
+                              focus: true,
+                              toolbar: [
+                                ['style', ['style']],
+                                ['font', ['bold', 'underline', 'clear']],
+                                ['color', ['color']],
+                                ['para', ['ul', 'ol', 'paragraph']],
+                                ['view', [ 'codeview', 'help']]
+                              ]
+                            });
+                          </script>
+                      </form>
+                      </div>
+
                     </div>
 
                     
@@ -407,6 +436,9 @@
   <script src="{{ asset('/assets/js/material-dashboard.js?v=2.1.0') }}"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="{{ asset('/assets/demo/demo.js') }}"></script>
+
+  
+
   <script>
     $(document).ready(function() {
       $().ready(function() {

@@ -94,9 +94,9 @@
                                                         <h2 class="text-xl font-semibold">About This <span class="text-serv-button">Services</span></h2>
 
                                                         <div class="mt-4 mb-8 content-description">
-                                                            <p>
-                                                                {{ $order->service->description ?? '' }}
-                                                            </p>
+                                                            
+                                                                {!! $order->service->description ?? '' !!}
+                                                            
                                                         </div>
 
                                                         <h3 class="my-4 pb-4 text-lg font-semibold">Why choose my Service?</h3>

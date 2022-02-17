@@ -51,7 +51,7 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show( $id)
+    public function show($id)
     {
         $role = UserRole::where('id', $id)->first();
         $akses = Akses::where('user_role_id', $id)->get();

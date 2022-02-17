@@ -8,6 +8,9 @@ use File;
 use Auth;
 
 use App\Models\Order;
+use App\Models\Service;
+use App\Models\Materi;
+use App\Models\TugasMateri;
 
 class ProgressController extends Controller
 {
@@ -59,7 +62,12 @@ class ProgressController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = Order::where('id', $id)->first();
+        $service = Service::where('id', $order['service_id'])->first();
+        $materi = Materi::where('service_id', $service['id'])->get();
+        $tugas = TugasMateri::latest()->paginate(3);
+
+        return view('pages.dashboard.progress.detail', compact('order', 'service', 'materi', 'tugas'));
     }
 
     /**

@@ -11,6 +11,11 @@
     Materi UWHcamp
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+  
   <link href="{{ url('https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css') }}" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
   <!--     Fonts and icons     -->
@@ -32,11 +37,9 @@
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav ">
-          
-          
 
           @forelse ($materis as $item)
-              @if ($item->service_id == $detail_materi->service_id)
+              @if ($item->service_id == $materi->service_id)
                 <li class="nav-item ">
                   <a class="nav-link" href="{{ route('member.class.edit', $item->id) }}">
                     <i class="material-icons">bubble_chart</i>
@@ -58,7 +61,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:void(0)">{{ $detail_materi->title ?? '' }}</a>
+            <a class="navbar-brand" href="javascript:void(0)">{{ $materi->title ?? '' }}</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
             <span class="sr-only">Toggle navigation</span>
@@ -68,8 +71,9 @@
           </button>
           <div class="collapse navbar-collapse justify-content-end">
 
-            </ul>
+            
           </div>
+          @include('sweetalert::alert')
         </div>
       </nav>
       <!-- End Navbar -->
@@ -83,7 +87,7 @@
                   <div class="ct-chart" >
 
                     <div class="ratio ratio-16x9">
-                      <iframe src="{{ $detail_materi->url ?? ''}}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      <iframe src="{{ $materi->url ?? ''}}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
 
                   </div>
@@ -96,7 +100,7 @@
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <i class="material-icons">access_time</i> updated $detail_materi->updated_at ?? ''
+                    <i class="material-icons">access_time</i> updated {{ $materi->updated_at ?? '' }}
                   </div>
                 </div>
               </div>
@@ -109,7 +113,7 @@
                 <div class="card-header card-header-tabs card-header-warning">
                   <div class="nav-tabs-navigation">
                     <div class="nav-tabs-wrapper">
-                      <span class="nav-tabs-title">Tasks:</span>
+                      <span class="nav-tabs-title">Materi : {{ $materi->title ?? '' }}</span>
                       <ul class="nav nav-tabs" data-tabs="tabs">
                         
                         <li class="nav-item">
@@ -151,14 +155,14 @@
                             <td>
                               <div class="form-check">
                                 <label class="form-check-label">
-                                  <input class="form-check-input" type="checkbox" value="" checked>
+                                  <input class="form-check-input" type="checkbox" value="" >
                                   <span class="form-check-sign">
                                     <span class="check"></span>
                                   </span>
                                 </label>
                               </div>
                             </td>
-                            <td class="h4">{{ $detail_materi->detail_materi[0]->description ?? '' }}</td>
+                            <td class="h4">{!! $materi->detail_materi[0]->description ?? '' !!}</td>
                             
                           </tr>
                           
@@ -173,14 +177,14 @@
                             <td>
                               <div class="form-check">
                                 <label class="form-check-label">
-                                  <input class="form-check-input" type="checkbox" value="" checked>
+                                  <input class="form-check-input" type="checkbox" value="" >
                                   <span class="form-check-sign">
                                     <span class="check"></span>
                                   </span>
                                 </label>
                               </div>
                             </td>
-                            <td class="h4">{{ $detail_materi->detail_materi[1]->description ?? '' }}</td>
+                            <td class="h4">{!! $materi->detail_materi[1]->description ?? '' !!}</td>
                             
                           </tr>
                         </tbody>
@@ -194,18 +198,49 @@
                             <td>
                               <div class="form-check">
                                 <label class="form-check-label">
-                                  <input class="form-check-input" type="checkbox" value="" checked>
+                                  <input class="form-check-input" type="checkbox" value="">
                                   <span class="form-check-sign">
                                     <span class="check"></span>
                                   </span>
                                 </label>
                               </div>
                             </td>
-                            <td class="h4">{{ $detail_materi->tugas_materi ?? '' }}</td>
+                            <td class="h4">{{ $materi->tugas_materi ?? '' }}</td>
                             
                           </tr>
                         </tbody>
                       </table>
+
+                      <div class="bg-light">
+                          <form action="{{ route('member.class.update', [$materi->id]) }}" method="POST" class="">
+                            @method('PUT')
+                            @csrf
+                            <textarea name="description" id="summernote"  rows="10">{!! $tugas->description ?? '' !!}</textarea>
+                            <script>
+                                $('#summernote').summernote({
+                                  tabsize: 4,
+                                  height: 320,
+                                  minHeight: 320,             // set minimum height of editor
+                                  maxHeight: 500,             // set maximum height of editor
+                                  focus: true,
+                                  toolbar: [
+                                    ['style', ['style']],
+                                    ['font', ['bold', 'underline', 'clear']],
+                                    ['color', ['color']],
+                                    ['para', ['ul', 'ol', 'paragraph']],
+                                    ['view', [ 'codeview', 'help']]
+                                  ]
+                                });
+                              </script>
+
+                              <div class="d-grid gap-2 my-3 col-6 mx-auto">
+                                {{-- <button class="btn btn-primary" type="button">Button</button> --}}
+                                <button class="btn btn-success" type="submit" onclick="return confirm('Are you sure want to submit this data ?')">Submit</button>
+                              </div>
+
+                          </form>
+                      </div>
+
                     </div>
 
                     
