@@ -122,20 +122,8 @@ Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth:sa
     Route::resource('profile', ProfileController::class);
 });
 
-
-
-
 // route socialite
 Route::get('sign-in-google', [UserController::class, 'google'])->name('user.login.google');
 Route::get('auth/google', [UserController::class, 'handleProviderCallback'])->name('user.google.callback');
 
 
-
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//     return view('dashboard');
-// })->name('dashboard');
