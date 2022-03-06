@@ -3,7 +3,7 @@
 @section('title', 'Class')
 @section('content')
 
-@if (count($orders))
+@if (count($orders)) 
 
     <main class="h-full overflow-y-auto">
                 <div class="container mx-auto">
@@ -39,41 +39,48 @@
                                             Belajar dengan giat, untuk masa depan yang lebih baik.
                                         </p>
                                     </div>
+                                    
 
-                                    <div class="sm:grid sm:h-32 sm:grid-flow-row sm:gap-4 sm:grid-cols-3">
-                                
-                                        @forelse ($orders as $order)
-                                            <a href="{{ route('member.class.show', $order->id) }}" class="">
-                                                <div class="flex flex-col justify-center px-4 py-4 mb-4 bg-white hover:bg-gray-300 rounded-xl">
-                                                    <div>
+                                    
+                                    @forelse ($orders as $order)
+
+                                        @if ($order->payment_status == 'paid')
+                                        
+                                            <div class="sm:grid sm:h-32 sm:grid-flow-row sm:gap-4 sm:grid-cols-3">
+                                                <a href="{{ route('member.class.show', $order->id) }}" class="">
+                                                    <div class="flex flex-col justify-center px-4 py-4 mb-4 bg-white hover:bg-gray-300 rounded-xl">
                                                         <div>
-                                                            {{-- <img src="{{ asset('/assets/images/jason-goodman-Oalh2MojUuk-unsplash.jpg') }}" alt="" class="w-50 h-30"> --}}
-                                                            @if ($order->service->thumbnail_Service[0]->thumbnail)
-                                                                
-                                                                    <img class="object-cover w-50 h-30 rounded" src="{{ url(Storage::url($order->service->thumbnail_service[0]->thumbnail)) }}" alt="" loading="lazy" />
+                                                            <div>
+                                                                {{-- <img src="{{ asset('/assets/images/jason-goodman-Oalh2MojUuk-unsplash.jpg') }}" alt="" class="w-50 h-30"> --}}
+                                                                @if ($order->service->thumbnail_Service[0]->thumbnail)
                                                                     
-                                                                @else
+                                                                        <img class="object-cover w-50 h-30 rounded" src="{{ url(Storage::url($order->service->thumbnail_service[0]->thumbnail)) }}" alt="" loading="lazy" />
+                                                                        
+                                                                    @else
 
-                                                                    <img class="object-cover w-50 h-30 rounded" src="{{ asset('/assets/1.png') }}" alt="" loading="lazy" />
-                                                                    
-                                                                @endif
+                                                                        <img class="object-cover w-50 h-30 rounded" src="{{ asset('/assets/1.png') }}" alt="" loading="lazy" />
+                                                                        
+                                                                    @endif
+                                                            </div>
+
+                                                            <p class="mt-5 text-2xl font-semibold text-left text-gray-800"> {{ $order->service->title ?? '' }}</p>
+
+                                                            <p class="text-md text-left font-normal py-5 text-gray-800">
+                                                                {{ $order->user_freelancer->name ?? '' }}<br class="hidden lg:block">
+                                                                <span class="text-sm text-gray-500">{{ $order->user_freelancer->detail_user->role ?? '' }}</span>
+                                                            </p>
+
                                                         </div>
-
-                                                        <p class="mt-5 text-2xl font-semibold text-left text-gray-800"> {{ $order->service->title ?? '' }}</p>
-
-                                                        <p class="text-md text-left font-normal py-5 text-gray-800">
-                                                            {{ $order->user_freelancer->name ?? '' }}<br class="hidden lg:block">
-                                                            <span class="text-sm text-gray-500">{{ $order->user_freelancer->detail_user->role ?? '' }}</span>
-                                                        </p>
-
                                                     </div>
-                                                </div>
-                                            </a>
+                                                </a>
+                                            </div>
+
+                                        @endif
+                                        
                                         @empty
                                             {{-- empty --}}
                                         @endforelse
 
-                                    </div>
 
                             </div>
 

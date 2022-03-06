@@ -165,7 +165,7 @@ class LandingController extends Controller
         $order->file = NULL;
         $order->note = NULL;
         $order->expired = Date('y-m-d', strtotime('+3 days'));
-        $order->order_status_id = 4;
+        $order->order_status_id = 2;
         // $order->payment_status = 'Waiting';
         $order->save();
 
@@ -281,7 +281,7 @@ class LandingController extends Controller
             }
             else if ($fraud == 'accept') {
                 // TODO Set payment status in merchant's database to 'success'
-                $checkout->payment_status = 'paid';
+                $checkout->payment_status = 'paid'; 
             }
         }
         else if ($transaction_status == 'cancel') {

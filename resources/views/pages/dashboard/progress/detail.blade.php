@@ -30,8 +30,12 @@
 
                                 @foreach ($tugas as $item)
                                     @if ($item->users_id == $order->buyer_id)
+
+                                        @if ($item->users_id == $order->service_id)
+                                            
+                                        @endif
                                         <div class="flex items-center py-4 mt-4">
-                                            <div class="w-1/2">
+                                            <div class="">
                                                 <h1 class="font-medium font-bold text-gray-700">
                                                     {{ $item->Materi->title ?? '' }}
                                                 </h1>

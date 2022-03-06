@@ -146,7 +146,7 @@
                 </div>
 
                 <div class="card-body">
-                  <div class="tab-content">
+                  <div class="tab-content bg-light">
                     <div class="tab-pane active" id="profile">
                       <table class="table">
                         <tbody>
@@ -194,7 +194,7 @@
                     <div class="tab-pane" id="tugas">
                       <table class="table">
                         <tbody>
-                          <tr>
+                          <tr class="bg-dark">
                             <td>
                               <div class="form-check">
                                 <label class="form-check-label">
@@ -205,7 +205,7 @@
                                 </label>
                               </div>
                             </td>
-                            <td class="h4">{{ $materi->tugas_materi ?? '' }}</td>
+                            <td class="h4 text-light fw-bold fst-italic">{{ $materi->tugas_materi ?? '' }}</td>
                             
                           </tr>
                         </tbody>
@@ -215,23 +215,49 @@
                           <form action="{{ route('member.class.update', [$materi->id]) }}" method="POST" class="">
                             @method('PUT')
                             @csrf
-                            <textarea name="description" id="summernote"  rows="10">{!! $tugas->description ?? '' !!}</textarea>
-                            <script>
-                                $('#summernote').summernote({
-                                  tabsize: 4,
-                                  height: 320,
-                                  minHeight: 320,             // set minimum height of editor
-                                  maxHeight: 500,             // set maximum height of editor
-                                  focus: true,
-                                  toolbar: [
-                                    ['style', ['style']],
-                                    ['font', ['bold', 'underline', 'clear']],
-                                    ['color', ['color']],
-                                    ['para', ['ul', 'ol', 'paragraph']],
-                                    ['view', [ 'codeview', 'help']]
-                                  ]
-                                });
-                              </script>
+                            
+                            {{-- @if ($tugas_materi->users_id == auth()->user()->id) --}}
+                                
+                              <textarea name="description" id="summernote"  rows="10">{!! $tugas_materi->description ?? '' !!}</textarea>
+                              <script>
+                                  $('#summernote').summernote({
+                                    tabsize: 4,
+                                    height: 320,
+                                    minHeight: 320,             // set minimum height of editor
+                                    maxHeight: 500,             
+                                    focus: true,
+                                    toolbar: [
+                                      ['style', ['style']],
+                                      ['font', ['bold', 'underline', 'clear']],
+                                      ['color', ['color']],
+                                      ['para', ['ul', 'ol', 'paragraph']],
+                                      ['view', [ 'codeview', 'help']]
+                                    ]
+                                  });
+                                </script>
+
+                            {{-- @elseif(auth()->user()->id != NULL)
+
+                              <textarea name="description" id="summernote"  rows="10"></textarea>
+                              <script>
+                                  $('#summernote').summernote({
+                                    tabsize: 4,
+                                    height: 320,
+                                    minHeight: 320,             
+                                    maxHeight: 500,             
+                                    focus: true,
+                                    toolbar: [
+                                      ['style', ['style']],
+                                      ['font', ['bold', 'underline', 'clear']],
+                                      ['color', ['color']],
+                                      ['para', ['ul', 'ol', 'paragraph']],
+                                      ['view', [ 'codeview', 'help']]
+                                    ]
+                                  });
+                                </script>
+                                
+                            @endif --}}
+                            
 
                               <div class="d-grid gap-2 my-3 col-6 mx-auto">
                                 {{-- <button class="btn btn-primary" type="button">Button</button> --}}

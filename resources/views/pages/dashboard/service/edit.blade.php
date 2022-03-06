@@ -208,12 +208,12 @@
                                                 <div class="col-span-6 sm:col-span-3">
                                                 
                                                     <select id="estimation" name="revision_limit" autocomplete="estimation" class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-                                                        <option>Maksimal Revisi Bootcamp kamu</option>
-                                                        <option value="2" {{ $service->revision_limit == '2' ? 'selected' : '' }}>2 Kali</option>
-                                                        <option value="5" {{ $service->revision_limit == '5' ? 'selected' : '' }}>5 Kali</option>
-                                                        <option value="7" {{ $service->revision_limit == '7' ? 'selected' : '' }}>7 Kali</option>
-                                                        <option value="10" {{ $service->revision_limit == '10' ? 'selected' : '' }}>10 Kali</option>
-                                                        <option value="12" {{ $service->revision_limit == '12' ? 'selected' : '' }}>12 Kali</option>
+                                                        <option>Maksimal Members pada setiap sesi Bootcamp kamu</option>
+                                                        <option value="20" {{ $service->revision_limit == '20' ? 'selected' : '' }}>20 Members</option>
+                                                        <option value="25" {{ $service->revision_limit == '25' ? 'selected' : '' }}>25 Members</option>
+                                                        <option value="30" {{ $service->revision_limit == '30' ? 'selected' : '' }}>30 Members</option>
+                                                        <option value="35" {{ $service->revision_limit == '35' ? 'selected' : '' }}>35 Members</option>
+                                                        <option value="40" {{ $service->revision_limit == '40' ? 'selected' : '' }}>40 Members</option>
                                                     </select>
                                                 
                                                 </div>

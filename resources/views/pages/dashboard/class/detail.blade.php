@@ -150,9 +150,9 @@
                 </div>
 
                 <div class="card-body">
-                  <div class="tab-content">
+                  <div class="tab-content  rounded">
                     <div class="tab-pane active" id="profile">
-                      <table class="table">
+                      <table class="table bg-light">
                         <tbody>
 
                           <tr>
@@ -166,7 +166,7 @@
                                 </label>
                               </div>
                             </td>
-                            <td class="h4">{{ $materi[0]->detail_materi[0]->description ?? '' }}</td>
+                            <td >{!! $materi[0]->detail_materi[0]->description ?? '' !!}</td>
                             
                           </tr>
                           
@@ -175,7 +175,7 @@
                     </div>
 
                     <div class="tab-pane" id="materi1">
-                      <table class="table">
+                      <table class="table bg-light">
                         <tbody>
                           <tr>
                             <td>
@@ -188,7 +188,7 @@
                                 </label>
                               </div>
                             </td>
-                            <td class="h4">{{ $materi[0]->detail_materi[1]->description ?? '' }}</td>
+                            <td >{!! $materi[0]->detail_materi[1]->description ?? '' !!}</td>
                             
                           </tr>
                         </tbody>
@@ -198,7 +198,7 @@
                     <div class="tab-pane" id="tugas">
                       <table class="table">
                         <tbody>
-                          <tr>
+                          <tr class="bg-dark rounded">
                             <td>
                               <div class="form-check">
                                 <label class="form-check-label">
@@ -209,13 +209,13 @@
                                 </label>
                               </div>
                             </td>
-                            <td class="h4">{{ $materi[0]->tugas_materi ?? '' }}
+                            <td class="h4 text-light fw-bold fst-italic">{{ $materi[0]->tugas_materi ?? '' }}
                             </td>
                           </tr>
                         </tbody>
                       </table>
 
-                      <div class="bg-light">
+                      <div class="bg-light rounded">
                         <form action="" method="post">
                         <textarea name="description" id="summernote"  rows="10"></textarea>
                         <script>

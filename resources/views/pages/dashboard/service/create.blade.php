@@ -213,13 +213,13 @@
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <select id="revision_limit" name="revision_limit" autocomplete="revision_limit" class="block w-full px-3 py-3 pr-10 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
 
-                                                        <option>Maksimal Revisi Bootcamp kamu</option>
+                                                        <option>Maksimal Members pada setiap sesi Bootcamp kamu</option>
 
-                                                        <option value="2">2 Revisi</option>
-                                                        <option value="5">5 Revisi</option>
-                                                        <option value="7">7 Revisi</option>
-                                                        <option value="10">10 Revisi</option>
-                                                        <option value="12">12 Revisi</option>
+                                                        <option value="20">20 Members</option>
+                                                        <option value="25">25 Members</option>
+                                                        <option value="30">30 Members</option>
+                                                        <option value="35">35 Members</option>
+                                                        <option value="40">40 Members</option>
 
                                                     </select>
 
