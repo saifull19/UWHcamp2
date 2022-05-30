@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class isMentor
+class IsMentor
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class isMentor
     public function handle(Request $request, Closure $next)
     {
         // membuat middleware sendiri
-        if(!auth()->check() || auth()->user()->user_role_id !== 2) {
+        if(!auth()->check() || auth()->user()->user_role_id !== '2') {
             abort(403);
         }
 

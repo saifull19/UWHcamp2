@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class isAdmin
+class IsAdmin
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class isAdmin
     public function handle(Request $request, Closure $next)
     {
         // membuat middleware sendiri
-        if(!auth()->check() || auth()->user()->user_role_id !== 1) {
+        if(!auth()->check() || auth()->user()->user_role_id !== '1') {
             abort(403);
         }
 
