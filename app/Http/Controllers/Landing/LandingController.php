@@ -222,7 +222,7 @@ class LandingController extends Controller
             'id' => $orderId,
             'price' => $price,
             'quantity' => 1,
-            'name' => "Payment for {$order->Service->title} Camp"
+            'name' => "Payment for {$order->Service->title} Bootcamp"
         ]; 
 
         $userData = [
